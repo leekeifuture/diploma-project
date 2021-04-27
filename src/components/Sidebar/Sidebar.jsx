@@ -8,8 +8,6 @@ import ListItemText from '@material-ui/core/ListItemText'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 
-import avatar from 'assets/img/faces/avatar.jpg'
-
 import sidebarStyle
     from 'assets/jss/material-dashboard-pro-react/components/sidebarStyle.jsx'
 import cx from 'classnames'
@@ -311,7 +309,7 @@ class Sidebar extends React.Component {
             bgColor,
             rtlActive
         } = this.props
-        const itemText =
+        /*const itemText =
             classes.itemText +
             ' ' +
             cx({
@@ -353,8 +351,8 @@ class Sidebar extends React.Component {
             ' ' +
             cx({
                 [classes.photoRTL]: rtlActive
-            })
-        var user = (
+            })*/
+        /*var user = (
             <div className={userWrapperClass}>
                 <div className={photo}>
                     <img src={avatar} className={classes.avatarImg} alt="..." />
@@ -444,7 +442,7 @@ class Sidebar extends React.Component {
                     </ListItem>
                 </List>
             </div>
-        )
+        )*/
         var links = (
             <List className={classes.list}>{this.createLinks(routes)}</List>
         )
@@ -516,7 +514,7 @@ class Sidebar extends React.Component {
                         {brand}
                         <SidebarWrapper
                             className={sidebarWrapper}
-                            user={user}
+                            // user={user}
                             headerLinks={<AdminNavbarLinks
                                 rtlActive={rtlActive} />}
                             links={links}
@@ -543,7 +541,7 @@ class Sidebar extends React.Component {
                         {brand}
                         <SidebarWrapper
                             className={sidebarWrapper}
-                            user={user}
+                            // user={user}
                             links={links}
                         />
                         {image !== undefined ? (

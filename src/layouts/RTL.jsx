@@ -8,8 +8,6 @@ import image from 'assets/img/sidebar-2.jpg'
 import rtlStyle
     from 'assets/jss/material-dashboard-pro-react/layouts/rtlStyle.jsx'
 import cx from 'classnames'
-import FixedPlugin from 'components/FixedPlugin/FixedPlugin.jsx'
-import Footer from 'components/Footer/Footer.jsx'
 // core components
 import AdminNavbar from 'components/Navbars/AdminNavbar.jsx'
 import Sidebar from 'components/Sidebar/Sidebar.jsx'
@@ -155,8 +153,8 @@ class RTL extends React.Component {
                         <div
                             className={classes.container}>{this.getRoutes(routes)}</div>
                     </div>
-                    <Footer fluid rtlActive />
-                    <FixedPlugin
+                    {/*<Footer fluid rtlActive />*/}
+                    {/*<FixedPlugin
                         handleImageClick={this.handleImageClick}
                         handleColorClick={this.handleColorClick}
                         handleBgColorClick={this.handleBgColorClick}
@@ -169,7 +167,7 @@ class RTL extends React.Component {
                         sidebarMinimize={this.sidebarMinimize.bind(this)}
                         miniActive={this.state.miniActive}
                         rtlActive={true}
-                    />
+                    />*/}
                 </div>
             </div>
         )

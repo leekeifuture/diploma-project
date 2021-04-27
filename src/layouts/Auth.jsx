@@ -9,7 +9,6 @@ import register from 'assets/img/register.jpeg'
 
 import pagesStyle
     from 'assets/jss/material-dashboard-pro-react/layouts/authStyle.jsx'
-import Footer from 'components/Footer/Footer.jsx'
 // core components
 import AuthNavbar from 'components/Navbars/AuthNavbar.jsx'
 import PropTypes from 'prop-types'
@@ -86,7 +85,7 @@ class Pages extends React.Component {
                         style={{backgroundImage: 'url(' + this.getBgImage() + ')'}}
                     >
                         <Switch>{this.getRoutes(routes)}</Switch>
-                        <Footer white />
+                        {/*<Footer white />*/}
                     </div>
                 </div>
             </div>
