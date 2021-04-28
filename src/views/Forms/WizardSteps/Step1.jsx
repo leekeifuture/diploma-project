@@ -1,12 +1,11 @@
-import InputAdornment from '@material-ui/core/InputAdornment'
+import Checkbox from '@material-ui/core/Checkbox'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
-import Email from '@material-ui/icons/Email'
-// @material-ui/icons
-import Face from '@material-ui/icons/Face'
-import RecordVoiceOver from '@material-ui/icons/RecordVoiceOver'
-import CustomInput from 'components/CustomInput/CustomInput.jsx'
-import PictureUpload from 'components/CustomUpload/PictureUpload.jsx'
+import customCheckboxRadioSwitch
+    from 'assets/jss/material-dashboard-pro-react/customCheckboxRadioSwitch.jsx'
+
+import customSelectStyle
+    from 'assets/jss/material-dashboard-pro-react/customSelectStyle.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
@@ -21,21 +20,24 @@ const style = {
     inputAdornmentIcon: {
         color: '#555'
     },
-    inputAdornment: {
-        position: 'relative'
-    }
+    choiche: {
+        textAlign: 'center',
+        cursor: 'pointer',
+        marginTop: '20px'
+    },
+    ...customSelectStyle,
+    ...customCheckboxRadioSwitch
 }
 
 class Step1 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: '',
-            firstnameState: '',
-            lastname: '',
-            lastnameState: '',
-            email: '',
-            emailState: ''
+            simpleSelect: '',
+            desgin: false,
+            code: false,
+            develop: false,
+            faculty: null
         }
     }
 
@@ -43,158 +45,188 @@ class Step1 extends React.Component {
         return this.state
     }
 
-    // function that returns true if value is email, false otherwise
-    verifyEmail(value) {
-        var emailRex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if (emailRex.test(value)) {
-            return true
-        }
-        return false
+    handleSimple = event => {
+        this.setState({[event.target.name]: event.target.value})
     }
-
-    // function that verifies if a string has a given length or not
-    verifyLength(value, length) {
-        if (value.length >= length) {
-            return true
-        }
-        return false
-    }
-
-    change(event, stateName, type, stateNameEqualTo) {
-        switch (type) {
-            case 'email':
-                if (this.verifyEmail(event.target.value)) {
-                    this.setState({[stateName + 'State']: 'success'})
-                } else {
-                    this.setState({[stateName + 'State']: 'error'})
-                }
-                break
-            case 'length':
-                if (this.verifyLength(event.target.value, stateNameEqualTo)) {
-                    this.setState({[stateName + 'State']: 'success'})
-                } else {
-                    this.setState({[stateName + 'State']: 'error'})
-                }
-                break
-            default:
-                break
-        }
-        this.setState({[stateName]: event.target.value})
+    handleChange = name => event => {
+        this.setState({faculty: name})
     }
 
     isValidated() {
-        if (
-            this.state.firstnameState === 'success' &&
-            this.state.lastnameState === 'success' &&
-            this.state.emailState === 'success'
-        ) {
-            return true
-        } else {
-            if (this.state.firstnameState !== 'success') {
-                this.setState({firstnameState: 'error'})
-            }
-            if (this.state.lastnameState !== 'success') {
-                this.setState({lastnameState: 'error'})
-            }
-            if (this.state.emailState !== 'success') {
-                this.setState({emailState: 'error'})
-            }
-        }
-        return false
+        return true
     }
 
     render() {
         const {classes} = this.props
         return (
-            <GridContainer justify="center">
-                <GridItem xs={12} sm={12}>
-                    <h4 className={classes.infoText}>
-                        Let's start with the basic information (with validation)
-                    </h4>
-                </GridItem>
-                <GridItem xs={12} sm={4}>
-                    <PictureUpload />
-                </GridItem>
-                <GridItem xs={12} sm={6}>
-                    <CustomInput
-                        success={this.state.firstnameState === 'success'}
-                        error={this.state.firstnameState === 'error'}
-                        labelText={
-                            <span>
-                First Name <small>(required)</small>
-              </span>
-                        }
-                        id="firstname"
-                        formControlProps={{
-                            fullWidth: true
-                        }}
-                        inputProps={{
-                            onChange: event => this.change(event, 'firstname', 'length', 3),
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end"
-                                    className={classes.inputAdornment}
-                                >
-                                    <Face
-                                        className={classes.inputAdornmentIcon} />
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                    <CustomInput
-                        success={this.state.lastnameState === 'success'}
-                        error={this.state.lastnameState === 'error'}
-                        labelText={
-                            <span>
-                Last Name <small>(required)</small>
-              </span>
-                        }
-                        id="lastname"
-                        formControlProps={{
-                            fullWidth: true
-                        }}
-                        inputProps={{
-                            onChange: event => this.change(event, 'lastname', 'length', 3),
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end"
-                                    className={classes.inputAdornment}
-                                >
-                                    <RecordVoiceOver
-                                        className={classes.inputAdornmentIcon} />
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={12} lg={10}>
-                    <CustomInput
-                        success={this.state.emailState === 'success'}
-                        error={this.state.emailState === 'error'}
-                        labelText={
-                            <span>
-                Email <small>(required)</small>
-              </span>
-                        }
-                        id="email"
-                        formControlProps={{
-                            fullWidth: true
-                        }}
-                        inputProps={{
-                            onChange: event => this.change(event, 'email', 'email'),
-                            endAdornment: (
-                                <InputAdornment
-                                    position="end"
-                                    className={classes.inputAdornment}
-                                >
-                                    <Email
-                                        className={classes.inputAdornmentIcon} />
-                                </InputAdornment>
-                            )
-                        }}
-                    />
-                </GridItem>
-            </GridContainer>
+            <div>
+                <h4 className={classes.infoText}>Выберите факультет</h4>
+                <GridContainer justify="center">
+                    <GridItem xs={12} sm={12} md={12} lg={10}>
+                        <GridContainer>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('building')}
+                                        checkedIcon={
+                                            <i
+                                                className={
+                                                    'fas fa-building ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={
+                                                    'fas fa-building ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Строительный</h6>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('leaf')}
+                                        checkedIcon={
+                                            <i
+                                                className={
+                                                    'fas fa-leaf ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={
+                                                    'fas fa-leaf ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Инженерных систем и экологии</h6>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('cogs')}
+                                        checkedIcon={
+                                            <i
+                                                className={
+                                                    'fas fa-cogs ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={
+                                                    'fas fa-cogs ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Машиностроительный</h6>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('calculator')}
+                                        checkedIcon={
+                                            <i
+                                                className={
+                                                    'fas fa-calculator ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={
+                                                    'fas fa-calculator ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Экономический</h6>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('code')}
+                                        checkedIcon={
+                                            <i
+                                                className={
+                                                    'fas fa-code ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={
+                                                    'fas fa-code ' + classes.iconCheckboxIcon
+                                                }
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Электронно-информационных систем</h6>
+                                </div>
+                            </GridItem>
+                            <GridItem xs={12} sm={4}>
+                                <div className={classes.choiche}>
+                                    <Checkbox
+                                        tabIndex={-1}
+                                        onClick={this.handleChange('graduation-cap')}
+                                        checkedIcon={
+                                            <i
+                                                className={'fas fa-graduation-cap ' + classes.iconCheckboxIcon}
+                                            />
+                                        }
+                                        icon={
+                                            <i
+                                                className={'fas fa-graduation-cap ' + classes.iconCheckboxIcon}
+                                            />
+                                        }
+                                        classes={{
+                                            checked: classes.iconCheckboxChecked,
+                                            root: classes.iconCheckbox
+                                        }}
+                                    />
+                                    <h6>Инженерно-экономический факультет
+                                        заочного образования</h6>
+                                </div>
+                            </GridItem>
+                        </GridContainer>
+                    </GridItem>
+                </GridContainer>
+            </div>
         )
     }
 }

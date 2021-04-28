@@ -1,8 +1,4 @@
 import Checkbox from '@material-ui/core/Checkbox'
-import FormControl from '@material-ui/core/FormControl'
-import InputLabel from '@material-ui/core/InputLabel'
-import MenuItem from '@material-ui/core/MenuItem'
-import Select from '@material-ui/core/Select'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 import customCheckboxRadioSwitch
@@ -40,7 +36,8 @@ class Step2 extends React.Component {
             simpleSelect: '',
             desgin: false,
             code: false,
-            develop: false
+            develop: false,
+            faculty: null
         }
     }
 
@@ -60,141 +57,91 @@ class Step2 extends React.Component {
     }
 
     render() {
+        const chairsToFaculties = {
+            'building': [
+                'Архитектура',
+                'Геотехника и транспортные коммуникации',
+                'Строительные конструкции',
+                'Технология бетона и строительных материалов',
+                'Технология строительного производства',
+                'Экономика и организация строительства',
+                'Физическое воспитание и спорт'
+            ],
+            'leaf': [
+                'Водоснабжение',
+                'Теплогазоснабжение',
+                'Природоохранная деятельность',
+                'Мелиорация',
+                'Экология'
+            ],
+            'cogs': [
+                'Автоматизация технологических процессов',
+                'Машиноведение',
+                'Прикладная механика',
+                'Машиностроение и эксплуатация автомобилей',
+                'Гуманитарные науки'
+            ],
+            'calculator': [
+                'Бухгалтерский учет',
+                'Иностранные языки',
+                'Информатика и прикладная математика',
+                'Менеджмент',
+                'Мировая экономика',
+                'Экономическая теория и логистика'
+            ],
+            'code': [
+                'Интеллектуальные информационные технологии',
+                'ЭВМ и системы',
+                'Высшая математика',
+                'Физика'
+            ],
+            'graduation-cap': [
+                'Управление, экономика и финансы',
+                'Белорусский и русский языки'
+            ]
+        }
+
+        const faculty = Object.keys(this.props.allStates).length !== 0
+            ? this.props.allStates.faculty.faculty
+            : 'building'
+
         const {classes} = this.props
         return (
             <div>
-                <h4 className={classes.infoText}>What are you doing?
-                    (checkboxes)</h4>
+                <h4 className={classes.infoText}>Выберите кафедру</h4>
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12} lg={10}>
                         <GridContainer>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('desgin')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-pencil-alt ' + classes.iconCheckboxIcon
+                            {chairsToFaculties[faculty].map((chair, index) => (
+                                    <GridItem key={index} xs={12} sm={4}>
+                                        <div className={classes.choiche}>
+                                            <Checkbox
+                                                tabIndex={-1}
+                                                onClick={this.handleChange(index)}
+                                                checkedIcon={
+                                                    <i
+                                                        className={
+                                                            `fas fa-${faculty} ${classes.iconCheckboxIcon}`
+                                                        }
+                                                    />
                                                 }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-pencil-alt ' + classes.iconCheckboxIcon
+                                                icon={
+                                                    <i
+                                                        className={
+                                                            `fas fa-${faculty} ${classes.iconCheckboxIcon}`
+                                                        }
+                                                    />
                                                 }
+                                                classes={{
+                                                    checked: classes.iconCheckboxChecked,
+                                                    root: classes.iconCheckbox
+                                                }}
                                             />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Design</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('code')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-terminal ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-terminal ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Code</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('develop')}
-                                        checkedIcon={
-                                            <i
-                                                className={'fas fa-laptop ' + classes.iconCheckboxIcon}
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={'fas fa-laptop ' + classes.iconCheckboxIcon}
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Develop</h6>
-                                </div>
-                                <FormControl fullWidth
-                                             className={classes.selectFormControl}>
-                                    <InputLabel
-                                        htmlFor="simple-select"
-                                        className={classes.selectLabel}
-                                    >
-                                        Choose City
-                                    </InputLabel>
-                                    <Select
-                                        MenuProps={{
-                                            className: classes.selectMenu
-                                        }}
-                                        classes={{
-                                            select: classes.select
-                                        }}
-                                        value={this.state.simpleSelect}
-                                        onChange={this.handleSimple}
-                                        inputProps={{
-                                            name: 'simpleSelect',
-                                            id: 'simple-select'
-                                        }}
-                                    >
-                                        <MenuItem
-                                            disabled
-                                            classes={{
-                                                root: classes.selectMenuItem
-                                            }}
-                                        >
-                                            Choose City
-                                        </MenuItem>
-                                        <MenuItem
-                                            classes={{
-                                                root: classes.selectMenuItem,
-                                                selected: classes.selectMenuItemSelected
-                                            }}
-                                            value="2"
-                                        >
-                                            Paris
-                                        </MenuItem>
-                                        <MenuItem
-                                            classes={{
-                                                root: classes.selectMenuItem,
-                                                selected: classes.selectMenuItemSelected
-                                            }}
-                                            value="3"
-                                        >
-                                            Bucharest
-                                        </MenuItem>
-                                    </Select>
-                                </FormControl>
-                            </GridItem>
+                                            <h6>{chair}</h6>
+                                        </div>
+                                    </GridItem>
+                                )
+                            )}
                         </GridContainer>
                     </GridItem>
                 </GridContainer>
