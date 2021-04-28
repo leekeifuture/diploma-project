@@ -33,10 +33,6 @@ class Step1 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            simpleSelect: '',
-            desgin: false,
-            code: false,
-            develop: false,
             faculty: null
         }
     }
@@ -53,10 +49,27 @@ class Step1 extends React.Component {
     }
 
     isValidated() {
-        return true
+        return this.state.faculty != null
     }
 
     render() {
+        const faculties = [
+            'building',
+            'leaf',
+            'cogs',
+            'calculator',
+            'code',
+            'graduation-cap'
+        ]
+        const facultiesToReadable = {
+            'building': 'Строительный',
+            'leaf': 'Инженерных систем и экологии',
+            'cogs': 'Машиностроительный',
+            'calculator': 'Экономический',
+            'code': 'Электронно-информационных систем',
+            'graduation-cap': 'Инженерно-экономический факу'
+        }
+
         const {classes} = this.props
         return (
             <div>
@@ -64,165 +77,36 @@ class Step1 extends React.Component {
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12} lg={10}>
                         <GridContainer>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('building')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-building ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-building ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Строительный</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('leaf')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-leaf ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-leaf ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Инженерных систем и экологии</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('cogs')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-cogs ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-cogs ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Машиностроительный</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('calculator')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-calculator ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-calculator ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Экономический</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('code')}
-                                        checkedIcon={
-                                            <i
-                                                className={
-                                                    'fas fa-code ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={
-                                                    'fas fa-code ' + classes.iconCheckboxIcon
-                                                }
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Электронно-информационных систем</h6>
-                                </div>
-                            </GridItem>
-                            <GridItem xs={12} sm={4}>
-                                <div className={classes.choiche}>
-                                    <Checkbox
-                                        tabIndex={-1}
-                                        onClick={this.handleChange('graduation-cap')}
-                                        checkedIcon={
-                                            <i
-                                                className={'fas fa-graduation-cap ' + classes.iconCheckboxIcon}
-                                            />
-                                        }
-                                        icon={
-                                            <i
-                                                className={'fas fa-graduation-cap ' + classes.iconCheckboxIcon}
-                                            />
-                                        }
-                                        classes={{
-                                            checked: classes.iconCheckboxChecked,
-                                            root: classes.iconCheckbox
-                                        }}
-                                    />
-                                    <h6>Инженерно-экономический факультет
-                                        заочного образования</h6>
-                                </div>
-                            </GridItem>
+                            {faculties.map((faculty, index) => (
+                                <GridItem key={index} xs={12} sm={4}>
+                                    <div className={classes.choiche}>
+                                        <Checkbox
+                                            checked={this.state.faculty === faculty}
+                                            tabIndex={-1}
+                                            onClick={this.handleChange(faculty)}
+                                            checkedIcon={
+                                                <i
+                                                    className={
+                                                        `fas fa-${faculty} ${classes.iconCheckboxIcon}`
+                                                    }
+                                                />
+                                            }
+                                            icon={
+                                                <i
+                                                    className={
+                                                        `fas fa-${faculty} ${classes.iconCheckboxIcon}`
+                                                    }
+                                                />
+                                            }
+                                            classes={{
+                                                checked: classes.iconCheckboxChecked,
+                                                root: classes.iconCheckbox
+                                            }}
+                                        />
+                                        <h6>{facultiesToReadable[faculty]}</h6>
+                                    </div>
+                                </GridItem>
+                            ))}
                         </GridContainer>
                     </GridItem>
                 </GridContainer>

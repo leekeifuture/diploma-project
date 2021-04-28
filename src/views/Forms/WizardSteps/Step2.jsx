@@ -33,11 +33,7 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            simpleSelect: '',
-            desgin: false,
-            code: false,
-            develop: false,
-            faculty: null
+            chair: null
         }
     }
 
@@ -49,7 +45,7 @@ class Step2 extends React.Component {
         this.setState({[event.target.name]: event.target.value})
     }
     handleChange = name => event => {
-        this.setState({[name]: event.target.checked})
+        this.setState({chair: name})
     }
 
     isValidated() {
@@ -116,8 +112,9 @@ class Step2 extends React.Component {
                                     <GridItem key={index} xs={12} sm={4}>
                                         <div className={classes.choiche}>
                                             <Checkbox
+                                                checked={this.state.chair === chair}
                                                 tabIndex={-1}
-                                                onClick={this.handleChange(index)}
+                                                onClick={this.handleChange(chair)}
                                                 checkedIcon={
                                                     <i
                                                         className={
