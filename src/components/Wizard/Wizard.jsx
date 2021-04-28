@@ -335,12 +335,12 @@ Wizard.defaultProps = {
     color: 'rose',
     title: 'Here should go your title',
     subtitle: 'And this would be your subtitle',
-    previousButtonText: 'Previous',
+    previousButtonText: 'Назад',
     previousButtonClasses: '',
     nextButtonClasses: '',
-    nextButtonText: 'Next',
+    nextButtonText: 'Далее',
     finishButtonClasses: '',
-    finishButtonText: 'Finish'
+    finishButtonText: 'Подтвердить'
 }
 
 Wizard.propTypes = {
