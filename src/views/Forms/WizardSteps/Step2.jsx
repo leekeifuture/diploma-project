@@ -49,7 +49,7 @@ class Step2 extends React.Component {
     }
 
     isValidated() {
-        return true
+        return this.state.chair != null
     }
 
     render() {

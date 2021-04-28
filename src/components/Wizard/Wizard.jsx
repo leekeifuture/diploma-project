@@ -260,7 +260,7 @@ class Wizard extends React.Component {
                                             className={classes.stepsAnchor}
                                             onClick={e => {
                                                 e.preventDefault()
-                                                this.navigationStepChange(key)
+                                                // this.navigationStepChange(key)
                                             }}
                                         >
                                             {prop.stepName}
