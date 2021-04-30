@@ -8,6 +8,11 @@ import Step1 from './WizardSteps/Step1.jsx'
 import Step2 from './WizardSteps/Step2.jsx'
 
 class WizardView extends React.Component {
+    finishButtonClick(e) {
+        localStorage.setItem('faculty', e.faculty.faculty)
+        localStorage.setItem('chair', e.chair.chair)
+    }
+
     render() {
         return (
             <GridContainer justify="center">
@@ -28,7 +33,7 @@ class WizardView extends React.Component {
                         ]}
                         title="Добро пожаловать!"
                         subtitle="Эта информация позволит нам узнать о вас больше."
-                        finishButtonClick={e => console.log(e)}
+                        finishButtonClick={e => this.finishButtonClick(e)}
                     />
                 </GridItem>
             </GridContainer>

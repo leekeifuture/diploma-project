@@ -4,18 +4,18 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Wizard from '../views/Forms/Wizard'
+import Dashboard from '../views/Dashboard/Dashboard'
 
-class StartContainer extends React.Component {
+class MenuContainer extends React.Component {
     render() {
         return (
-            <Wizard />
+            <Dashboard />
         )
     }
 }
 
-StartContainer.propTypes = {
+MenuContainer.propTypes = {
     classes: PropTypes.object.isRequired
 }
 
-export default withStyles(dashboardStyle)(StartContainer)
+export default withStyles(dashboardStyle)(MenuContainer)

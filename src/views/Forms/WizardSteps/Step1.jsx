@@ -10,6 +10,7 @@ import customSelectStyle
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
+import {faculties, facultiesToReadable} from '../../../constants'
 
 const style = {
     infoText: {
@@ -53,23 +54,6 @@ class Step1 extends React.Component {
     }
 
     render() {
-        const faculties = [
-            'building',
-            'leaf',
-            'cogs',
-            'calculator',
-            'code',
-            'graduation-cap'
-        ]
-        const facultiesToReadable = {
-            'building': 'Строительный',
-            'leaf': 'Инженерных систем и экологии',
-            'cogs': 'Машиностроительный',
-            'calculator': 'Экономический',
-            'code': 'Электронно-информационных систем',
-            'graduation-cap': 'Инженерно-экономический факу'
-        }
-
         const {classes} = this.props
         return (
             <div>
