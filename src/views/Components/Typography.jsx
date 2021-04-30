@@ -40,34 +40,34 @@ function Typography({...props}) {
         <div>
             <Heading
                 textAlign="center"
-                title="Material Dashboard Heading"
+                title="Material Menu Heading"
                 category="Created using Roboto Font Family"
             />
             <Card>
                 <CardBody>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 1</div>
-                        <h1>The Life of Material Dashboard</h1>
+                        <h1>The Life of Material Menu</h1>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 2</div>
-                        <h2>The Life of Material Dashboard</h2>
+                        <h2>The Life of Material Menu</h2>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 3</div>
-                        <h3>The Life of Material Dashboard</h3>
+                        <h3>The Life of Material Menu</h3>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 4</div>
-                        <h4>The Life of Material Dashboard</h4>
+                        <h4>The Life of Material Menu</h4>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 5</div>
-                        <h5>The Life of Material Dashboard</h5>
+                        <h5>The Life of Material Menu</h5>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Header 6</div>
-                        <h6>The Life of Material Dashboard</h6>
+                        <h6>The Life of Material Menu</h6>
                     </div>
                     <div className={props.classes.typo}>
                         <div className={props.classes.note}>Paragraph</div>

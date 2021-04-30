@@ -7,7 +7,7 @@ import React from 'react'
 import Step1 from './WizardSteps/Step1.jsx'
 import Step2 from './WizardSteps/Step2.jsx'
 
-class WizardView extends React.Component {
+class Start extends React.Component {
     finishButtonClick(e) {
         localStorage.setItem('faculty', e.faculty.faculty)
         localStorage.setItem('chair', e.chair.chair)
@@ -41,4 +41,4 @@ class WizardView extends React.Component {
     }
 }
 
-export default WizardView
+export default Start

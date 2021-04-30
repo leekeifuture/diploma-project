@@ -76,7 +76,7 @@ class RegisterPage extends React.Component {
                                         />
                                         <InfoArea
                                             title="Built Audience"
-                                            description="There is also a Fully Customizable CMS Admin Dashboard for this product."
+                                            description="There is also a Fully Customizable CMS Admin Menu for this product."
                                             icon={Group}
                                             iconColor="info"
                                         />

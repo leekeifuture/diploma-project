@@ -4,7 +4,7 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Dashboard from '../views/Dashboard/Dashboard'
+import Dashboard from '../views/Menu/Menu'
 
 class MenuContainer extends React.Component {
     render() {

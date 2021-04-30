@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper'
 import Popper from '@material-ui/core/Popper'
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
-import Dashboard from '@material-ui/icons/Dashboard'
+import Menu from '@material-ui/icons/Menu'
 import Notifications from '@material-ui/icons/Notifications'
 // @material-ui/icons
 import Person from '@material-ui/icons/Person'
@@ -86,14 +86,14 @@ class HeaderLinks extends React.Component {
                 <Button
                     color="transparent"
                     simple
-                    aria-label="Dashboard"
+                    aria-label="Menu"
                     justIcon
                     className={rtlActive ? classes.buttonLinkRTL : classes.buttonLink}
                     muiClasses={{
                         label: rtlActive ? classes.labelRTL : ''
                     }}
                 >
-                    <Dashboard
+                    <Menu
                         className={
                             classes.headerLinksSvg +
                             ' ' +
@@ -104,7 +104,7 @@ class HeaderLinks extends React.Component {
                     />
                     <Hidden mdUp implementation="css">
             <span className={classes.linkText}>
-              {rtlActive ? 'لوحة القيادة' : 'Dashboard'}
+              {rtlActive ? 'لوحة القيادة' : 'Menu'}
             </span>
                     </Hidden>
                 </Button>
