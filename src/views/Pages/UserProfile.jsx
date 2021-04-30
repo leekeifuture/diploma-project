@@ -13,7 +13,6 @@ import CardBody from 'components/Card/CardBody.jsx'
 import CardHeader from 'components/Card/CardHeader.jsx'
 import CardIcon from 'components/Card/CardIcon.jsx'
 import Clearfix from 'components/Clearfix/Clearfix.jsx'
-import Button from 'components/CustomButtons/Button.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
@@ -73,7 +72,6 @@ function UserProfile(props) {
                                     информационная безопасность. Тема
                                     диссертации: "Нейросетевые методы
                                     обнаружения атак на компьютерные системы".
-
                                     <h3>Интересы</h3>
                                     Практические интересы: интернет и сетевые
                                     технологии; дизайн и мультимедиа; системное
@@ -84,7 +82,6 @@ function UserProfile(props) {
                                     центрального совета ОО "Белорусская лига
                                     интеллектуальных команд" от Брестской
                                     области.
-
                                     <h3>Образование</h3>
                                     2004 г. - БрГТУ, специальность АСОИ
                                     <br />
