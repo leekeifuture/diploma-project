@@ -13,7 +13,7 @@ import CardHeader from '../../components/Card/CardHeader'
 import GridContainer from '../../components/Grid/GridContainer'
 import GridItem from '../../components/Grid/GridItem'
 
-class StartContainer extends React.Component {
+class NewsContainer extends React.Component {
     render() {
         const chair = localStorage.getItem('chair')
 
@@ -86,8 +86,8 @@ class StartContainer extends React.Component {
     }
 }
 
-StartContainer.propTypes = {
+NewsContainer.propTypes = {
     classes: PropTypes.object.isRequired
 }
 
-export default withStyles(dashboardStyle)(StartContainer)
+export default withStyles(dashboardStyle)(NewsContainer)
