@@ -43,14 +43,20 @@ class Menu extends React.Component {
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
                                 <a href="#pablo"
-                                   onClick={e => e.preventDefault()}>
+                                   onClick={e => {
+                                       e.preventDefault()
+                                       window.location.href = 'http://localhost:3000/admin/teachers'
+                                   }}>
                                     <img src={priceImage1} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
-                                       onClick={e => e.preventDefault()}>
+                                       onClick={e => {
+                                           e.preventDefault()
+                                           window.location.href = 'http://localhost:3000/admin/teachers'
+                                       }}>
                                         Преподаватели
                                     </a>
                                 </h4>
@@ -62,14 +68,20 @@ class Menu extends React.Component {
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
                                 <a href="#pablo"
-                                   onClick={e => e.preventDefault()}>
+                                   onClick={e => {
+                                       e.preventDefault()
+                                       window.location.href = 'http://localhost:3000/admin/news'
+                                   }}>
                                     <img src={priceImage2} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
-                                       onClick={e => e.preventDefault()}>
+                                       onClick={e => {
+                                           e.preventDefault()
+                                           window.location.href = 'http://localhost:3000/admin/news'
+                                       }}>
                                         Новости
                                     </a>
                                 </h4>
@@ -81,14 +93,20 @@ class Menu extends React.Component {
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
                                 <a href="#pablo"
-                                   onClick={e => e.preventDefault()}>
+                                   onClick={e => {
+                                       e.preventDefault()
+                                       window.location.href = 'http://localhost:3000/admin/materials'
+                                   }}>
                                     <img src={priceImage3} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
-                                       onClick={e => e.preventDefault()}>
+                                       onClick={e => {
+                                           e.preventDefault()
+                                           window.location.href = 'http://localhost:3000/admin/materials'
+                                       }}>
                                         Материалы
                                     </a>
                                 </h4>
