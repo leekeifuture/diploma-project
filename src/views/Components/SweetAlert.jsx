@@ -94,7 +94,7 @@ class SweetAlertPage extends React.Component {
                     }
                 >
                     You can use <b>bold</b> text,{' '}
-                    <a href="https://www.creative-tim.com/">links</a> and other
+                    <a href="#">links</a> and other
                     HTML tags
                 </SweetAlert>
             )

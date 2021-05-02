@@ -98,8 +98,7 @@ class Notifications extends React.Component {
               </a>{' '}
                             and styled by{' '}
                             <a target="_blank"
-                               href="https://www.creative-tim.com/">
-                Creative Tim
+                               href="#">
               </a>
               . Please checkout the{' '}
                             <a href="#pablo" target="_blank">
@@ -492,8 +491,7 @@ class Notifications extends React.Component {
                                                         text={
                                                             <span>
                                 The first step is to create an account at{' '}
-                                                                <a href="https://www.creative-tim.com/">
-                                  Creative Tim
+                                                                <a href="#">
                                 </a>
                                 . You can choose a social network or go for the
                                 classic version, whatever works best for you.
@@ -508,8 +506,7 @@ class Notifications extends React.Component {
                                                         text={
                                                             <span>
                                 The first step is to create an account at{' '}
-                                                                <a href="https://www.creative-tim.com/">
-                                  Creative Tim
+                                                                <a href="#">
                                 </a>
                                 . You can choose a social network or go for the
                                 classic version, whatever works best for you.
@@ -524,7 +521,7 @@ class Notifications extends React.Component {
                                                         questions, don't
                                                         hesitate to
                                                         contact us or send us a
-                                                        tweet @creativetim.
+                                                        tweet @.
                                                         We're
                                                         here to help!
                                                     </p>

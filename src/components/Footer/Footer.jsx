@@ -54,8 +54,8 @@ function Footer({...props}) {
                 </div>
                 <p className={classes.right}>
                     &copy; {1900 + new Date().getYear()}{' '}
-                    <a href="https://www.creative-tim.com" className={anchor}>
-                        {rtlActive ? 'توقيت الإبداعية' : 'Creative Tim'}
+                    <a href="#" className={anchor}>
+                        {rtlActive ? 'توقيت الإبداعية' : 'LOGO'}
                     </a>
                     {rtlActive
                         ? ', مصنوعة مع الحب لشبكة الإنترنت أفضل'
