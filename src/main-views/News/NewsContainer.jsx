@@ -4,9 +4,7 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
-import priceImage1 from '../../assets/img/card-1.jpg'
-import priceImage2 from '../../assets/img/card-2.jpg'
-import priceImage3 from '../../assets/img/card-3.jpg'
+import newsImage from '../../assets/img/news.png'
 import Card from '../../components/Card/Card'
 import CardBody from '../../components/Card/CardBody'
 import CardHeader from '../../components/Card/CardHeader'
@@ -20,61 +18,135 @@ class NewsContainer extends React.Component {
         const {classes} = this.props
         return (
             <div>
-                <h3>Новости кафедры {chair}</h3>
-                <br />
                 <GridContainer>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={12} md={2}>
                         <Card product className={classes.cardHover}>
-                            <CardHeader image
-                                        className={classes.cardHeaderHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
                                 <a href="#pablo"
                                    onClick={e => e.preventDefault()}>
-                                    <img src={priceImage1} alt="..." />
+                                    <img src={newsImage} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
                                        onClick={e => e.preventDefault()}>
-                                        Преподаватели
+                                        Новость 1
                                     </a>
                                 </h4>
                             </CardBody>
                         </Card>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={12} md={2}>
                         <Card product className={classes.cardHover}>
-                            <CardHeader image
-                                        className={classes.cardHeaderHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
                                 <a href="#pablo"
                                    onClick={e => e.preventDefault()}>
-                                    <img src={priceImage2} alt="..." />
+                                    <img src={newsImage} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
                                        onClick={e => e.preventDefault()}>
-                                        Новости
+                                        Новость 2
                                     </a>
                                 </h4>
                             </CardBody>
                         </Card>
                     </GridItem>
-                    <GridItem xs={12} sm={12} md={4}>
+                    <GridItem xs={12} sm={12} md={2}>
                         <Card product className={classes.cardHover}>
-                            <CardHeader image
-                                        className={classes.cardHeaderHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
                                 <a href="#pablo"
                                    onClick={e => e.preventDefault()}>
-                                    <img src={priceImage3} alt="..." />
+                                    <img src={newsImage} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
                                        onClick={e => e.preventDefault()}>
-                                        Материалы
+                                        Новость 3
+                                    </a>
+                                </h4>
+                            </CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={2}>
+                        <Card product className={classes.cardHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
+                                <a href="#pablo"
+                                   onClick={e => e.preventDefault()}>
+                                    <img src={newsImage} alt="..." />
+                                </a>
+                            </CardHeader>
+                            <CardBody>
+                                <h4 className={classes.cardProductTitle}>
+                                    <a href="#pablo"
+                                       onClick={e => e.preventDefault()}>
+                                        Новость 4
+                                    </a>
+                                </h4>
+                            </CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={2}>
+                        <Card product className={classes.cardHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
+                                <a href="#pablo"
+                                   onClick={e => e.preventDefault()}>
+                                    <img src={newsImage} alt="..." />
+                                </a>
+                            </CardHeader>
+                            <CardBody>
+                                <h4 className={classes.cardProductTitle}>
+                                    <a href="#pablo"
+                                       onClick={e => e.preventDefault()}>
+                                        Новость 5
+                                    </a>
+                                </h4>
+                            </CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={2}>
+                        <Card product className={classes.cardHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
+                                <a href="#pablo"
+                                   onClick={e => e.preventDefault()}>
+                                    <img src={newsImage} alt="..." />
+                                </a>
+                            </CardHeader>
+                            <CardBody>
+                                <h4 className={classes.cardProductTitle}>
+                                    <a href="#pablo"
+                                       onClick={e => e.preventDefault()}>
+                                        Новость 6
+                                    </a>
+                                </h4>
+                            </CardBody>
+                        </Card>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={2}>
+                        <Card product className={classes.cardHover}>
+                            <CardHeader
+                                className={classes.cardHeaderHover}>
+                                <a href="#pablo"
+                                   onClick={e => e.preventDefault()}>
+                                    <img src={newsImage} alt="..." />
+                                </a>
+                            </CardHeader>
+                            <CardBody>
+                                <h4 className={classes.cardProductTitle}>
+                                    <a href="#pablo"
+                                       onClick={e => e.preventDefault()}>
+                                        Новость 7
                                     </a>
                                 </h4>
                             </CardBody>
