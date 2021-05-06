@@ -26,14 +26,20 @@ class MenuContainer extends React.Component {
                             <CardHeader
                                 className={classes.cardHeaderHover}>
                                 <a href="#pablo"
-                                   onClick={e => e.preventDefault()}>
+                                   onClick={e => {
+                                       e.preventDefault()
+                                       window.location.href = 'http://localhost:3000/admin/teacher'
+                                   }}>
                                     <img src={priceImage1} alt="..." />
                                 </a>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
                                     <a href="#pablo"
-                                       onClick={e => e.preventDefault()}>
+                                       onClick={e => {
+                                           e.preventDefault()
+                                           window.location.href = 'http://localhost:3000/admin/teacher'
+                                       }}>
                                         Преподаватели
                                     </a>
                                 </h4>
