@@ -27,7 +27,8 @@ function Pagination({...props}) {
                             </Button>
                         ) : (
                             <Button
-                                onClick={() => console.log('you\'ve clicked ' + prop.text)}
+                                onClick={() => {
+                                }}
                                 className={paginationLink}
                             >
                                 {prop.text}

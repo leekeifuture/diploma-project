@@ -10,7 +10,8 @@ import customSelectStyle
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
-import {faculties, facultiesToReadable} from '../../../constants'
+import {ibstu} from '../../../api/ibstu-api'
+import {facultiesToIcons} from '../../../constants'
 
 const style = {
     infoText: {
@@ -34,7 +35,9 @@ class Step1 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            faculty: null
+            facultyId: null,
+            facultyShortName: null,
+            faculties: []
         }
     }
 
@@ -45,15 +48,30 @@ class Step1 extends React.Component {
     handleSimple = event => {
         this.setState({[event.target.name]: event.target.value})
     }
-    handleChange = name => event => {
-        this.setState({faculty: name})
+    handleChange = facultyObj => event => {
+        localStorage.setItem('facultyId', facultyObj.id)
+        setTimeout(() => {
+            this.setState({facultyId: facultyObj.id})
+            this.setState({facultyShortName: facultyObj.shortName})
+        }, 100)
     }
 
     isValidated() {
-        return this.state.faculty != null
+        return this.state.facultyId != null
+    }
+
+    componentDidMount() {
+        ibstu.getFaculties().then(faculties => {
+                this.setState({faculties})
+            }, error => {
+                console.error(error)
+            }
+        )
     }
 
     render() {
+        const faculties = this.state.faculties
+
         const {classes} = this.props
         return (
             <div>
@@ -61,36 +79,42 @@ class Step1 extends React.Component {
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12} lg={10}>
                         <GridContainer>
-                            {faculties.map((faculty, index) => (
-                                <GridItem key={index} xs={12} sm={4}>
-                                    <div className={classes.choiche}>
-                                        <Checkbox
-                                            checked={this.state.faculty === faculty}
-                                            tabIndex={-1}
-                                            onClick={this.handleChange(faculty)}
-                                            checkedIcon={
-                                                <i
-                                                    className={
-                                                        `fas fa-${faculty} ${classes.iconCheckboxIcon}`
-                                                    }
-                                                />
-                                            }
-                                            icon={
-                                                <i
-                                                    className={
-                                                        `fas fa-${faculty} ${classes.iconCheckboxIcon}`
-                                                    }
-                                                />
-                                            }
-                                            classes={{
-                                                checked: classes.iconCheckboxChecked,
-                                                root: classes.iconCheckbox
-                                            }}
-                                        />
-                                        <h6>{facultiesToReadable[faculty]}</h6>
-                                    </div>
-                                </GridItem>
-                            ))}
+                            {faculties.map((facultyObj, index) => {
+                                const facultyIcon =
+                                    facultiesToIcons.hasOwnProperty(facultyObj.shortName)
+                                        ? facultiesToIcons[facultyObj.shortName]
+                                        : 'graduation-cap'
+                                return (
+                                    <GridItem key={index} xs={12} sm={4}>
+                                        <div className={classes.choiche}>
+                                            <Checkbox
+                                                checked={this.state.facultyId === facultyObj.id}
+                                                tabIndex={-1}
+                                                onClick={this.handleChange(facultyObj)}
+                                                checkedIcon={
+                                                    <i
+                                                        className={
+                                                            `fas fa-${facultyIcon} ${classes.iconCheckboxIcon}`
+                                                        }
+                                                    />
+                                                }
+                                                icon={
+                                                    <i
+                                                        className={
+                                                            `fas fa-${facultyIcon} ${classes.iconCheckboxIcon}`
+                                                        }
+                                                    />
+                                                }
+                                                classes={{
+                                                    checked: classes.iconCheckboxChecked,
+                                                    root: classes.iconCheckbox
+                                                }}
+                                            />
+                                            <h6>{facultyObj.name}</h6>
+                                        </div>
+                                    </GridItem>
+                                )
+                            })}
                         </GridContainer>
                     </GridItem>
                 </GridContainer>

@@ -13,7 +13,7 @@ import GridItem from '../../components/Grid/GridItem'
 
 class NewsContainer extends React.Component {
     render() {
-        const chair = localStorage.getItem('chair')
+        const department = localStorage.getItem('department')
 
         const {classes} = this.props
         return (

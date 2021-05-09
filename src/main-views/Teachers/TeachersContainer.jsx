@@ -13,12 +13,12 @@ import GridItem from '../../components/Grid/GridItem'
 
 class MenuContainer extends React.Component {
     render() {
-        const chair = localStorage.getItem('chair')
+        const department = localStorage.getItem('department')
 
         const {classes} = this.props
         return (
             <div>
-                <h3>Преподаватели кафедры {chair}</h3>
+                <h3>Преподаватели кафедры {department}</h3>
                 <br />
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={2}>

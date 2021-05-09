@@ -10,7 +10,8 @@ import customSelectStyle
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
-import {chairsToFaculties} from '../../../constants'
+import {ibstu} from '../../../api/ibstu-api'
+import {facultiesToIcons} from '../../../constants'
 
 const style = {
     infoText: {
@@ -34,7 +35,8 @@ class Step2 extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chair: null
+            departmentId: null,
+            departments: []
         }
     }
 
@@ -45,18 +47,44 @@ class Step2 extends React.Component {
     handleSimple = event => {
         this.setState({[event.target.name]: event.target.value})
     }
-    handleChange = name => event => {
-        this.setState({chair: name})
+    handleChange = departmentId => event => {
+        this.setState({departmentId})
     }
 
     isValidated() {
-        return this.state.chair != null
+        return this.state.departmentId != null
+    }
+
+    getDepartments(facultyId) {
+        ibstu.getDepartments(facultyId).then(departments => {
+                this.setState({departments})
+            }, error => {
+                console.error(error)
+            }
+        )
+    }
+
+    componentDidMount() {
+        const facultyId = localStorage.getItem('facultyId')
+        this.getDepartments(facultyId)
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (
+            prevProps.allStates.hasOwnProperty('faculty') &&
+            prevProps.allStates.faculty.facultyId !== this.props.allStates.faculty.facultyId
+        ) {
+            const facultyId = this.props.allStates.faculty.facultyId
+            this.getDepartments(facultyId)
+        }
     }
 
     render() {
-        const faculty = Object.keys(this.props.allStates).length !== 0
-            ? this.props.allStates.faculty.faculty
-            : 'building'
+        let facultyId = 0
+        if (this.state.departments.length === 0 && this.props.allStates.faculty) {
+            facultyId = this.props.allStates.faculty.facultyId
+            this.getDepartments(facultyId)
+        }
 
         const {classes} = this.props
         return (
@@ -65,36 +93,46 @@ class Step2 extends React.Component {
                 <GridContainer justify="center">
                     <GridItem xs={12} sm={12} md={12} lg={10}>
                         <GridContainer>
-                            {chairsToFaculties[faculty].map((chair, index) => (
-                                    <GridItem key={index} xs={12} sm={4}>
-                                        <div className={classes.choiche}>
-                                            <Checkbox
-                                                checked={this.state.chair === chair}
-                                                tabIndex={-1}
-                                                onClick={this.handleChange(chair)}
-                                                checkedIcon={
-                                                    <i
-                                                        className={
-                                                            `fas fa-${faculty} ${classes.iconCheckboxIcon}`
-                                                        }
-                                                    />
-                                                }
-                                                icon={
-                                                    <i
-                                                        className={
-                                                            `fas fa-${faculty} ${classes.iconCheckboxIcon}`
-                                                        }
-                                                    />
-                                                }
-                                                classes={{
-                                                    checked: classes.iconCheckboxChecked,
-                                                    root: classes.iconCheckbox
-                                                }}
-                                            />
-                                            <h6>{chair}</h6>
-                                        </div>
-                                    </GridItem>
-                                )
+                            {this.state.departments.map((departmentObj, index) => {
+                                    if (Object.keys(this.props.allStates).length === 0) {
+                                        return <div key={index} />
+                                    }
+
+                                    const departmentIcon =
+                                        facultiesToIcons.hasOwnProperty(this.props.allStates.faculty.facultyShortName)
+                                            ? facultiesToIcons[this.props.allStates.faculty.facultyShortName]
+                                            : 'graduation-cap'
+                                    return (
+                                        <GridItem key={index} xs={12} sm={4}>
+                                            <div className={classes.choiche}>
+                                                <Checkbox
+                                                    checked={this.state.departmentId === departmentObj.id}
+                                                    tabIndex={-1}
+                                                    onClick={this.handleChange(departmentObj.id)}
+                                                    checkedIcon={
+                                                        <i
+                                                            className={
+                                                                `fas fa-${departmentIcon} ${classes.iconCheckboxIcon}`
+                                                            }
+                                                        />
+                                                    }
+                                                    icon={
+                                                        <i
+                                                            className={
+                                                                `fas fa-${departmentIcon} ${classes.iconCheckboxIcon}`
+                                                            }
+                                                        />
+                                                    }
+                                                    classes={{
+                                                        checked: classes.iconCheckboxChecked,
+                                                        root: classes.iconCheckbox
+                                                    }}
+                                                />
+                                                <h6>{departmentObj.name}</h6>
+                                            </div>
+                                        </GridItem>
+                                    )
+                                }
                             )}
                         </GridContainer>
                     </GridItem>

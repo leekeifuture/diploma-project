@@ -3,17 +3,16 @@ import GridItem from 'components/Grid/GridItem.jsx'
 // core components
 import Wizard from 'components/Wizard/Wizard.jsx'
 import React from 'react'
-import {Redirect} from 'react-router-dom'
 
 import Step1 from './WizardSteps/Step1.jsx'
 import Step2 from './WizardSteps/Step2.jsx'
 
 class Start extends React.Component {
     finishButtonClick(e) {
-        localStorage.setItem('faculty', e.faculty.faculty)
-        localStorage.setItem('chair', e.chair.chair)
+        localStorage.setItem('facultyId', e.faculty.facultyId)
+        localStorage.setItem('departmentId', e.department.departmentId)
 
-        window.location.href = "http://localhost:3000/admin/menu"
+        window.location.href = 'http://localhost:3000/admin/menu'
     }
 
     render() {
@@ -31,7 +30,7 @@ class Start extends React.Component {
                             {
                                 stepName: 'Кафедра',
                                 stepComponent: Step2,
-                                stepId: 'chair'
+                                stepId: 'department'
                             }
                         ]}
                         title="Добро пожаловать!"

@@ -15,12 +15,12 @@ import GridItem from '../../components/Grid/GridItem'
 
 class MaterialsContainer extends React.Component {
     render() {
-        const chair = localStorage.getItem('chair')
+        const department = localStorage.getItem('department')
 
         const {classes} = this.props
         return (
             <div>
-                <h3>Материалы кафедры {chair}</h3>
+                <h3>Материалы кафедры {department}</h3>
                 <br />
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
