@@ -12,7 +12,7 @@ class Start extends React.Component {
         localStorage.setItem('facultyId', e.faculty.facultyId)
         localStorage.setItem('departmentId', e.department.departmentId)
 
-        window.location.href = 'http://localhost:3000/admin/menu'
+        window.location.href = 'http://localhost:3000/ibstu/menu'
     }
 
     render() {

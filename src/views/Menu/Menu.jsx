@@ -19,9 +19,11 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 class Menu extends React.Component {
-    state = {
-        value: 0
+    constructor(props) {
+        super(props)
+        this.state = {}
     }
+
     handleChange = (event, value) => {
         this.setState({value})
     }
@@ -45,7 +47,7 @@ class Menu extends React.Component {
                                 <a href="#pablo"
                                    onClick={e => {
                                        e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/admin/teachers'
+                                       window.location.href = 'http://localhost:3000/ibstu/teachers'
                                    }}>
                                     <img src={priceImage1} alt="..." />
                                 </a>
@@ -55,7 +57,7 @@ class Menu extends React.Component {
                                     <a href="#pablo"
                                        onClick={e => {
                                            e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/admin/teachers'
+                                           window.location.href = 'http://localhost:3000/ibstu/teachers'
                                        }}>
                                         Преподаватели
                                     </a>
@@ -70,7 +72,7 @@ class Menu extends React.Component {
                                 <a href="#pablo"
                                    onClick={e => {
                                        e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/admin/news'
+                                       window.location.href = 'http://localhost:3000/ibstu/news'
                                    }}>
                                     <img src={priceImage2} alt="..." />
                                 </a>
@@ -80,7 +82,7 @@ class Menu extends React.Component {
                                     <a href="#pablo"
                                        onClick={e => {
                                            e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/admin/news'
+                                           window.location.href = 'http://localhost:3000/ibstu/news'
                                        }}>
                                         Новости
                                     </a>
@@ -95,7 +97,7 @@ class Menu extends React.Component {
                                 <a href="#pablo"
                                    onClick={e => {
                                        e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/admin/materials'
+                                       window.location.href = 'http://localhost:3000/ibstu/materials'
                                    }}>
                                     <img src={priceImage3} alt="..." />
                                 </a>
@@ -105,7 +107,7 @@ class Menu extends React.Component {
                                     <a href="#pablo"
                                        onClick={e => {
                                            e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/admin/materials'
+                                           window.location.href = 'http://localhost:3000/ibstu/materials'
                                        }}>
                                         Материалы
                                     </a>

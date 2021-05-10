@@ -4,8 +4,8 @@ import MaterialsContainer from './main-views/Materials/MaterialsContainer'
 import MenuContainer from './main-views/MenuContainer'
 import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
-import Teacher from './main-views/Teachers/Teacher'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
+import UserProfile from './views/Pages/TeacherContainer'
 
 const routes = [
     {
@@ -14,7 +14,7 @@ const routes = [
         rtlName: '',
         icon: Schedule,
         component: StartContainer,
-        layout: '/admin'
+        layout: '/ibstu'
     },
     {
         path: '/menu',
@@ -22,7 +22,7 @@ const routes = [
         rtlName: '',
         icon: Schedule,
         component: MenuContainer,
-        layout: '/admin'
+        layout: '/ibstu'
     },
     {
         path: '/teachers',
@@ -30,7 +30,7 @@ const routes = [
         rtlName: '',
         icon: Schedule,
         component: TeachersContainer,
-        layout: '/admin'
+        layout: '/ibstu'
     },
     {
         path: '/news',
@@ -38,7 +38,7 @@ const routes = [
         rtlName: '',
         icon: Schedule,
         component: NewsContainer,
-        layout: '/admin'
+        layout: '/ibstu'
     },
     {
         path: '/materials',
@@ -46,15 +46,15 @@ const routes = [
         rtlName: '',
         icon: Schedule,
         component: MaterialsContainer,
-        layout: '/admin'
+        layout: '/ibstu'
     },
     {
-        path: '/teacher',
+        path: '/teacher/:userId?',
         name: 'Teacher',
         rtlName: '',
         icon: Schedule,
-        component: Teacher,
-        layout: '/admin'
+        component: UserProfile,
+        layout: '/ibstu'
     }
 ]
 

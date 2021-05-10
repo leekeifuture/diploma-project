@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 
-const baseURL = 'http://ec2-3-139-236-31.us-east-2.compute.amazonaws.com'
+export const baseURL = 'http://ec2-3-139-236-31.us-east-2.compute.amazonaws.com'
 
 const axiosInstance = axios.create({baseURL})
 
@@ -11,6 +11,16 @@ export const ibstu = {
     },
     getDepartments(facultyId) {
         return axiosInstance.get(`/faculties/${facultyId}/departments`)
+            .then(response => response.data)
+    },
+    getTeachers(departmentId) {
+        return axiosInstance.get(`/users`, {
+            params: {departmentId}
+        })
+            .then(response => response.data)
+    },
+    getTeacher(teacherId) {
+        return axiosInstance.get(`/users/${teacherId}`)
             .then(response => response.data)
     }
 }
