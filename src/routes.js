@@ -5,7 +5,7 @@ import MenuContainer from './main-views/MenuContainer'
 import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
-import UserProfile from './views/Pages/TeacherContainer'
+import TeacherContainer from './views/Pages/TeacherContainer'
 
 const routes = [
     {
@@ -53,7 +53,7 @@ const routes = [
         name: 'Teacher',
         rtlName: '',
         icon: Schedule,
-        component: UserProfile,
+        component: TeacherContainer,
         layout: '/ibstu'
     }
 ]

@@ -51,7 +51,6 @@ class TeacherContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params.userId)
         ibstu.getTeacher(this.props.match.params.userId).then(teacher => {
                 this.setState({teacher})
             }, error => {
@@ -74,7 +73,11 @@ class TeacherContainer extends React.Component {
                             <CardAvatar profile>
                                 <a href="#pablo"
                                    onClick={e => e.preventDefault()}>
-                                    <img src={profilePicture} alt="..." />
+                                    <img src={profilePicture} alt="..."
+                                         style={{
+                                             maxWidth: '100%',
+                                             maxHeight: '100%'
+                                         }} />
                                 </a>
                             </CardAvatar>
                             <CardBody profile>
@@ -102,6 +105,7 @@ class TeacherContainer extends React.Component {
                             <CardBody>
                                 <GridContainer>
                                     <GridItem xs={12} sm={12} md={12}>
+                                        {this.getProfileInfo(teacher.profile)}
                                         {this.getContacts(teacher.contacts)}
                                     </GridItem>
                                 </GridContainer>
@@ -114,20 +118,54 @@ class TeacherContainer extends React.Component {
         )
     }
 
+    getProfileInfo(profile) {
+        const profileInfo = []
+
+        const fields = {
+            'degree': 'Образование',
+            'title': 'Должность',
+            'biography': 'Биография',
+            'education': 'Образование',
+            'experience': 'Опыт',
+            'awards': 'Награды',
+            'scientInterests': 'Научные интересы',
+            'leadership': 'Руководство',
+            'projectActivities': 'Проектная деятельность',
+            'productionActivities': 'Производственная деятельность',
+            'socialWork': 'Социальная работа',
+            'disciplines': 'Дисциплины'
+        }
+
+        Object.keys(fields).map(field => {
+            if (profile[field]) {
+                profileInfo.push(
+                    <div>
+                        <h3>{fields[field]}</h3>
+                        <div>{profile[field]}</div>
+                    </div>
+                )
+            }
+        })
+
+        return profileInfo
+    }
+
     getContacts(contacts) {
         if (contacts.length === 0) {
             return (<></>)
         }
 
-        return (<div>
-            <h3>Контактная информация</h3>
-            {contacts.map((contact, index) => (
-                <div key={index}>
-                    {contact.type}: {contact.value}
-                    <br />
-                </div>
-            ))}
-        </div>)
+        return (
+            <div>
+                <h3>Контактная информация</h3>
+                {contacts.map((contact, index) => (
+                    <div key={index}>
+                        {contact.type}: {contact.value}
+                        <br />
+                    </div>
+                ))}
+            </div>
+        )
     }
 }
 
