@@ -136,10 +136,10 @@ class TeacherContainer extends React.Component {
             'disciplines': 'Дисциплины'
         }
 
-        Object.keys(fields).map(field => {
+        Object.keys(fields).map((field, index) => {
             if (profile[field]) {
                 profileInfo.push(
-                    <div>
+                    <div key={index}>
                         <h3>{fields[field]}</h3>
                         <div>{profile[field]}</div>
                     </div>
