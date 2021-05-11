@@ -36,6 +36,7 @@ class NewsContainer extends React.Component {
         const {classes} = this.props
         return (
             <div>
+                <h3>Новости кафедры</h3>
                 <GridContainer>
                     {this.state.newsContent.map((news, index) => {
                         const newsPicture = news.imageUrl

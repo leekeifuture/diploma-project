@@ -31,12 +31,10 @@ class MenuContainer extends React.Component {
     }
 
     render() {
-        const department = localStorage.getItem('department')
-
         const {classes} = this.props
         return (
             <div>
-                <h3>Преподаватели кафедры {department}</h3>
+                <h3>Преподаватели кафедры</h3>
                 <br />
                 <GridContainer>
                     {this.state.teachers.map((teacher, index) => {
