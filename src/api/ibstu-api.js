@@ -23,14 +23,22 @@ export const ibstu = {
         return axiosInstance.get(`/users/${teacherId}`)
             .then(response => response.data)
     },
+    getNew(newsId) {
+        return axiosInstance.get(`/news/${newsId}`)
+            .then(response => response.data)
+    },
     getNews(departmentId) {
         return axiosInstance.get(`/news`, {
             params: {departmentId}
-        })
-            .then(response => response.data)
+        }).then(response => response.data)
     },
-    getNew(newsId) {
-        return axiosInstance.get(`/news/${newsId}`)
+    getMaterials(departmentId) {
+        return axiosInstance.get(`/files/department-materials`, {
+            params: {departmentId}
+        }).then(response => response.data)
+    },
+    getMaterial(materialId) {
+        return axiosInstance.get(`/files/${materialId}`)
             .then(response => response.data)
     }
 }
