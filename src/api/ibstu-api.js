@@ -6,7 +6,7 @@ const axiosInstance = axios.create({baseURL})
 
 export const ibstu = {
     getFaculties() {
-        return axiosInstance.get('/faculties')
+        return axiosInstance.get(`/faculties`)
             .then(response => response.data)
     },
     getDepartments(facultyId) {
@@ -21,6 +21,16 @@ export const ibstu = {
     },
     getTeacher(teacherId) {
         return axiosInstance.get(`/users/${teacherId}`)
+            .then(response => response.data)
+    },
+    getNews(departmentId) {
+        return axiosInstance.get(`/news`, {
+            params: {departmentId}
+        })
+            .then(response => response.data)
+    },
+    getNew(newsId) {
+        return axiosInstance.get(`/news/${newsId}`)
             .then(response => response.data)
     }
 }

@@ -2,6 +2,7 @@
 import Schedule from '@material-ui/icons/Schedule'
 import MaterialsContainer from './main-views/Materials/MaterialsContainer'
 import MenuContainer from './main-views/MenuContainer'
+import NewContainer from './main-views/News/NewContainer'
 import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
@@ -50,10 +51,18 @@ const routes = [
     },
     {
         path: '/teacher/:userId?',
-        name: 'Teacher',
+        name: 'Преподаватель',
         rtlName: '',
         icon: Schedule,
         component: TeacherContainer,
+        layout: '/ibstu'
+    },
+    {
+        path: '/new/:newsId?',
+        name: 'Новость',
+        rtlName: '',
+        icon: Schedule,
+        component: NewContainer,
         layout: '/ibstu'
     }
 ]
