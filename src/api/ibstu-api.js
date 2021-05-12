@@ -16,8 +16,7 @@ export const ibstu = {
     getTeachers(departmentId) {
         return axiosInstance.get(`/users`, {
             params: {departmentId}
-        })
-            .then(response => response.data)
+        }).then(response => response.data)
     },
     getTeacher(teacherId) {
         return axiosInstance.get(`/users/${teacherId}`)
@@ -39,6 +38,16 @@ export const ibstu = {
     },
     getMaterial(materialId) {
         return axiosInstance.get(`/files/${materialId}`)
+            .then(response => response.data)
+    },
+    registerUser(firstName, lastName, middleName, email, departmentId, position) {
+        const config = {
+            headers: {Authorization: `Bearer token`}
+        }
+        return axiosInstance.post(`/users`, {
+                firstName, lastName, middleName, email, departmentId, position
+            },
+            config)
             .then(response => response.data)
     }
 }

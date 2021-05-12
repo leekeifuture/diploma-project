@@ -54,7 +54,6 @@ class ExtendedTables extends React.Component {
     }
 
     render() {
-        const {classes} = this.props
         const fillButtons = [
             {color: 'info', icon: Person},
             {color: 'success', icon: Edit},
@@ -99,6 +98,8 @@ class ExtendedTables extends React.Component {
                 </Button>
             )
         })
+
+        const {classes} = this.props
         return (
             <GridContainer>
                 <GridItem xs={12}>

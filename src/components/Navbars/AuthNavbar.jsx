@@ -59,7 +59,7 @@ class AuthNavbar extends React.Component {
                              className={classes.navLink}>
                         <Dashboard className={classes.listItemIcon} />
                         <ListItemText
-                            primary={'Dashboard'}
+                            primary={'Главная страница'}
                             disableTypography={true}
                             className={classes.listItemText}
                         />
@@ -145,7 +145,7 @@ class AuthNavbar extends React.Component {
                         <div className={classes.flex}>
                             <Button href="#" className={classes.title}
                                     color="transparent">
-                                MD Pro React
+                                Авторизация
                             </Button>
                         </div>
                     </Hidden>

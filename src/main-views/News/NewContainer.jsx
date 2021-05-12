@@ -42,7 +42,6 @@ class NewContainer extends React.Component {
             return <></>
         }
 
-        const {classes} = this.props
         const newsPicture = newObj.imageUrl
             ? `${baseURL}/static-files/news/${newObj.id}/image.png`
             : newsImage
@@ -55,6 +54,8 @@ class NewContainer extends React.Component {
         const md = newObj.middleName
             ? newObj.middleName
             : ''
+
+        const {classes} = this.props
         return (
             <div>
                 <GridContainer>

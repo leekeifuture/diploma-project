@@ -40,10 +40,11 @@ class TeacherContainer extends React.Component {
         if (teacher === null) {
             return <></>
         }
-        const {classes} = this.props
         const profilePicture = teacher.imageUrl
             ? `${baseURL}/static-files/${teacher.id}/avatar.png`
             : defaultAvatar
+
+        const {classes} = this.props
         return (
             <div>
                 <GridContainer>

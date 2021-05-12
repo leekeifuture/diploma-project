@@ -1,5 +1,7 @@
 // @material-ui/core components
+import Hidden from '@material-ui/core/Hidden'
 import withStyles from '@material-ui/core/styles/withStyles'
+import Person from '@material-ui/icons/Person'
 // @material-ui/icons
 import Search from '@material-ui/icons/Search'
 
@@ -72,6 +74,21 @@ class HeaderLinks extends React.Component {
                     <Search
                         className={classes.headerLinksSvg + ' ' + classes.searchIcon}
                     />
+                </Button>
+                <Button
+                    color="transparent"
+                    aria-label="Person"
+                    justIcon
+                    className={classes.buttonLink}
+                >
+                    <Person
+                        className={classes.headerLinksSvg}
+                    />
+                    <Hidden mdUp implementation="css">
+            <span className={classes.linkText}>
+              {'Профиль'}
+            </span>
+                    </Hidden>
                 </Button>
             </div>
         )
