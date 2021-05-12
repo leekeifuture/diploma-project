@@ -13,6 +13,7 @@ import Button from 'components/CustomButtons/Button.jsx'
 import CustomInput from 'components/CustomInput/CustomInput.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {keyCloakURL} from '../../api/ibstu-api'
 
 // import { Manager, Target, Popper } from "react-popper";
 
@@ -76,6 +77,7 @@ class HeaderLinks extends React.Component {
                     />
                 </Button>
                 <Button
+                    onClick={() => window.location.href = keyCloakURL}
                     color="transparent"
                     aria-label="Person"
                     justIcon

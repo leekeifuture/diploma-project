@@ -10,6 +10,7 @@ import cx from 'classnames'
 // core components
 import AdminNavbar from 'components/Navbars/AdminNavbar.jsx'
 import Sidebar from 'components/Sidebar/Sidebar.jsx'
+import Keycloak from 'keycloak-js'
 // creates a beautiful scrollbar
 import PerfectScrollbar from 'perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -31,12 +32,19 @@ class Dashboard extends React.Component {
             color: 'blue',
             bgColor: 'black',
             hasImage: true,
-            fixedClasses: 'dropdown'
+            fixedClasses: 'dropdown',
+            keycloak: null,
+            authenticated: false
         }
         this.resizeFunction = this.resizeFunction.bind(this)
     }
 
     componentDidMount() {
+        const keycloak = Keycloak('/keycloak.json')
+        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+            this.setState({keycloak: keycloak, authenticated: authenticated})
+        })
+
         if (navigator.platform.indexOf('Win') > -1) {
             ps = new PerfectScrollbar(this.refs.mainPanel, {
                 suppressScrollX: true,

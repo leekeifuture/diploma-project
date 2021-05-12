@@ -1,6 +1,17 @@
 import * as axios from 'axios'
 
 export const baseURL = 'http://ec2-3-139-236-31.us-east-2.compute.amazonaws.com'
+export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws.com:8080' +
+    '/auth/realms/ibstu/protocol/openid-connect/auth' +
+    '?client_id=ibstu-service' +
+    '&redirect_uri=http://localhost:3000/keycloak' +
+    '&state=2dde5518-cd76-41bd-813c-798ecac79251' +
+    '&response_mode=fragment' +
+    '&response_type=code' +
+    '&scope=openid' +
+    '&nonce=90c79c88-75ba-43bd-8b33-c04fa72de128' +
+    '&code_challenge=md4LANXJ9Kln3SdPtrS19oXZo4wIMH7U6w_hr1kByFE' +
+    '&code_challenge_method=S256'
 
 const axiosInstance = axios.create({baseURL})
 
