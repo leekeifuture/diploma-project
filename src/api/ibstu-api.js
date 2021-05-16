@@ -14,6 +14,7 @@ export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws
     '&code_challenge_method=S256'
 
 const axiosInstance = axios.create({baseURL})
+// TODO: remove token
 const config = {
     headers: {
         Authorization: ``
@@ -69,10 +70,11 @@ export const ibstu = {
         })
             .then(response => response.data)
     },
-    updateMaterial(header, description, materialId) {
+    updateMaterial(header, description, materialId, file) {
         const data = new FormData()
         data.append('header', header)
         data.append('description', description)
+        data.append('file', file, file.name)
         return axiosInstance.put(`/files/materials/${materialId}`, data, config)
             .then(response => response.data)
     }

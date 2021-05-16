@@ -25,6 +25,10 @@ class ImageUpload extends React.Component {
         let reader = new FileReader()
         let file = e.target.files[0]
         reader.onloadend = () => {
+            this.props.t.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            })
             this.setState({
                 file: file,
                 imagePreviewUrl: reader.result

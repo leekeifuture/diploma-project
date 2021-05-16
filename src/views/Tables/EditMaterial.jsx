@@ -23,7 +23,8 @@ class EditMaterial extends React.Component {
         this.state = {
             materialHeader: '',
             materialDescription: '',
-            material: null
+            material: null,
+            file: null
         }
         this.buttonIsClicked = this.buttonIsClicked.bind(this)
     }
@@ -44,7 +45,8 @@ class EditMaterial extends React.Component {
         ibstu.updateMaterial(
             this.state.materialHeader,
             this.state.materialDescription,
-            this.props.match.params.materialId
+            this.props.match.params.materialId,
+            this.state.file
         ).then(data => {
                 alert('Изменено')
             }, error => {
@@ -54,6 +56,7 @@ class EditMaterial extends React.Component {
     }
 
     render() {
+        console.log(this.state.file)
         if (this.state.material === null) return <></>
         const ln = this.state.material.lastName ? this.state.material.lastName : ''
         const fn = this.state.material.firstName ? this.state.material.firstName : ''
@@ -121,7 +124,7 @@ class EditMaterial extends React.Component {
                                 </GridContainer>
                                 <GridContainer>
                                     <GridItem xs={12} sm={12} md={12}>
-                                        <ImageUpload />
+                                        <ImageUpload t={this} />
                                     </GridItem>
                                 </GridContainer>
                                 <Button color="rose"
