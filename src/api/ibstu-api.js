@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 
-export const baseURL = 'http://ec2-3-139-236-31.us-east-2.compute.amazonaws.com'
+export const baseURL = 'http://ec2-18-196-196-166.eu-central-1.compute.amazonaws.com'
 export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws.com:8080' +
     '/auth/realms/ibstu/protocol/openid-connect/auth' +
     '?client_id=ibstu-service' +
@@ -14,10 +14,22 @@ export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws
     '&code_challenge_method=S256'
 
 const axiosInstance = axios.create({baseURL})
+const config = {
+    headers: {
+        Authorization: ``
+    }
+}
 
 export const ibstu = {
+    registerUser(firstName, lastName, middleName, email, departmentId, position) {
+        return axiosInstance.post('/users', {
+                firstName, lastName, middleName, email, departmentId, position
+            },
+            config)
+            .then(response => response.data)
+    },
     getFaculties() {
-        return axiosInstance.get(`/faculties`)
+        return axiosInstance.get('/faculties')
             .then(response => response.data)
     },
     getDepartments(facultyId) {
@@ -25,7 +37,7 @@ export const ibstu = {
             .then(response => response.data)
     },
     getTeachers(departmentId) {
-        return axiosInstance.get(`/users`, {
+        return axiosInstance.get('/users', {
             params: {departmentId}
         }).then(response => response.data)
     },
@@ -38,12 +50,12 @@ export const ibstu = {
             .then(response => response.data)
     },
     getNews(departmentId) {
-        return axiosInstance.get(`/news`, {
+        return axiosInstance.get('/news', {
             params: {departmentId}
         }).then(response => response.data)
     },
     getMaterials(departmentId) {
-        return axiosInstance.get(`/files/department-materials`, {
+        return axiosInstance.get('/files/department-materials', {
             params: {departmentId}
         }).then(response => response.data)
     },
@@ -51,14 +63,17 @@ export const ibstu = {
         return axiosInstance.get(`/files/${materialId}`)
             .then(response => response.data)
     },
-    registerUser(firstName, lastName, middleName, email, departmentId, position) {
-        const config = {
-            headers: {Authorization: `Bearer token`}
-        }
-        return axiosInstance.post(`/users`, {
-                firstName, lastName, middleName, email, departmentId, position
-            },
-            config)
+    getMaterialsByUserId(userId) {
+        return axiosInstance.get('/files/user-materials', {
+            params: {userId}
+        })
+            .then(response => response.data)
+    },
+    updateMaterial(header, description, materialId) {
+        const data = new FormData()
+        data.append('header', header)
+        data.append('description', description)
+        return axiosInstance.put(`/files/materials/${materialId}`, data, config)
             .then(response => response.data)
     }
 }

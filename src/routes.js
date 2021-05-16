@@ -6,10 +6,14 @@ import MenuContainer from './main-views/MenuContainer'
 import NewContainer from './main-views/News/NewContainer'
 import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
+import StartUser from './main-views/StartUser'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
 import LoginPage from './views/Pages/LoginPage'
 import RegisterPage from './views/Pages/RegisterPage'
 import TeacherContainer from './views/Pages/TeacherContainer'
+import CreateMaterial from './views/Tables/CreateMaterial'
+import EditMaterial from './views/Tables/EditMaterial'
+import ReactTables from './views/Tables/ReactTables'
 
 const routes = [
     {
@@ -81,6 +85,34 @@ const routes = [
         icon: Schedule,
         component: RegisterPage,
         layout: '/auth'
+    },
+    {
+        path: '/start-user',
+        name: 'Страница пользователя',
+        icon: Schedule,
+        component: StartUser,
+        layout: '/ibstu'
+    },
+    {
+        path: '/table',
+        name: 'Таблица',
+        icon: Schedule,
+        component: ReactTables,
+        layout: '/ibstu'
+    },
+    {
+        path: '/edit-material/:materialId?',
+        name: 'Изменить материал',
+        icon: Schedule,
+        component: EditMaterial,
+        layout: '/ibstu'
+    },
+    {
+        path: '/new-mateial',
+        name: 'Создать материал',
+        icon: Schedule,
+        component: CreateMaterial,
+        layout: '/ibstu'
     }
 ]
 

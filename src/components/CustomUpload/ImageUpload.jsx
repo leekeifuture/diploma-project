@@ -5,6 +5,7 @@ import Button from 'components/CustomButtons/Button.jsx'
 // used for making the prop types of this component
 import PropTypes from 'prop-types'
 import React from 'react'
+import materialsImage from '../../assets/img/material.png'
 
 class ImageUpload extends React.Component {
     constructor(props) {
@@ -63,25 +64,25 @@ class ImageUpload extends React.Component {
                 <input type="file" onChange={this.handleImageChange}
                        ref="fileInput" />
                 <div className={'thumbnail' + (avatar ? ' img-circle' : '')}>
-                    <img src={this.state.imagePreviewUrl} alt="..." />
+                    <img src={materialsImage} alt="..." />
                 </div>
                 <div>
                     {this.state.file === null ? (
                         <Button {...addButtonProps}
                                 onClick={() => this.handleClick()}>
-                            {avatar ? 'Add Photo' : 'Select image'}
+                            {avatar ? 'Выбрать файл >>' : 'Выбрать файл >>'}
                         </Button>
                     ) : (
                         <span>
               <Button {...changeButtonProps} onClick={() => this.handleClick()}>
-                Change
+                Изменить
               </Button>
                             {avatar ? <br /> : null}
                             <Button
                                 {...removeButtonProps}
                                 onClick={() => this.handleRemove()}
                             >
-                <i className="fas fa-times" /> Remove
+                <i className="fas fa-times" /> Удалить
               </Button>
             </span>
                     )}

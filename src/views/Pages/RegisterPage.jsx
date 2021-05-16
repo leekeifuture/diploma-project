@@ -152,7 +152,7 @@ class RegisterPage extends React.Component {
             this.state.departmentId,
             this.state.simpleSelect
         ).then(data => {
-                alert('success')
+                alert('Зарегистрирован')
                 console.log(data)
             }, error => {
                 alert(error.message)
