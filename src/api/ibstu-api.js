@@ -77,5 +77,9 @@ export const ibstu = {
         data.append('file', file, file.name)
         return axiosInstance.put(`/files/materials/${materialId}`, data, config)
             .then(response => response.data)
+    },
+    removeMaterial(materialId) {
+        return axiosInstance.delete(`/files/materials/${materialId}`, config)
+            .then(response => response.data)
     }
 }

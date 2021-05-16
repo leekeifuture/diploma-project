@@ -73,8 +73,12 @@ class ReactTables extends React.Component {
                         var data = this.state.data
                         data.find((o, i) => {
                             if (o.id === key) {
-                                // here you should add some custom code so you can delete the data
-                                // from this component and from your server as well
+                                ibstu.removeMaterial(o.id)
+                                    .then(
+                                        data => alert('Удалено'),
+                                        error => alert(error.message)
+                                    )
+
                                 data.splice(i, 1)
                                 return true
                             }
