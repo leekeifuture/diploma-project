@@ -18,6 +18,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
+import Keycloak from 'keycloak-js'
 import PropTypes from 'prop-types'
 import React from 'react'
 import {ibstu} from '../../api/ibstu-api'
@@ -35,7 +36,9 @@ class RegisterPage extends React.Component {
             surname: '',
             name: '',
             middleName: '',
-            email: ''
+            email: '',
+            keycloak: null,
+            authenticated: false
         }
         this.handleToggle = this.handleToggle.bind(this)
         this.onSurnameChange = this.onSurnameChange.bind(this)
@@ -47,6 +50,12 @@ class RegisterPage extends React.Component {
     }
 
     componentDidMount() {
+        const keycloak = Keycloak('/keycloak.json')
+        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+            localStorage.setItem('token', keycloak.token)
+            this.setState({keycloak, authenticated})
+        })
+
         ibstu.getFaculties().then(faculties => {
                 this.setState({faculties})
             }, error => {
@@ -160,6 +169,8 @@ class RegisterPage extends React.Component {
     }
 
     render() {
+        if (this.state.keycloak === null || !this.state.keycloak.tokenParsed.realm_access.roles.includes('ROLE_ADMIN')) return <></>
+
         const positions = {
             'HoD': 'Заведующий кафедрой',
             'DoTS': 'Доктор технических наук',

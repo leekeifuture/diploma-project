@@ -8,7 +8,6 @@ import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
 import StartUser from './main-views/StartUser'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
-import LoginPage from './views/Pages/LoginPage'
 import RegisterPage from './views/Pages/RegisterPage'
 import TeacherContainer from './views/Pages/TeacherContainer'
 import CreateMaterial from './views/Tables/CreateMaterial'
@@ -71,13 +70,6 @@ const routes = [
         icon: Schedule,
         component: MaterialContainer,
         layout: '/ibstu'
-    },
-    {
-        path: '/login-page',
-        name: 'Страница авторизации',
-        icon: Schedule,
-        component: LoginPage,
-        layout: '/auth'
     },
     {
         path: '/register-page',

@@ -1,3 +1,4 @@
+import Keycloak from 'keycloak-js'
 import React from 'react'
 import Button from '../components/CustomButtons/Button'
 import GridContainer from '../components/Grid/GridContainer'
@@ -5,7 +6,18 @@ import GridContainer from '../components/Grid/GridContainer'
 class StartUser extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            keycloak: null,
+            authenticated: false
+        }
+    }
+
+    componentDidMount() {
+        const keycloak = Keycloak('/keycloak.json')
+        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+            localStorage.setItem('token', keycloak.token)
+            this.setState({keycloak, authenticated})
+        })
     }
 
     render() {
@@ -56,7 +68,7 @@ class StartUser extends React.Component {
                     size="lg"
                     style={style}
                 >
-                    Править инофрмацию о преподавателе
+                    Править информацию о преподавателе
                 </Button>
             </GridContainer>
         )

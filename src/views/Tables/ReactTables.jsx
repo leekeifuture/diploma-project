@@ -14,6 +14,7 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
+import Keycloak from 'keycloak-js'
 import React from 'react'
 // react component for creating dynamic tables
 import ReactTable from 'react-table'
@@ -32,7 +33,9 @@ class ReactTables extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: []
+            data: [],
+            keycloak: null,
+            authenticated: false
         }
     }
 
@@ -96,28 +99,36 @@ class ReactTables extends React.Component {
     }
 
     componentDidMount() {
-        // TODO: hc
-        ibstu.getMaterialsByUserId(4801).then(materials => {
-                const data = materials.map(material => {
-                    ibstu.getMaterial(material.id).then(materialInfo => {
-                            const ln = materialInfo.lastName ? materialInfo.lastName : ''
-                            const fn = materialInfo.firstName ? materialInfo.firstName : ''
-                            const md = materialInfo.middleName ? materialInfo.middleName : ''
-                            material.creator = `${ln} ${fn} ${md}`
-                            material.description = materialInfo.description
-                        }, error => {
-                            console.error(error)
-                        }
-                    )
+        const keycloak = Keycloak('/keycloak.json')
+        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+            localStorage.setItem('token', keycloak.token)
 
-                    material.actions = this.getCustomActions(material.id)
-                    return material
-                })
-                setTimeout(() => this.setState({data}), 500)
-            }, error => {
-                console.error(error)
-            }
-        )
+            ibstu.getMaterialsByUserId(keycloak.tokenParsed.user_id)
+                .then(materials => {
+                        const data = materials.map(material => {
+                            ibstu.getMaterial(material.id).then(materialInfo => {
+                                    const ln = materialInfo.lastName ? materialInfo.lastName : ''
+                                    const fn = materialInfo.firstName ? materialInfo.firstName : ''
+                                    const md = materialInfo.middleName ? materialInfo.middleName : ''
+                                    material.creator = `${ln} ${fn} ${md}`
+                                    material.description = materialInfo.description
+                                }, error => {
+                                    console.error(error)
+                                }
+                            )
+
+                            material.actions = this.getCustomActions(material.id)
+                            return material
+                        })
+                        setTimeout(() => this.setState({data}), 500)
+                    }, error => {
+                        console.error(error)
+                    }
+                )
+
+            this.setState({keycloak, authenticated})
+        })
+
     }
 
     render() {

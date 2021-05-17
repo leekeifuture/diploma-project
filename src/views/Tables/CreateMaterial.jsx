@@ -123,7 +123,7 @@ class CreateMaterial extends React.Component {
                                 <Button color="rose"
                                         className={userProfileStyles.updateProfileButton}
                                         onClick={this.buttonIsClicked}>
-                                    Обновить материал
+                                    Добавить материал
                                 </Button>
                                 <Clearfix />
                             </CardBody>
