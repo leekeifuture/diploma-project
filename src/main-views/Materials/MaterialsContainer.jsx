@@ -26,7 +26,6 @@ class MaterialsContainer extends React.Component {
         ibstu.getMaterials(departmentId).then(materials => {
                 this.setState({materialsContent: materials.content})
                 this.setState({materials})
-                console.log(materials)
             }, error => {
                 console.error(error)
             }

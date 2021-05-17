@@ -56,7 +56,6 @@ class EditMaterial extends React.Component {
     }
 
     render() {
-        console.log(this.state.file)
         if (this.state.material === null) return <></>
         const ln = this.state.material.lastName ? this.state.material.lastName : ''
         const fn = this.state.material.firstName ? this.state.material.firstName : ''

@@ -11,6 +11,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
+import Keycloak from 'keycloak-js'
 import React from 'react'
 import {ibstu} from '../../api/ibstu-api'
 import userProfileStyles
@@ -23,36 +24,37 @@ class CreateMaterial extends React.Component {
         this.state = {
             materialHeader: '',
             materialDescription: '',
-            material: null
+            file: null,
+            keycloak: null,
+            authenticated: false
         }
+        this.buttonIsClicked = this.buttonIsClicked.bind(this)
     }
 
     componentDidMount() {
-        ibstu.getMaterial(this.props.match.params.materialId)
-            .then(material => {
-                    this.setState({materialHeader: material.header})
-                    this.setState({materialDescription: material.description})
-                    this.setState({material})
-                }, error => {
-                    console.error(error)
-                }
-            )
+        const keycloak = Keycloak('/keycloak.json')
+        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
+            localStorage.setItem('token', keycloak.token)
+            this.setState({keycloak, authenticated})
+        })
     }
 
     buttonIsClicked() {
-        ibstu.updateMaterial(
+        ibstu.createMaterial(
             this.state.materialHeader,
             this.state.materialDescription,
-            this.props.match.params.materialId
+            this.state.file
+        ).then(data => {
+                alert('Добавлен')
+            }, error => {
+                alert(error.message)
+            }
         )
     }
 
     render() {
-        if (this.state.material === null) return <></>
-        const ln = this.state.material.lastName ? this.state.material.lastName : ''
-        const fn = this.state.material.firstName ? this.state.material.firstName : ''
-        const md = this.state.material.middleName ? this.state.material.middleName : ''
-        const creator = `${ln} ${fn} ${md}`
+        if (this.state.keycloak === null) return <></>
+        const creator = this.state.keycloak.tokenParsed.name
         return (
             <div>
                 <GridContainer>
@@ -63,7 +65,7 @@ class CreateMaterial extends React.Component {
                                     <PermIdentity />
                                 </CardIcon>
                                 <h4>
-                                    Обновить материал
+                                    Добавить материал
                                 </h4>
                             </CardHeader>
                             <CardBody>
@@ -115,7 +117,7 @@ class CreateMaterial extends React.Component {
                                 </GridContainer>
                                 <GridContainer>
                                     <GridItem xs={12} sm={12} md={12}>
-                                        <ImageUpload />
+                                        <ImageUpload t={this} />
                                     </GridItem>
                                 </GridContainer>
                                 <Button color="rose"

@@ -17,7 +17,7 @@ const axiosInstance = axios.create({baseURL})
 // TODO: remove token
 const config = {
     headers: {
-        Authorization: ``
+        Authorization: `Bearer ${localStorage.getItem('token')}`
     }
 }
 
@@ -74,8 +74,18 @@ export const ibstu = {
         const data = new FormData()
         data.append('header', header)
         data.append('description', description)
-        data.append('file', file, file.name)
+        if (file !== null)
+            data.append('file', file, file.name)
         return axiosInstance.put(`/files/materials/${materialId}`, data, config)
+            .then(response => response.data)
+    },
+    createMaterial(header, description, file) {
+        const data = new FormData()
+        data.append('header', header)
+        data.append('description', description)
+        if (file !== null)
+            data.append('file', file, file.name)
+        return axiosInstance.post('/files/materials', data, config)
             .then(response => response.data)
     },
     removeMaterial(materialId) {
