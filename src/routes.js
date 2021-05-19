@@ -1,5 +1,4 @@
 // @material-ui/icons
-import Schedule from '@material-ui/icons/Schedule'
 import MaterialContainer from './main-views/Materials/MaterialContainer'
 import MaterialsContainer from './main-views/Materials/MaterialsContainer'
 import MenuContainer from './main-views/MenuContainer'
@@ -23,136 +22,136 @@ import TeacherTables from './views/Tables/TeacherTables'
 const routes = [
     {
         path: '/start',
-        name: 'Старт',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: StartContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/menu',
-        name: 'Меню',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: MenuContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/teachers',
-        name: 'Преподаватели',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: TeachersContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/teacher/:userId?',
-        name: 'Преподаватель',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: TeacherContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/news',
-        name: 'Новости',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: NewsContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/new/:newsId?',
-        name: 'Новость',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: NewContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/materials',
-        name: 'Материалы',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: MaterialsContainer,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/material/:materialId?',
-        name: 'Материал',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: MaterialContainer,
-        layout: '/ibstu'
-    },
-    {
-        path: '/register-page',
-        name: 'Страница регистрации',
-        icon: Schedule,
-        component: RegisterPage,
-        layout: '/auth'
+        layout: '/ibstu',
+        needAuth: false
     },
     {
         path: '/start-user',
-        name: 'Страница пользователя',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: StartUser,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/table',
-        name: 'Таблица',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: ReactTables,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-teachers',
-        name: 'Править преподавателей',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: TeacherTables,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-material/:materialId?',
-        name: 'Изменить материал',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: EditMaterial,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-news',
-        name: 'Изменить новости',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: NewsTables,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-teacher/:userId?',
-        name: 'Изменить материал',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: EditTeacher,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/new-mateial',
-        name: 'Создать материал',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: CreateMaterial,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/create-news',
-        name: 'Создать материал',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: CreateNews,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-profile/:userId?',
-        name: 'Править информацию',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: EditProfile,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
     },
     {
         path: '/edit-new/:newsId?',
-        name: 'Править новость',
-        icon: Schedule,
+        name: 'iBSTU UI',
         component: EditNews,
-        layout: '/ibstu'
+        layout: '/ibstu',
+        needAuth: true
+    },
+    {
+        path: '/register-page',
+        name: 'iBSTU UI',
+        component: RegisterPage,
+        layout: '/auth',
+        needAuth: true
     }
 ]
 

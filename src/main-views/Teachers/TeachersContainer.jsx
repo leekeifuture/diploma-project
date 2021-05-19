@@ -31,10 +31,13 @@ class MenuContainer extends React.Component {
     }
 
     render() {
+        const department = localStorage.getItem('departmentName')
+            .replace('Кафедра', 'кафедры')
+
         const {classes} = this.props
         return (
             <div>
-                <h3>Преподаватели кафедры</h3>
+                <h3>Преподаватели {department}</h3>
                 <br />
                 <GridContainer>
                     {this.state.teachers.map((teacher, index) => {
@@ -43,8 +46,18 @@ class MenuContainer extends React.Component {
                         }
 
                         const profilePicture = teacher.imageUrl
-                            ? `${baseURL}/static-files/${teacher.id}/avatar.png`
+                            ? `${baseURL}/static-files/${teacher.userId}/avatar.png`
                             : defaultAvatar
+
+                        const ln = teacher.lastName
+                            ? teacher.lastName
+                            : ''
+                        const fn = teacher.firstName
+                            ? teacher.firstName
+                            : ''
+                        const md = teacher.middleName
+                            ? teacher.middleName
+                            : ''
                         return (
                             <GridItem key={index} xs={12} sm={12} md={2}>
                                 <Card product className={classes.cardHover}>
@@ -69,7 +82,7 @@ class MenuContainer extends React.Component {
                                                    e.preventDefault()
                                                    window.location.href = 'http://localhost:3000/ibstu/teacher/' + teacher.userId
                                                }}>
-                                                {`${teacher.lastName} ${teacher.firstName} ${teacher.middleName}`}
+                                                {`${ln} ${fn} ${md}`}
                                             </a>
                                         </h4>
                                     </CardBody>

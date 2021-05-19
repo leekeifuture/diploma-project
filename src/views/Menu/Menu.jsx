@@ -32,12 +32,13 @@ class Menu extends React.Component {
     }
 
     render() {
-        const department = localStorage.getItem('department')
+        const department = localStorage.getItem('departmentName')
+            .replace('Кафедра', 'кафедру')
 
         const {classes} = this.props
         return (
             <div>
-                <h3>Добро пожаловать на кафедру {department}</h3>
+                <h3>Добро пожаловать на {department}</h3>
                 <br />
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>

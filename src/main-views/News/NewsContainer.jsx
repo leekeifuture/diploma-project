@@ -33,10 +33,13 @@ class NewsContainer extends React.Component {
     }
 
     render() {
+        const department = localStorage.getItem('departmentName')
+            .replace('Кафедра', 'кафедры')
+
         const {classes} = this.props
         return (
             <div>
-                <h3>Новости кафедры</h3>
+                <h3>Новости {department}</h3>
                 <GridContainer>
                     {this.state.newsContent.map((news, index) => {
                         const newsPicture = news.imageUrl
@@ -62,7 +65,10 @@ class NewsContainer extends React.Component {
                                     <CardBody>
                                         <h4 className={classes.cardProductTitle}>
                                             <a href="#pablo"
-                                               onClick={e => e.preventDefault()}>
+                                               onClick={e => {
+                                                   e.preventDefault()
+                                                   window.location.href = 'http://localhost:3000/ibstu/new/' + news.id
+                                               }}>
                                                 {news.header}
                                             </a>
                                         </h4>

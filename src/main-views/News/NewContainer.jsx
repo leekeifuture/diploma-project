@@ -6,7 +6,6 @@ import PermIdentity from '@material-ui/icons/PermIdentity'
 import userProfileStyles
     from 'assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx'
 import Card from 'components/Card/Card.jsx'
-import CardAvatar from 'components/Card/CardAvatar.jsx'
 import CardBody from 'components/Card/CardBody.jsx'
 import CardHeader from 'components/Card/CardHeader.jsx'
 import CardIcon from 'components/Card/CardIcon.jsx'
@@ -61,16 +60,14 @@ class NewContainer extends React.Component {
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
                         <Card profile>
-                            <CardAvatar profile>
-                                <a href="#pablo"
-                                   onClick={e => e.preventDefault()}>
-                                    <img src={newsPicture} alt="..."
-                                         style={{
-                                             maxWidth: '100%',
-                                             maxHeight: '100%'
-                                         }} />
-                                </a>
-                            </CardAvatar>
+                            <a href="#pablo"
+                               onClick={e => e.preventDefault()}>
+                                <img src={newsPicture} alt="..."
+                                     style={{
+                                         maxWidth: '100%',
+                                         maxHeight: '100%'
+                                     }} />
+                            </a>
                             <CardBody profile>
                                 <h6 className={classes.cardCategory}>
                                     {newObj.createdAt}

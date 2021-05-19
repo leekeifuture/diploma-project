@@ -11,6 +11,7 @@ class Start extends React.Component {
     finishButtonClick(e) {
         localStorage.setItem('facultyId', e.faculty.facultyId)
         localStorage.setItem('departmentId', e.department.departmentId)
+        localStorage.setItem('departmentName', e.department.departmentName)
 
         window.location.href = 'http://localhost:3000/ibstu/menu'
     }

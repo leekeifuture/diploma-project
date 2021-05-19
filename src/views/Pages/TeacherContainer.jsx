@@ -44,6 +44,16 @@ class TeacherContainer extends React.Component {
             ? `${baseURL}/static-files/${teacher.id}/avatar.png`
             : defaultAvatar
 
+        const ln = teacher.profile.lastName
+            ? teacher.profile.lastName
+            : ''
+        const fn = teacher.profile.firstName
+            ? teacher.profile.firstName
+            : ''
+        const md = teacher.profile.middleName
+            ? teacher.profile.middleName
+            : ''
+
         const {classes} = this.props
         return (
             <div>
@@ -65,9 +75,7 @@ class TeacherContainer extends React.Component {
                                     {teacher.department.positionName}
                                 </h6>
                                 <h4 className={classes.cardTitle}>
-                                    {teacher.profile.lastName + ' ' +
-                                    teacher.profile.firstName + ' ' +
-                                    teacher.profile.middleName}
+                                    {`${ln} ${fn} ${md}`}
                                 </h4>
                                 <p className={classes.description}>
                                     {teacher.department.departmentName}
@@ -99,6 +107,8 @@ class TeacherContainer extends React.Component {
     }
 
     getProfileInfo(profile) {
+        if (!(Object.keys(profile).length > 2)) return <b>Информация
+            отсутствует</b>
         const profileInfo = []
 
         const fields = {

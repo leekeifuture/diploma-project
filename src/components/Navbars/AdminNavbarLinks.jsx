@@ -1,6 +1,7 @@
 // @material-ui/core components
 import Hidden from '@material-ui/core/Hidden'
 import withStyles from '@material-ui/core/styles/withStyles'
+import Dashboard from '@material-ui/icons/Dashboard'
 import Person from '@material-ui/icons/Person'
 // @material-ui/icons
 import Search from '@material-ui/icons/Search'
@@ -75,6 +76,32 @@ class HeaderLinks extends React.Component {
                     <Search
                         className={classes.headerLinksSvg + ' ' + classes.searchIcon}
                     />
+                </Button>
+                <Button
+                    onClick={() => window.location.href = 'http://localhost:3000/ibstu/menu'}
+                    color="transparent"
+                    simple
+                    aria-label="Dashboard"
+                    justIcon
+                    className={rtlActive ? classes.buttonLinkRTL : classes.buttonLink}
+                    muiClasses={{
+                        label: rtlActive ? classes.labelRTL : ''
+                    }}
+                >
+                    <Dashboard
+                        className={
+                            classes.headerLinksSvg +
+                            ' ' +
+                            (rtlActive
+                                ? classes.links + ' ' + classes.linksRTL
+                                : classes.links)
+                        }
+                    />
+                    <Hidden mdUp implementation="css">
+            <span className={classes.linkText}>
+              {rtlActive ? 'لوحة القيادة' : 'Dashboard'}
+            </span>
+                    </Hidden>
                 </Button>
                 <Button
                     onClick={() => window.location.href = keyCloakURL}

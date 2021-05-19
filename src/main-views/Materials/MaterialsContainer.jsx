@@ -33,10 +33,13 @@ class MaterialsContainer extends React.Component {
     }
 
     render() {
+        const department = localStorage.getItem('departmentName')
+            .replace('Кафедра', 'кафедры')
+
         const {classes} = this.props
         return (
             <div>
-                <h3>Материалы кафедры</h3>
+                <h3>Материалы {department}</h3>
                 <GridContainer>
                     {this.state.materialsContent.map((material, index) => (
                         <GridItem key={index} xs={12} sm={12} md={2}>

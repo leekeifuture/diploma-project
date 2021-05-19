@@ -81,7 +81,7 @@ class RTL extends React.Component {
     }
 
     getActiveRoute = routes => {
-        let activeRoute = 'Default Brand Text'
+        let activeRoute = 'iBSTU UI'
         for (let i = 0; i < routes.length; i++) {
             if (routes[i].collapse) {
                 let collapseActiveRoute = this.getActiveRoute(routes[i].views)

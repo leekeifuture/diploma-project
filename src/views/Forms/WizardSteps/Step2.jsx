@@ -36,6 +36,7 @@ class Step2 extends React.Component {
         super(props)
         this.state = {
             departmentId: null,
+            departmentName: null,
             departments: []
         }
     }
@@ -47,8 +48,8 @@ class Step2 extends React.Component {
     handleSimple = event => {
         this.setState({[event.target.name]: event.target.value})
     }
-    handleChange = departmentId => event => {
-        this.setState({departmentId})
+    handleChange = (departmentId, departmentName) => event => {
+        this.setState({departmentId, departmentName})
     }
 
     isValidated() {
@@ -108,7 +109,7 @@ class Step2 extends React.Component {
                                                 <Checkbox
                                                     checked={this.state.departmentId === departmentObj.id}
                                                     tabIndex={-1}
-                                                    onClick={this.handleChange(departmentObj.id)}
+                                                    onClick={this.handleChange(departmentObj.id, departmentObj.name)}
                                                     checkedIcon={
                                                         <i
                                                             className={
