@@ -4,6 +4,7 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import {ibstu} from '../../api/ibstu-api'
 import materialsImage from '../../assets/img/material.png'
 import Card from '../../components/Card/Card'
@@ -46,24 +47,22 @@ class MaterialsContainer extends React.Component {
                             <Card product className={classes.cardHover}>
                                 <CardHeader
                                     className={classes.cardHeaderHover}>
-                                    <a href=""
-                                       onClick={e => {
-                                           e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/ibstu/material/' + material.id
-                                       }}>
+                                    <NavLink
+                                        to={`/ibstu/material/${material.id}`}
+                                    >
                                         <img src={materialsImage} alt="..."
                                              style={{
                                                  maxWidth: '100%',
                                                  maxHeight: '100%'
                                              }} />
-                                    </a>
+                                    </NavLink>
                                 </CardHeader>
                                 <CardBody>
                                     <h4 className={classes.cardProductTitle}>
-                                        <a href=""
-                                           onClick={e => e.preventDefault()}>
-                                            {material.header}
-                                        </a>
+                                        <NavLink
+                                            to={`/ibstu/material/${material.id}`}
+                                        >     {material.header}
+                                        </NavLink>
                                     </h4>
                                 </CardBody>
                             </Card>

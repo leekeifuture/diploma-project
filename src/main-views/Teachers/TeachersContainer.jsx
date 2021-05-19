@@ -4,6 +4,7 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 import defaultAvatar from '../../assets/img/default-avatar.png'
 import Card from '../../components/Card/Card'
@@ -63,27 +64,24 @@ class MenuContainer extends React.Component {
                                 <Card product className={classes.cardHover}>
                                     <CardHeader
                                         className={classes.cardHeaderHover}>
-                                        <a href=""
-                                           onClick={e => {
-                                               e.preventDefault()
-                                               window.location.href = 'http://localhost:3000/ibstu/teacher/' + teacher.userId
-                                           }}>
-                                            <img src={profilePicture} alt="..."
+                                        <NavLink
+                                            to={`/ibstu/teacher/${teacher.userId}`}
+                                        >
+                                            <img src={profilePicture}
+                                                 alt="..."
                                                  style={{
                                                      maxWidth: '100%',
                                                      maxHeight: '100%'
                                                  }} />
-                                        </a>
+                                        </NavLink>
                                     </CardHeader>
                                     <CardBody>
                                         <h4 className={classes.cardProductTitle}>
-                                            <a href=""
-                                               onClick={e => {
-                                                   e.preventDefault()
-                                                   window.location.href = 'http://localhost:3000/ibstu/teacher/' + teacher.userId
-                                               }}>
+                                            <NavLink
+                                                to={`/ibstu/teacher/${teacher.userId}`}
+                                            >
                                                 {`${ln} ${fn} ${md}`}
-                                            </a>
+                                            </NavLink>
                                         </h4>
                                     </CardBody>
                                 </Card>

@@ -14,7 +14,7 @@ import Button from 'components/CustomButtons/Button.jsx'
 import CustomInput from 'components/CustomInput/CustomInput.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
-import {keyCloakURL} from '../../api/ibstu-api'
+import {NavLink} from 'react-router-dom'
 
 // import { Manager, Target, Popper } from "react-popper";
 
@@ -77,48 +77,48 @@ class HeaderLinks extends React.Component {
                         className={classes.headerLinksSvg + ' ' + classes.searchIcon}
                     />
                 </Button>
-                <Button
-                    onClick={() => window.location.href = 'http://localhost:3000/ibstu/menu'}
-                    color="transparent"
-                    simple
-                    aria-label="Dashboard"
-                    justIcon
-                    className={rtlActive ? classes.buttonLinkRTL : classes.buttonLink}
-                    muiClasses={{
-                        label: rtlActive ? classes.labelRTL : ''
-                    }}
-                >
-                    <Dashboard
-                        className={
-                            classes.headerLinksSvg +
-                            ' ' +
-                            (rtlActive
-                                ? classes.links + ' ' + classes.linksRTL
-                                : classes.links)
-                        }
-                    />
-                    <Hidden mdUp implementation="css">
+                <NavLink to={'/ibstu/menu'}>
+                    <Button
+                        color="rose"
+                        simple
+                        aria-label="Menu"
+                        justIcon
+                        className={classes.buttonLink}
+                    >
+                        <Dashboard
+                            className={
+                                classes.headerLinksSvg +
+                                ' ' +
+                                (rtlActive
+                                    ? classes.links + ' ' + classes.linksRTL
+                                    : classes.links)
+                            }
+                        />
+                        <Hidden mdUp implementation="css">
             <span className={classes.linkText}>
               {rtlActive ? 'لوحة القيادة' : 'Dashboard'}
             </span>
-                    </Hidden>
-                </Button>
-                <Button
-                    onClick={() => window.location.href = keyCloakURL}
-                    color="transparent"
-                    aria-label="Person"
-                    justIcon
-                    className={classes.buttonLink}
-                >
-                    <Person
-                        className={classes.headerLinksSvg}
-                    />
-                    <Hidden mdUp implementation="css">
+                        </Hidden>
+                    </Button>
+                </NavLink>
+                <NavLink to={'/ibstu/start-user'}>
+                    <Button
+                        color="rose"
+                        simple
+                        aria-label="User menu"
+                        justIcon
+                        className={classes.buttonLink}
+                    >
+                        <Person
+                            className={classes.headerLinksSvg}
+                        />
+                        <Hidden mdUp implementation="css">
             <span className={classes.linkText}>
               {'Профиль'}
             </span>
-                    </Hidden>
-                </Button>
+                        </Hidden>
+                    </Button>
+                </NavLink>
             </div>
         )
     }

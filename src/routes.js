@@ -15,8 +15,8 @@ import EditMaterial from './views/Tables/EditMaterial'
 import EditNews from './views/Tables/EditNews'
 import EditProfile from './views/Tables/EditProfile'
 import EditTeacher from './views/Tables/EditTeacher'
+import MaterialTables from './views/Tables/MaterialTables'
 import NewsTables from './views/Tables/NewsTables'
-import ReactTables from './views/Tables/ReactTables'
 import TeacherTables from './views/Tables/TeacherTables'
 
 const routes = [
@@ -86,7 +86,7 @@ const routes = [
     {
         path: '/table',
         name: 'iBSTU UI',
-        component: ReactTables,
+        component: MaterialTables,
         layout: '/ibstu',
         needAuth: true
     },
@@ -119,7 +119,7 @@ const routes = [
         needAuth: true
     },
     {
-        path: '/new-mateial',
+        path: '/new-material',
         name: 'iBSTU UI',
         component: CreateMaterial,
         layout: '/ibstu',

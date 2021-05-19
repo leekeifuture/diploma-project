@@ -17,6 +17,7 @@ import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import Button from '../../components/CustomButtons/Button'
 
 class Menu extends React.Component {
@@ -44,16 +45,14 @@ class Menu extends React.Component {
                         <h3>Добро пожаловать на {department}</h3>
                     </GridItem>
                     <GridItem xs={12} sm={12} md={1}>
-                        <Button
-                            round
-                            color="rose"
-                            onClick={(e) => {
-                                e.preventDefault()
-                                window.location.href = 'http://localhost:3000/ibstu/start'
-                            }}
-                        >
-                            Изменить кафедру
-                        </Button>
+                        <NavLink to={'/ibstu/start'}>
+                            <Button
+                                round
+                                color="rose"
+                            >
+                                Изменить кафедру
+                            </Button>
+                        </NavLink>
                     </GridItem>
                 </GridContainer>
                 <br />

@@ -74,10 +74,13 @@ class MaterialContainer extends React.Component {
                                         <div>{description}</div>
                                         <CardFooter
                                             className={classes.justifyContentCenter}>
-                                            <Button color="rose" round
-                                                    onClick={() => window.location.href = baseURL + '/static-files' + material.url}>
-                                                Скачать
-                                            </Button>
+                                            <a
+                                                href={`${baseURL}/static-files${material.url}`}
+                                            >
+                                                <Button color="rose" round>
+                                                    Скачать
+                                                </Button>
+                                            </a>
                                         </CardFooter>
                                     </GridItem>
                                 </GridContainer>

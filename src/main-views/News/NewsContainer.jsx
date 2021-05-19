@@ -4,6 +4,7 @@ import dashboardStyle
     from 'assets/jss/material-dashboard-pro-react/views/dashboardStyle'
 import PropTypes from 'prop-types'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 import newsImage from '../../assets/img/news.png'
 import Card from '../../components/Card/Card'
@@ -50,27 +51,23 @@ class NewsContainer extends React.Component {
                                 <Card product className={classes.cardHover}>
                                     <CardHeader
                                         className={classes.cardHeaderHover}>
-                                        <a href=""
-                                           onClick={e => {
-                                               e.preventDefault()
-                                               window.location.href = 'http://localhost:3000/ibstu/new/' + news.id
-                                           }}>
+                                        <NavLink
+                                            to={`/ibstu/new/${news.id}`}
+                                        >
                                             <img src={newsPicture} alt="..."
                                                  style={{
                                                      maxWidth: '100%',
                                                      maxHeight: '100%'
                                                  }} />
-                                        </a>
+                                        </NavLink>
                                     </CardHeader>
                                     <CardBody>
                                         <h4 className={classes.cardProductTitle}>
-                                            <a href=""
-                                               onClick={e => {
-                                                   e.preventDefault()
-                                                   window.location.href = 'http://localhost:3000/ibstu/new/' + news.id
-                                               }}>
+                                            <NavLink
+                                                to={`/ibstu/new/${news.id}`}
+                                            >
                                                 {news.header}
-                                            </a>
+                                            </NavLink>
                                         </h4>
                                     </CardBody>
                                 </Card>

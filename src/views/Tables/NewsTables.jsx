@@ -14,6 +14,7 @@ import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import Keycloak from 'keycloak-js'
 import React from 'react'
+import {NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
 import ReactTable from 'react-table'
 import {ibstu} from '../../api/ibstu-api'
@@ -43,19 +44,17 @@ class NewsTables extends React.Component {
     getCustomActions(key) {
         return (
             <div className="actions-right">
-                <Button
-                    justIcon
-                    round
-                    simple
-                    onClick={() => {
-                        let obj = this.state.data.find(o => o.id === key)
-                        window.location.href = 'http://localhost:3000/ibstu/edit-new/' + obj.id
-                    }}
-                    color="info"
-                    className="edit"
-                >
-                    <CreateIcon />
-                </Button>
+                <NavLink to={`/ibstu/edit-new/${key}`}>
+                    <Button
+                        justIcon
+                        round
+                        simple
+                        color="info"
+                        className="edit"
+                    >
+                        <CreateIcon />
+                    </Button>
+                </NavLink>
             </div>
         )
     }
@@ -88,11 +87,11 @@ class NewsTables extends React.Component {
         const {classes} = this.props
         return (
             <GridContainer>
-                <Button
-                    onClick={() => window.location.href = 'http://localhost:3000/ibstu/create-news'}
-                >
-                    Создать новость
-                </Button>
+                <NavLink to={'/ibstu/create-news'}>
+                    <Button>
+                        Создать новость
+                    </Button>
+                </NavLink>
                 <GridItem xs={12}>
                     <Card>
                         <CardHeader color="primary" icon>
