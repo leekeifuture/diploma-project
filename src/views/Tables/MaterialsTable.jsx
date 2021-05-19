@@ -30,7 +30,7 @@ const styles = {
     }
 }
 
-class MaterialTables extends React.Component {
+class MaterialsTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -133,7 +133,7 @@ class MaterialTables extends React.Component {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/ibstu/new-material'}>
+                <NavLink to={'/ibstu/create-material'}>
                     <Button>
                         Загрузить новый
                     </Button>
@@ -189,4 +189,4 @@ class MaterialTables extends React.Component {
     }
 }
 
-export default withStyles(styles)(MaterialTables)
+export default withStyles(styles)(MaterialsTable)

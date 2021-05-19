@@ -28,7 +28,7 @@ const styles = {
     }
 }
 
-class TeacherTables extends React.Component {
+class TeachersTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -140,4 +140,4 @@ class TeacherTables extends React.Component {
     }
 }
 
-export default withStyles(styles)(TeacherTables)
+export default withStyles(styles)(TeachersTable)

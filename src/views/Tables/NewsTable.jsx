@@ -28,7 +28,7 @@ const styles = {
     }
 }
 
-class NewsTables extends React.Component {
+class NewsTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -44,7 +44,7 @@ class NewsTables extends React.Component {
     getCustomActions(key) {
         return (
             <div className="actions-right">
-                <NavLink to={`/ibstu/edit-new/${key}`}>
+                <NavLink to={`/ibstu/edit-news/${key}`}>
                     <Button
                         justIcon
                         round
@@ -135,4 +135,4 @@ class NewsTables extends React.Component {
     }
 }
 
-export default withStyles(styles)(NewsTables)
+export default withStyles(styles)(NewsTable)

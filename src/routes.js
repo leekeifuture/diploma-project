@@ -15,9 +15,9 @@ import EditMaterial from './views/Tables/EditMaterial'
 import EditNews from './views/Tables/EditNews'
 import EditProfile from './views/Tables/EditProfile'
 import EditTeacher from './views/Tables/EditTeacher'
-import MaterialTables from './views/Tables/MaterialTables'
-import NewsTables from './views/Tables/NewsTables'
-import TeacherTables from './views/Tables/TeacherTables'
+import MaterialsTable from './views/Tables/MaterialsTable'
+import NewsTable from './views/Tables/NewsTable'
+import TeachersTable from './views/Tables/TeachersTable'
 
 const routes = [
     {
@@ -84,16 +84,44 @@ const routes = [
         needAuth: true
     },
     {
-        path: '/table',
+        path: '/materials-table',
         name: 'iBSTU UI',
-        component: MaterialTables,
+        component: MaterialsTable,
         layout: '/ibstu',
         needAuth: true
     },
     {
-        path: '/edit-teachers',
+        path: '/teachers-table',
         name: 'iBSTU UI',
-        component: TeacherTables,
+        component: TeachersTable,
+        layout: '/ibstu',
+        needAuth: true
+    },
+    {
+        path: '/news-table',
+        name: 'iBSTU UI',
+        component: NewsTable,
+        layout: '/ibstu',
+        needAuth: true
+    },
+    {
+        path: '/create-material',
+        name: 'iBSTU UI',
+        component: CreateMaterial,
+        layout: '/ibstu',
+        needAuth: true
+    },
+    {
+        path: '/register-page',
+        name: 'iBSTU UI',
+        component: RegisterPage,
+        layout: '/auth',
+        needAuth: true
+    },
+    {
+        path: '/create-news',
+        name: 'iBSTU UI',
+        component: CreateNews,
         layout: '/ibstu',
         needAuth: true
     },
@@ -105,13 +133,6 @@ const routes = [
         needAuth: true
     },
     {
-        path: '/edit-news',
-        name: 'iBSTU UI',
-        component: NewsTables,
-        layout: '/ibstu',
-        needAuth: true
-    },
-    {
         path: '/edit-teacher/:userId?',
         name: 'iBSTU UI',
         component: EditTeacher,
@@ -119,16 +140,9 @@ const routes = [
         needAuth: true
     },
     {
-        path: '/new-material',
+        path: '/edit-news/:newsId?',
         name: 'iBSTU UI',
-        component: CreateMaterial,
-        layout: '/ibstu',
-        needAuth: true
-    },
-    {
-        path: '/create-news',
-        name: 'iBSTU UI',
-        component: CreateNews,
+        component: EditNews,
         layout: '/ibstu',
         needAuth: true
     },
@@ -137,20 +151,6 @@ const routes = [
         name: 'iBSTU UI',
         component: EditProfile,
         layout: '/ibstu',
-        needAuth: true
-    },
-    {
-        path: '/edit-new/:newsId?',
-        name: 'iBSTU UI',
-        component: EditNews,
-        layout: '/ibstu',
-        needAuth: true
-    },
-    {
-        path: '/register-page',
-        name: 'iBSTU UI',
-        component: RegisterPage,
-        layout: '/auth',
         needAuth: true
     }
 ]

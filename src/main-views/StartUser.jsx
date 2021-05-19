@@ -29,7 +29,7 @@ class StartUser extends React.Component {
         return (
             <GridContainer justify="center">
                 <GridItem xs={6}>
-                    <NavLink to={'/ibstu/table'}
+                    <NavLink to={'/ibstu/materials-table'}
                              style={style}>
                         <Button
                             color="rose"
@@ -70,7 +70,7 @@ class StartUser extends React.Component {
                             Добавить преподавателя
                         </Button>
                     </NavLink>
-                    <NavLink to={'/ibstu/edit-news'}
+                    <NavLink to={'/ibstu/news-table'}
                              style={style}>
                         <Button
                             color="rose"
@@ -80,17 +80,7 @@ class StartUser extends React.Component {
                             Добавить\править новость
                         </Button>
                     </NavLink>
-                    <NavLink to={'/ibstu/table'}
-                             style={style}>
-                        <Button
-                            color="rose"
-                            size="lg"
-                            style={style}
-                        >
-                            Загрузить\изменить материалы
-                        </Button>
-                    </NavLink>
-                    <NavLink to={'/ibstu/edit-teachers'}
+                    <NavLink to={'/ibstu/teachers-table'}
                              style={style}>
                         <Button
                             color="rose"
