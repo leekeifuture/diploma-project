@@ -62,6 +62,7 @@ class RegisterPage extends React.Component {
                 console.error(error)
             }
         )
+
     }
 
     handleSimple = event => {

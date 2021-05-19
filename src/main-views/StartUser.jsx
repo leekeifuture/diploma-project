@@ -14,10 +14,11 @@ class StartUser extends React.Component {
 
     componentDidMount() {
         const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
-            this.setState({keycloak, authenticated})
-        })
+        keycloak.init({onLoad: 'login-required'})
+            .then(authenticated => {
+                localStorage.setItem('token', keycloak.token)
+                this.setState({keycloak, authenticated})
+            })
     }
 
     render() {
@@ -47,6 +48,10 @@ class StartUser extends React.Component {
                     Править информацию о себе
                 </Button>
                 <Button
+                    onClick={e => {
+                        e.preventDefault()
+                        window.location.href = 'http://localhost:3000/auth/register-page'
+                    }}
                     color="rose"
                     size="lg"
                     style={style}

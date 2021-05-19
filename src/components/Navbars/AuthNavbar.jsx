@@ -9,11 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Toolbar from '@material-ui/core/Toolbar'
 // @material-ui/icons
 import Dashboard from '@material-ui/icons/Dashboard'
-import Fingerprint from '@material-ui/icons/Fingerprint'
-import LockOpen from '@material-ui/icons/LockOpen'
 import Menu from '@material-ui/icons/Menu'
-import MonetizationOn from '@material-ui/icons/MonetizationOn'
-import PersonAdd from '@material-ui/icons/PersonAdd'
 
 import authNavbarStyle
     from 'assets/jss/material-dashboard-pro-react/components/authNavbarStyle.jsx'
@@ -55,73 +51,11 @@ class AuthNavbar extends React.Component {
         var list = (
             <List className={classes.list}>
                 <ListItem className={classes.listItem}>
-                    <NavLink to={'/admin/dashboard'}
+                    <NavLink to={'/ibstu/start-user'}
                              className={classes.navLink}>
                         <Dashboard className={classes.listItemIcon} />
                         <ListItemText
                             primary={'Главная страница'}
-                            disableTypography={true}
-                            className={classes.listItemText}
-                        />
-                    </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <NavLink
-                        to={'/auth/pricing-page'}
-                        className={cx(classes.navLink, {
-                            [classes.navLinkActive]: this.activeRoute('/auth/pricing-page')
-                        })}
-                    >
-                        <MonetizationOn className={classes.listItemIcon} />
-                        <ListItemText
-                            primary={'Pricing'}
-                            disableTypography={true}
-                            className={classes.listItemText}
-                        />
-                    </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <NavLink
-                        to={'/auth/register-page'}
-                        className={cx(classes.navLink, {
-                            [classes.navLinkActive]: this.activeRoute('/auth/register-page')
-                        })}
-                    >
-                        <PersonAdd className={classes.listItemIcon} />
-                        <ListItemText
-                            primary={'Register'}
-                            disableTypography={true}
-                            className={classes.listItemText}
-                        />
-                    </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <NavLink
-                        to={'/auth/login-page'}
-                        className={cx(classes.navLink, {
-                            [classes.navLinkActive]: this.activeRoute('/auth/login-page')
-                        })}
-                    >
-                        <Fingerprint className={classes.listItemIcon} />
-                        <ListItemText
-                            primary={'Login'}
-                            disableTypography={true}
-                            className={classes.listItemText}
-                        />
-                    </NavLink>
-                </ListItem>
-                <ListItem className={classes.listItem}>
-                    <NavLink
-                        to={'/auth/lock-screen-page'}
-                        className={cx(classes.navLink, {
-                            [classes.navLinkActive]: this.activeRoute(
-                                '/auth/lock-screen-page'
-                            )
-                        })}
-                    >
-                        <LockOpen className={classes.listItemIcon} />
-                        <ListItemText
-                            primary={'Lock'}
                             disableTypography={true}
                             className={classes.listItemText}
                         />
