@@ -50,7 +50,7 @@ class NewsContainer extends React.Component {
                                 <Card product className={classes.cardHover}>
                                     <CardHeader
                                         className={classes.cardHeaderHover}>
-                                        <a href="#pablo"
+                                        <a href=""
                                            onClick={e => {
                                                e.preventDefault()
                                                window.location.href = 'http://localhost:3000/ibstu/new/' + news.id
@@ -64,7 +64,7 @@ class NewsContainer extends React.Component {
                                     </CardHeader>
                                     <CardBody>
                                         <h4 className={classes.cardProductTitle}>
-                                            <a href="#pablo"
+                                            <a href=""
                                                onClick={e => {
                                                    e.preventDefault()
                                                    window.location.href = 'http://localhost:3000/ibstu/new/' + news.id

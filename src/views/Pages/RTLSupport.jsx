@@ -240,7 +240,7 @@ class RTLSupport extends React.Component {
                                             طومسون@</h6>
                                         <CardAvatar testimonial
                                                     testimonialFooter>
-                                            <a href="#pablo"
+                                            <a href=""
                                                onClick={e => e.preventDefault()}>
                                                 <img src={image} alt="..." />
                                             </a>

@@ -60,7 +60,7 @@ class NewContainer extends React.Component {
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
                         <Card profile>
-                            <a href="#pablo"
+                            <a href=""
                                onClick={e => e.preventDefault()}>
                                 <img src={newsPicture} alt="..."
                                      style={{

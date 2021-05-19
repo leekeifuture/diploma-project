@@ -51,7 +51,7 @@ class LockScreenPage extends React.Component {
                         }
                     >
                         <CardAvatar profile className={classes.cardAvatar}>
-                            <a href="#pablo" onClick={e => e.preventDefault()}>
+                            <a href="" onClick={e => e.preventDefault()}>
                                 <img src={avatar} alt="..." />
                             </a>
                         </CardAvatar>

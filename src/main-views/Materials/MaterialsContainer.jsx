@@ -46,7 +46,7 @@ class MaterialsContainer extends React.Component {
                             <Card product className={classes.cardHover}>
                                 <CardHeader
                                     className={classes.cardHeaderHover}>
-                                    <a href="#pablo"
+                                    <a href=""
                                        onClick={e => {
                                            e.preventDefault()
                                            window.location.href = 'http://localhost:3000/ibstu/material/' + material.id
@@ -60,7 +60,7 @@ class MaterialsContainer extends React.Component {
                                 </CardHeader>
                                 <CardBody>
                                     <h4 className={classes.cardProductTitle}>
-                                        <a href="#pablo"
+                                        <a href=""
                                            onClick={e => e.preventDefault()}>
                                             {material.header}
                                         </a>

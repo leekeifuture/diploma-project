@@ -101,7 +101,7 @@ class Notifications extends React.Component {
                                href="#">
               </a>
               . Please checkout the{' '}
-                            <a href="#pablo" target="_blank">
+                            <a href="" target="_blank">
                 full documentation
               </a>
               .

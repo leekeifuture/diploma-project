@@ -103,7 +103,7 @@ class TeacherContainer extends React.Component {
                     <GridItem xs={12} sm={12} md={4}>
                         <Card profile>
                             <CardAvatar profile>
-                                <a href="#pablo"
+                                <a href=""
                                    onClick={e => e.preventDefault()}>
                                     <img src={profilePicture} alt="..."
                                          style={{

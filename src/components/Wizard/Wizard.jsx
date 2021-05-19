@@ -256,7 +256,7 @@ class Wizard extends React.Component {
                                         style={{width: this.state.width}}
                                     >
                                         <a
-                                            href="#pablo"
+                                            href=""
                                             className={classes.stepsAnchor}
                                             onClick={e => {
                                                 e.preventDefault()

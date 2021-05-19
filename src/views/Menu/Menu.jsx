@@ -45,7 +45,7 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href="#pablo"
+                                <a href=""
                                    onClick={e => {
                                        e.preventDefault()
                                        window.location.href = 'http://localhost:3000/ibstu/teachers'
@@ -55,7 +55,7 @@ class Menu extends React.Component {
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href="#pablo"
+                                    <a href=""
                                        onClick={e => {
                                            e.preventDefault()
                                            window.location.href = 'http://localhost:3000/ibstu/teachers'
@@ -70,7 +70,7 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href="#pablo"
+                                <a href=""
                                    onClick={e => {
                                        e.preventDefault()
                                        window.location.href = 'http://localhost:3000/ibstu/news'
@@ -80,7 +80,7 @@ class Menu extends React.Component {
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href="#pablo"
+                                    <a href=""
                                        onClick={e => {
                                            e.preventDefault()
                                            window.location.href = 'http://localhost:3000/ibstu/news'
@@ -95,7 +95,7 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href="#pablo"
+                                <a href=""
                                    onClick={e => {
                                        e.preventDefault()
                                        window.location.href = 'http://localhost:3000/ibstu/materials'
@@ -105,7 +105,7 @@ class Menu extends React.Component {
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href="#pablo"
+                                    <a href=""
                                        onClick={e => {
                                            e.preventDefault()
                                            window.location.href = 'http://localhost:3000/ibstu/materials'

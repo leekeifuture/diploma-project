@@ -229,7 +229,7 @@ class Widgets extends React.Component {
                                         <h6 className={classes.cardCategory}>@ALECTHOMPSON</h6>
                                         <CardAvatar testimonial
                                                     testimonialFooter>
-                                            <a href="#pablo"
+                                            <a href=""
                                                onClick={e => e.preventDefault()}>
                                                 <img src={image} alt="..." />
                                             </a>
