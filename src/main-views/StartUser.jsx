@@ -70,6 +70,10 @@ class StartUser extends React.Component {
                         Добавить преподавателя
                     </Button>
                     <Button
+                        onClick={e => {
+                            e.preventDefault()
+                            window.location.href = 'http://localhost:3000/ibstu/edit-news'
+                        }}
                         color="rose"
                         size="lg"
                         style={style}

@@ -27,10 +27,13 @@ const styles = {
     }
 }
 
-class TeacherTables extends React.Component {
+class NewsTables extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            news: null,
+            newsContent: [],
+            departmentId: localStorage.getItem('departmentId'),
             data: [],
             keycloak: null,
             authenticated: false
@@ -46,7 +49,7 @@ class TeacherTables extends React.Component {
                     simple
                     onClick={() => {
                         let obj = this.state.data.find(o => o.id === key)
-                        window.location.href = 'http://localhost:3000/ibstu/edit-teacher/' + obj.userId
+                        window.location.href = 'http://localhost:3000/ibstu/edit-new/' + obj.id
                     }}
                     color="info"
                     className="edit"
@@ -62,15 +65,15 @@ class TeacherTables extends React.Component {
         keycloak.init({onLoad: 'login-required'}).then(authenticated => {
             localStorage.setItem('token', keycloak.token)
 
-            const departmentId = localStorage.getItem('departmentId')
-
-            ibstu.getTeachers(departmentId)
-                .then(teachers => {
-                        const data = teachers.map(teacher => {
-                            teacher.actions = this.getCustomActions(teacher.id)
-                            return teacher
+            ibstu.getNews(this.state.departmentId)
+                .then(news => {
+                        const data = news.content.map(newObj => {
+                            newObj.actions = this.getCustomActions(newObj.id)
+                            return newObj
                         })
-                        setTimeout(() => this.setState({data}), 500)
+
+                        this.setState({data})
+                        this.setState({news})
                     }, error => {
                         console.error(error)
                     }
@@ -86,9 +89,9 @@ class TeacherTables extends React.Component {
         return (
             <GridContainer>
                 <Button
-                    onClick={() => window.location.href = 'http://localhost:3000/auth/register-page'}
+                    onClick={() => window.location.href = 'http://localhost:3000/ibstu/create-news'}
                 >
-                    Зарегистрировать нового
+                    Создать новость
                 </Button>
                 <GridItem xs={12}>
                     <Card>
@@ -97,7 +100,7 @@ class TeacherTables extends React.Component {
                                 <Assignment />
                             </CardIcon>
                             <h4 className={classes.cardIconTitle}>
-                                Все преподаватели вашей кафедры
+                                Изменение новостей
                             </h4>
                         </CardHeader>
                         <CardBody>
@@ -106,20 +109,12 @@ class TeacherTables extends React.Component {
                                 filterable
                                 columns={[
                                     {
-                                        Header: 'Фамилия',
-                                        accessor: 'lastName'
+                                        Header: 'Заголовок',
+                                        accessor: 'header'
                                     },
                                     {
-                                        Header: 'Имя',
-                                        accessor: 'firstName'
-                                    },
-                                    {
-                                        Header: 'Отчество',
-                                        accessor: 'middleName'
-                                    },
-                                    {
-                                        Header: 'Должность',
-                                        accessor: 'position'
+                                        Header: 'Дата создания',
+                                        accessor: 'createdAt'
                                     },
                                     {
                                         Header: 'Действия',
@@ -141,4 +136,4 @@ class TeacherTables extends React.Component {
     }
 }
 
-export default withStyles(styles)(TeacherTables)
+export default withStyles(styles)(NewsTables)

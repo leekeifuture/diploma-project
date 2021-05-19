@@ -5,6 +5,7 @@ import Button from 'components/CustomButtons/Button.jsx'
 // used for making the prop types of this component
 import PropTypes from 'prop-types'
 import React from 'react'
+import {baseURL} from '../../api/ibstu-api'
 import materialsImage from '../../assets/img/material.png'
 
 class ImageUpload extends React.Component {
@@ -12,7 +13,7 @@ class ImageUpload extends React.Component {
         super(props)
         this.state = {
             file: null,
-            imagePreviewUrl: this.props.avatar ? defaultAvatar : defaultImage
+            imagePreviewUrl: this.props.imageUrl ? `${baseURL}/static-files/${this.props.imageUrl}` : defaultImage
         }
         this.handleImageChange = this.handleImageChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
@@ -63,12 +64,16 @@ class ImageUpload extends React.Component {
             changeButtonProps,
             removeButtonProps
         } = this.props
+
+        const imgSrc = this.props.photo
+            ? this.state.imagePreviewUrl
+            : materialsImage
         return (
             <div className="fileinput text-center">
                 <input type="file" onChange={this.handleImageChange}
                        ref="fileInput" />
                 <div className={'thumbnail' + (avatar ? ' img-circle' : '')}>
-                    <img src={materialsImage} alt="..." />
+                    <img src={imgSrc} alt="..." />
                 </div>
                 <div>
                     {this.state.file === null ? (

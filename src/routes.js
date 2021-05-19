@@ -11,9 +11,12 @@ import TeachersContainer from './main-views/Teachers/TeachersContainer'
 import RegisterPage from './views/Pages/RegisterPage'
 import TeacherContainer from './views/Pages/TeacherContainer'
 import CreateMaterial from './views/Tables/CreateMaterial'
+import CreateNews from './views/Tables/CreateNews'
 import EditMaterial from './views/Tables/EditMaterial'
+import EditNews from './views/Tables/EditNews'
 import EditProfile from './views/Tables/EditProfile'
 import EditTeacher from './views/Tables/EditTeacher'
+import NewsTables from './views/Tables/NewsTables'
 import ReactTables from './views/Tables/ReactTables'
 import TeacherTables from './views/Tables/TeacherTables'
 
@@ -110,6 +113,13 @@ const routes = [
         layout: '/ibstu'
     },
     {
+        path: '/edit-news',
+        name: 'Изменить новости',
+        icon: Schedule,
+        component: NewsTables,
+        layout: '/ibstu'
+    },
+    {
         path: '/edit-teacher/:userId?',
         name: 'Изменить материал',
         icon: Schedule,
@@ -124,10 +134,24 @@ const routes = [
         layout: '/ibstu'
     },
     {
+        path: '/create-news',
+        name: 'Создать материал',
+        icon: Schedule,
+        component: CreateNews,
+        layout: '/ibstu'
+    },
+    {
         path: '/edit-profile/:userId?',
         name: 'Править информацию',
         icon: Schedule,
         component: EditProfile,
+        layout: '/ibstu'
+    },
+    {
+        path: '/edit-new/:newsId?',
+        name: 'Править новость',
+        icon: Schedule,
+        component: EditNews,
         layout: '/ibstu'
     }
 ]

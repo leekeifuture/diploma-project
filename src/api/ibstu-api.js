@@ -14,7 +14,7 @@ export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws
     '&code_challenge_method=S256'
 
 const axiosInstance = axios.create({baseURL})
-// TODO: remove token
+
 const config = {
     headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -79,6 +79,15 @@ export const ibstu = {
         return axiosInstance.put(`/files/materials/${materialId}`, data, config)
             .then(response => response.data)
     },
+    updateNews(header, description, newsId, file) {
+        const data = new FormData()
+        data.append('header', header)
+        data.append('content', description)
+        if (file !== null)
+            data.append('picture', file, file.name)
+        return axiosInstance.put(`/news/${newsId}`, data, config)
+            .then(response => response.data)
+    },
     updateUserProfile(params, userId) {
         return axiosInstance.put(`/users/${userId}`, {
             'profile': {...params},
@@ -94,6 +103,18 @@ export const ibstu = {
         if (file !== null)
             data.append('file', file, file.name)
         return axiosInstance.post('/files/materials', data, config)
+            .then(response => response.data)
+    },
+    createNews(header, description, file) {
+        const departmentId = localStorage.getItem('departmentId')
+        const data = new FormData()
+        data.append('header', header)
+        data.append('content', description)
+        data.append('languageCode', 'ru')
+        data.append('departmentId', departmentId)
+        if (file !== null)
+            data.append('picture', file, file.name)
+        return axiosInstance.post('/news', data, config)
             .then(response => response.data)
     },
     removeMaterial(materialId) {
