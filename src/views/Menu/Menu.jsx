@@ -17,6 +17,7 @@ import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
+import Button from '../../components/CustomButtons/Button'
 
 class Menu extends React.Component {
     constructor(props) {
@@ -38,7 +39,23 @@ class Menu extends React.Component {
         const {classes} = this.props
         return (
             <div>
-                <h3>Добро пожаловать на {department}</h3>
+                <GridContainer>
+                    <GridItem xs={12} sm={12} md={10}>
+                        <h3>Добро пожаловать на {department}</h3>
+                    </GridItem>
+                    <GridItem xs={12} sm={12} md={1}>
+                        <Button
+                            round
+                            color="rose"
+                            onClick={(e) => {
+                                e.preventDefault()
+                                window.location.href = 'http://localhost:3000/ibstu/start'
+                            }}
+                        >
+                            Изменить кафедру
+                        </Button>
+                    </GridItem>
+                </GridContainer>
                 <br />
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
