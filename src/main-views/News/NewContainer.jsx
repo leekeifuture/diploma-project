@@ -54,6 +54,10 @@ class NewContainer extends React.Component {
             ? newObj.middleName
             : ''
 
+        const content = newObj.content === '' || newObj.content === null
+            ? 'Информация отсутствует'
+            : newObj.content
+
         const {classes} = this.props
         return (
             <div>
@@ -91,7 +95,7 @@ class NewContainer extends React.Component {
                             <CardBody>
                                 <GridContainer>
                                     <GridItem xs={12} sm={12} md={12}>
-                                        {newObj.content}
+                                        {content}
                                     </GridItem>
                                 </GridContainer>
                                 <Clearfix />

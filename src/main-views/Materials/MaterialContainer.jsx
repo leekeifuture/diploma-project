@@ -51,6 +51,10 @@ class MaterialContainer extends React.Component {
             ? material.middleName
             : ''
 
+        const description = material.description === '' || material.description === null
+            ? 'Информация отсутствует'
+            : material.description
+
         const {classes} = this.props
         return (
             <div>
@@ -67,7 +71,7 @@ class MaterialContainer extends React.Component {
                                     <GridItem xs={12} sm={12} md={12}>
                                         <h3>{material.header}</h3>
                                         <h6>{`Создатель: ${ln} ${fn} ${md}`}</h6>
-                                        <div>{material.description}</div>
+                                        <div>{description}</div>
                                         <CardFooter
                                             className={classes.justifyContentCenter}>
                                             <Button color="rose" round
