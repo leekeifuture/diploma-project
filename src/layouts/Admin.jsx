@@ -31,19 +31,12 @@ class Dashboard extends React.Component {
             color: 'blue',
             bgColor: 'black',
             hasImage: true,
-            fixedClasses: 'dropdown',
-            keycloak: null,
-            authenticated: false
+            fixedClasses: 'dropdown'
         }
         this.resizeFunction = this.resizeFunction.bind(this)
     }
 
     componentDidMount() {
-        // const keycloak = Keycloak('/keycloak.json')
-        // keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-        //     this.setState({keycloak: keycloak, authenticated: authenticated})
-        // })
-
         if (navigator.platform.indexOf('Win') > -1) {
             ps = new PerfectScrollbar(this.refs.mainPanel, {
                 suppressScrollX: true,

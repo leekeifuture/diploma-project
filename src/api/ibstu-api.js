@@ -79,6 +79,14 @@ export const ibstu = {
         return axiosInstance.put(`/files/materials/${materialId}`, data, config)
             .then(response => response.data)
     },
+    updateUserProfile(params, userId) {
+        return axiosInstance.put(`/users/${userId}`, {
+            'profile': {...params},
+            'contacts': [],
+            'languageCode': 'ru'
+        }, config)
+            .then(response => response.data)
+    },
     createMaterial(header, description, file) {
         const data = new FormData()
         data.append('header', header)

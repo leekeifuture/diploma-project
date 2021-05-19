@@ -12,6 +12,7 @@ import RegisterPage from './views/Pages/RegisterPage'
 import TeacherContainer from './views/Pages/TeacherContainer'
 import CreateMaterial from './views/Tables/CreateMaterial'
 import EditMaterial from './views/Tables/EditMaterial'
+import EditProfile from './views/Tables/EditProfile'
 import ReactTables from './views/Tables/ReactTables'
 
 const routes = [
@@ -104,6 +105,13 @@ const routes = [
         name: 'Создать материал',
         icon: Schedule,
         component: CreateMaterial,
+        layout: '/ibstu'
+    },
+    {
+        path: '/edit-profile/:userId?',
+        name: 'Править информацию о себе',
+        icon: Schedule,
+        component: EditProfile,
         layout: '/ibstu'
     }
 ]

@@ -34,18 +34,19 @@ class EditMaterial extends React.Component {
         const keycloak = Keycloak('/keycloak.json')
         keycloak.init({onLoad: 'login-required'}).then(authenticated => {
             localStorage.setItem('token', keycloak.token)
+
+            ibstu.getMaterial(this.props.match.params.materialId)
+                .then(material => {
+                        this.setState({materialHeader: material.header})
+                        this.setState({materialDescription: material.description})
+                        this.setState({material})
+                    }, error => {
+                        console.error(error)
+                    }
+                )
+
             this.setState({keycloak, authenticated})
         })
-
-        ibstu.getMaterial(this.props.match.params.materialId)
-            .then(material => {
-                    this.setState({materialHeader: material.header})
-                    this.setState({materialDescription: material.description})
-                    this.setState({material})
-                }, error => {
-                    console.error(error)
-                }
-            )
     }
 
     buttonIsClicked() {
