@@ -13,7 +13,9 @@ import TeacherContainer from './views/Pages/TeacherContainer'
 import CreateMaterial from './views/Tables/CreateMaterial'
 import EditMaterial from './views/Tables/EditMaterial'
 import EditProfile from './views/Tables/EditProfile'
+import EditTeacher from './views/Tables/EditTeacher'
 import ReactTables from './views/Tables/ReactTables'
+import TeacherTables from './views/Tables/TeacherTables'
 
 const routes = [
     {
@@ -94,10 +96,24 @@ const routes = [
         layout: '/ibstu'
     },
     {
+        path: '/edit-teachers',
+        name: 'Править преподавателей',
+        icon: Schedule,
+        component: TeacherTables,
+        layout: '/ibstu'
+    },
+    {
         path: '/edit-material/:materialId?',
         name: 'Изменить материал',
         icon: Schedule,
         component: EditMaterial,
+        layout: '/ibstu'
+    },
+    {
+        path: '/edit-teacher/:userId?',
+        name: 'Изменить материал',
+        icon: Schedule,
+        component: EditTeacher,
         layout: '/ibstu'
     },
     {
@@ -109,7 +125,7 @@ const routes = [
     },
     {
         path: '/edit-profile/:userId?',
-        name: 'Править информацию о себе',
+        name: 'Править информацию',
         icon: Schedule,
         component: EditProfile,
         layout: '/ibstu'
