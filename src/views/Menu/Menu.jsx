@@ -61,23 +61,15 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href=""
-                                   onClick={e => {
-                                       e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/ibstu/teachers'
-                                   }}>
+                                <NavLink to={'/ibstu/teachers'}>
                                     <img src={priceImage1} alt="..." />
-                                </a>
+                                </NavLink>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href=""
-                                       onClick={e => {
-                                           e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/ibstu/teachers'
-                                       }}>
+                                    <NavLink to={'/ibstu/teachers'}>
                                         Преподаватели
-                                    </a>
+                                    </NavLink>
                                 </h4>
                             </CardBody>
                         </Card>
@@ -86,23 +78,15 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href=""
-                                   onClick={e => {
-                                       e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/ibstu/news'
-                                   }}>
+                                <NavLink to={'/ibstu/news'}>
                                     <img src={priceImage2} alt="..." />
-                                </a>
+                                </NavLink>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href=""
-                                       onClick={e => {
-                                           e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/ibstu/news'
-                                       }}>
+                                    <NavLink to={'/ibstu/news'}>
                                         Новости
-                                    </a>
+                                    </NavLink>
                                 </h4>
                             </CardBody>
                         </Card>
@@ -111,23 +95,15 @@ class Menu extends React.Component {
                         <Card product className={classes.cardHover}>
                             <CardHeader image
                                         className={classes.cardHeaderHover}>
-                                <a href=""
-                                   onClick={e => {
-                                       e.preventDefault()
-                                       window.location.href = 'http://localhost:3000/ibstu/materials'
-                                   }}>
+                                <NavLink to={'/ibstu/materials'}>
                                     <img src={priceImage3} alt="..." />
-                                </a>
+                                </NavLink>
                             </CardHeader>
                             <CardBody>
                                 <h4 className={classes.cardProductTitle}>
-                                    <a href=""
-                                       onClick={e => {
-                                           e.preventDefault()
-                                           window.location.href = 'http://localhost:3000/ibstu/materials'
-                                       }}>
+                                    <NavLink to={'/ibstu/materials'}>
                                         Материалы
-                                    </a>
+                                    </NavLink>
                                 </h4>
                             </CardBody>
                         </Card>
