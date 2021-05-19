@@ -32,8 +32,7 @@ const registerPageStyle = {
             hexToRgb(blackColor) +
             ', 0.2)',
         marginBottom: '100px',
-        padding: '40px 0px',
-        marginTop: '15vh'
+        padding: '40px 0px'
     },
     center: {
         textAlign: 'center'

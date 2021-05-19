@@ -84,7 +84,7 @@ class TeachersTable extends React.Component {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/auth/register-page'}>
+                <NavLink to={'/ibstu/register-page'}>
                     <Button>
                         Зарегистрировать нового
                     </Button>

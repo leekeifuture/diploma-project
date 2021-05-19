@@ -115,7 +115,7 @@ const routes = [
         path: '/register-page',
         name: 'iBSTU UI',
         component: RegisterPage,
-        layout: '/auth',
+        layout: '/ibstu',
         needAuth: true
     },
     {

@@ -170,8 +170,6 @@ class RegisterPage extends React.Component {
     }
 
     render() {
-        if (this.state.keycloak === null || !this.state.keycloak.tokenParsed.realm_access.roles.includes('ROLE_ADMIN')) return <></>
-
         const positions = {
             'HoD': 'Заведующий кафедрой',
             'DoTS': 'Доктор технических наук',
