@@ -86,7 +86,7 @@ const defaultFont = {
     lineHeight: '1.5em'
 }
 
-const primaryColor = ['#9c27b0', '#ab47bc', '#8e24aa', '#af2cc5', '#7b1fa2']
+const primaryColor = ['#006CB5', '#006CB5', '#006CB5', '#006CB5', '#006CB5']
 const warningColor = [
     '#ff9800',
     '#ffa726',
@@ -125,7 +125,7 @@ const infoColor = [
 ]
 const roseColor = ['#006CB5']
 const grayColor = [
-    '#999',
+    '#006CB5',
     '#777',
     '#3C4858',
     '#AAAAAA',

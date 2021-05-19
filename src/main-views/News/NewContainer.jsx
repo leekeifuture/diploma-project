@@ -68,8 +68,8 @@ class NewContainer extends React.Component {
                                onClick={e => e.preventDefault()}>
                                 <img src={newsPicture} alt="..."
                                      style={{
-                                         maxWidth: '100%',
-                                         maxHeight: '100%'
+                                         maxWidth: '200%',
+                                         maxHeight: '200%'
                                      }} />
                             </a>
                             <CardBody profile>
