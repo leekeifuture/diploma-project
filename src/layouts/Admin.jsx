@@ -1,6 +1,5 @@
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
-import logo from 'assets/img/logo-white.svg'
 
 import image from 'assets/img/sidebar-1.jpg'
 
@@ -9,7 +8,6 @@ import appStyle
 import cx from 'classnames'
 // core components
 import AdminNavbar from 'components/Navbars/AdminNavbar.jsx'
-import Sidebar from 'components/Sidebar/Sidebar.jsx'
 // creates a beautiful scrollbar
 import PerfectScrollbar from 'perfect-scrollbar'
 import 'perfect-scrollbar/css/perfect-scrollbar.css'
@@ -146,18 +144,18 @@ class Dashboard extends React.Component {
             })
         return (
             <div className={classes.wrapper}>
-                <Sidebar
-                    routes={routes}
-                    logoText={'ibstu ui'}
-                    logo={logo}
-                    image={this.state.image}
-                    handleDrawerToggle={this.handleDrawerToggle}
-                    open={this.state.mobileOpen}
-                    color={this.state.color}
-                    bgColor={this.state.bgColor}
-                    miniActive={this.state.miniActive}
-                    {...rest}
-                />
+                {/*<Sidebar*/}
+                {/*    routes={routes}*/}
+                {/*    logoText={'ibstu ui'}*/}
+                {/*    logo={logo}*/}
+                {/*    image={this.state.image}*/}
+                {/*    handleDrawerToggle={this.handleDrawerToggle}*/}
+                {/*    open={this.state.mobileOpen}*/}
+                {/*    color={this.state.color}*/}
+                {/*    bgColor={this.state.bgColor}*/}
+                {/*    miniActive={this.state.miniActive}*/}
+                {/*    {...rest}*/}
+                {/*/>*/}
                 <div className={mainPanel} ref="mainPanel">
                     <AdminNavbar
                         sidebarMinimize={this.sidebarMinimize.bind(this)}

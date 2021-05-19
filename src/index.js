@@ -1,3 +1,4 @@
+import 'assets/css/custom.css'
 import 'assets/scss/material-dashboard-pro-react.scss?v=1.5.0'
 import {createBrowserHistory} from 'history'
 import AdminLayout from 'layouts/Admin.jsx'
