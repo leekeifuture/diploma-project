@@ -11,7 +11,6 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {ibstu} from '../../api/ibstu-api'
 import userProfileStyles
@@ -24,19 +23,9 @@ class CreateMaterial extends React.Component {
         this.state = {
             materialHeader: '',
             materialDescription: '',
-            file: null,
-            keycloak: null,
-            authenticated: false
+            file: null
         }
         this.buttonIsClicked = this.buttonIsClicked.bind(this)
-    }
-
-    componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
-            this.setState({keycloak, authenticated})
-        })
     }
 
     buttonIsClicked() {
@@ -53,8 +42,8 @@ class CreateMaterial extends React.Component {
     }
 
     render() {
-        if (this.state.keycloak === null) return <></>
-        const creator = this.state.keycloak.tokenParsed.name
+        if (this.props.keycloak === null) return <></>
+        const creator = this.props.keycloak.tokenParsed.name
         return (
             <div>
                 <GridContainer>

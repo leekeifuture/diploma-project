@@ -12,7 +12,6 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
@@ -32,16 +31,14 @@ class TeachersTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [],
-            keycloak: null,
-            authenticated: false
+            data: []
         }
     }
 
     getCustomActions(key) {
         return (
             <div className="actions-right">
-                <NavLink to={`/ibstu/edit-teacher/${key}`}>
+                <NavLink to={`/auth-ibstu/edit-teacher/${key}`}>
                     <Button
                         justIcon
                         round
@@ -57,34 +54,26 @@ class TeachersTable extends React.Component {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
+        const departmentId = localStorage.getItem('departmentId')
 
-            const departmentId = localStorage.getItem('departmentId')
-
-            ibstu.getTeachers(departmentId)
-                .then(teachers => {
-                        const data = teachers.map(teacher => {
-                            teacher.actions = this.getCustomActions(teacher.userId)
-                            return teacher
-                        })
-                        setTimeout(() => this.setState({data}), 500)
-                    }, error => {
-                        console.error(error)
-                    }
-                )
-
-            this.setState({keycloak, authenticated})
-        })
-
+        ibstu.getTeachers(departmentId)
+            .then(teachers => {
+                    const data = teachers.map(teacher => {
+                        teacher.actions = this.getCustomActions(teacher.userId)
+                        return teacher
+                    })
+                    setTimeout(() => this.setState({data}), 500)
+                }, error => {
+                    console.error(error)
+                }
+            )
     }
 
     render() {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/ibstu/register-page'}>
+                <NavLink to={'/auth-ibstu/register-page'}>
                     <Button>
                         Зарегистрировать нового
                     </Button>

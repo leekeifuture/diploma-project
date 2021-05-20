@@ -4,7 +4,7 @@ export const baseURL = 'http://ec2-18-196-196-166.eu-central-1.compute.amazonaws
 export const keyCloakURL = 'http://ec2-18-191-242-32.us-east-2.compute.amazonaws.com:8080' +
     '/auth/realms/ibstu/protocol/openid-connect/auth' +
     '?client_id=ibstu-service' +
-    '&redirect_uri=http://localhost:3000/ibstu/start-user' +
+    '&redirect_uri=http://localhost:3000/auth-ibstu/start-user' +
     '&state=2dde5518-cd76-41bd-813c-798ecac79251' +
     '&response_mode=fragment' +
     '&response_type=code' +

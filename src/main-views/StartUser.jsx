@@ -1,4 +1,3 @@
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import Button from '../components/CustomButtons/Button'
@@ -6,30 +5,13 @@ import GridContainer from '../components/Grid/GridContainer'
 import GridItem from '../components/Grid/GridItem'
 
 class StartUser extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            keycloak: null,
-            authenticated: false
-        }
-    }
-
-    componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'})
-            .then(authenticated => {
-                localStorage.setItem('token', keycloak.token)
-                this.setState({keycloak, authenticated})
-            })
-    }
-
     render() {
-        const isAdmin = !(this.state.keycloak === null || !this.state.keycloak.tokenParsed.realm_access.roles.includes('ROLE_ADMIN'))
+        const isAdmin = !(this.props.keycloak === null || !this.props.keycloak.tokenParsed.realm_access.roles.includes('ROLE_ADMIN'))
         const style = {width: '100%', height: 100, whiteSpace: 'normal'}
         return (
             <GridContainer justify="center">
                 <GridItem xs={6}>
-                    <NavLink to={'/ibstu/materials-table'}
+                    <NavLink to={'/auth-ibstu/materials-table'}
                              style={style}>
                         <Button
                             color="rose"
@@ -39,7 +21,7 @@ class StartUser extends React.Component {
                             Загрузить\изменить материалы
                         </Button>
                     </NavLink>
-                    <NavLink to={'/ibstu/edit-profile'}
+                    <NavLink to={'/auth-ibstu/edit-profile'}
                              style={style}>
                         <Button
                             color="rose"
@@ -60,7 +42,7 @@ class StartUser extends React.Component {
         if (isAdmin)
             return (
                 <>
-                    <NavLink to={'/auth/register-page'}
+                    <NavLink to={'/auth-ibstu/register-page'}
                              style={style}>
                         <Button
                             color="rose"
@@ -70,7 +52,7 @@ class StartUser extends React.Component {
                             Добавить преподавателя
                         </Button>
                     </NavLink>
-                    <NavLink to={'/ibstu/news-table'}
+                    <NavLink to={'/auth-ibstu/news-table'}
                              style={style}>
                         <Button
                             color="rose"
@@ -80,7 +62,7 @@ class StartUser extends React.Component {
                             Добавить\править новость
                         </Button>
                     </NavLink>
-                    <NavLink to={'/ibstu/teachers-table'}
+                    <NavLink to={'/auth-ibstu/teachers-table'}
                              style={style}>
                         <Button
                             color="rose"

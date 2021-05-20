@@ -51,7 +51,7 @@ class AuthNavbar extends React.Component {
         var list = (
             <List className={classes.list}>
                 <ListItem className={classes.listItem}>
-                    <NavLink to={'/ibstu/start-user'}
+                    <NavLink to={'/auth-ibstu/start-user'}
                              className={classes.navLink}>
                         <Dashboard className={classes.listItemIcon} />
                         <ListItemText

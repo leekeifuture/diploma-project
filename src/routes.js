@@ -1,3 +1,4 @@
+import React from 'react'
 // @material-ui/icons
 import MaterialContainer from './main-views/Materials/MaterialContainer'
 import MaterialsContainer from './main-views/Materials/MaterialsContainer'
@@ -24,134 +25,115 @@ const routes = [
         path: '/start',
         name: 'iBSTU UI',
         component: StartContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/menu',
         name: 'iBSTU UI',
         component: MenuContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/teachers',
         name: 'iBSTU UI',
         component: TeachersContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/teacher/:userId?',
         name: 'iBSTU UI',
         component: TeacherContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/news',
         name: 'iBSTU UI',
         component: NewsContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/new/:newsId?',
         name: 'iBSTU UI',
         component: NewContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/materials',
         name: 'iBSTU UI',
         component: MaterialsContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/material/:materialId?',
         name: 'iBSTU UI',
         component: MaterialContainer,
-        layout: '/ibstu',
-        needAuth: false
+        layout: '/ibstu'
     },
     {
         path: '/start-user',
         name: 'iBSTU UI',
-        component: StartUser,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <StartUser {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/materials-table',
         name: 'iBSTU UI',
-        component: MaterialsTable,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <MaterialsTable {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/teachers-table',
         name: 'iBSTU UI',
-        component: TeachersTable,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <TeachersTable {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/news-table',
         name: 'iBSTU UI',
-        component: NewsTable,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <NewsTable {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/create-material',
         name: 'iBSTU UI',
-        component: CreateMaterial,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <CreateMaterial {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/register-page',
         name: 'iBSTU UI',
-        component: RegisterPage,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <RegisterPage {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/create-news',
         name: 'iBSTU UI',
-        component: CreateNews,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <CreateNews {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/edit-material/:materialId?',
         name: 'iBSTU UI',
-        component: EditMaterial,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <EditMaterial {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/edit-teacher/:userId?',
         name: 'iBSTU UI',
-        component: EditTeacher,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <EditTeacher {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/edit-news/:newsId?',
         name: 'iBSTU UI',
-        component: EditNews,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <EditNews {...state} {...props} />,
+        layout: '/auth-ibstu'
     },
     {
         path: '/edit-profile/:userId?',
         name: 'iBSTU UI',
-        component: EditProfile,
-        layout: '/ibstu',
-        needAuth: true
+        component: (state, props) => <EditProfile {...state} {...props} />,
+        layout: '/auth-ibstu'
     }
 ]
 

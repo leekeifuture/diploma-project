@@ -14,7 +14,6 @@ import Clearfix from 'components/Clearfix/Clearfix.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 import defaultAvatar from '../../assets/img/default-avatar.png'
@@ -64,27 +63,22 @@ class TeacherContainer extends React.Component {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
+        console.log(this.props)
+        const userId = this.props.match.params.userId
+            ? this.props.match.params.userId
+            : this.props.keycloak.tokenParsed.user_id
 
-            const userId = this.props.match.params.userId
-                ? this.props.match.params.userId
-                : keycloak.tokenParsed.user_id
-
-            ibstu.getTeacher(userId).then(teacher => {
-                    const state = {}
-                    Object.keys(teacher.profile).forEach(field => {
-                        state[field] = teacher.profile[field]
-                    })
-                    this.setState(state)
-                    this.setState({teacher})
-                }, error => {
-                    console.error(error)
-                }
-            )
-        })
-
+        ibstu.getTeacher(userId).then(teacher => {
+                const state = {}
+                Object.keys(teacher.profile).forEach(field => {
+                    state[field] = teacher.profile[field]
+                })
+                this.setState(state)
+                this.setState({teacher})
+            }, error => {
+                console.error(error)
+            }
+        )
     }
 
     render() {

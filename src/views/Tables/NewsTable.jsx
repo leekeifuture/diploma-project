@@ -12,7 +12,6 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
@@ -35,16 +34,14 @@ class NewsTable extends React.Component {
             news: null,
             newsContent: [],
             departmentId: localStorage.getItem('departmentId'),
-            data: [],
-            keycloak: null,
-            authenticated: false
+            data: []
         }
     }
 
     getCustomActions(key) {
         return (
             <div className="actions-right">
-                <NavLink to={`/ibstu/edit-news/${key}`}>
+                <NavLink to={`/auth-ibstu/edit-news/${key}`}>
                     <Button
                         justIcon
                         round
@@ -60,34 +57,26 @@ class NewsTable extends React.Component {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
+        ibstu.getNews(this.state.departmentId)
+            .then(news => {
+                    const data = news.content.map(newObj => {
+                        newObj.actions = this.getCustomActions(newObj.id)
+                        return newObj
+                    })
 
-            ibstu.getNews(this.state.departmentId)
-                .then(news => {
-                        const data = news.content.map(newObj => {
-                            newObj.actions = this.getCustomActions(newObj.id)
-                            return newObj
-                        })
-
-                        this.setState({data})
-                        this.setState({news})
-                    }, error => {
-                        console.error(error)
-                    }
-                )
-
-            this.setState({keycloak, authenticated})
-        })
-
+                    this.setState({data})
+                    this.setState({news})
+                }, error => {
+                    console.error(error)
+                }
+            )
     }
 
     render() {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/ibstu/create-news'}>
+                <NavLink to={'/auth-ibstu/create-news'}>
                     <Button>
                         Создать новость
                     </Button>

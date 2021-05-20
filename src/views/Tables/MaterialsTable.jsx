@@ -14,7 +14,6 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
@@ -34,9 +33,7 @@ class MaterialsTable extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: [],
-            keycloak: null,
-            authenticated: false
+            data: []
         }
     }
 
@@ -55,7 +52,7 @@ class MaterialsTable extends React.Component {
                         <GetAppIcon />
                     </Button>
                 </a>{' '}
-                <NavLink to={`/ibstu/edit-material/${key}`}>
+                <NavLink to={`/auth-ibstu/edit-material/${key}`}>
                     <Button
                         justIcon
                         round
@@ -97,35 +94,28 @@ class MaterialsTable extends React.Component {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
+        ibstu.getMaterialsByUserId(this.props.keycloak.tokenParsed.user_id)
+            .then(materials => {
+                    const data = materials.map(material => {
+                        ibstu.getMaterial(material.id).then(materialInfo => {
+                                const ln = materialInfo.lastName ? materialInfo.lastName : ''
+                                const fn = materialInfo.firstName ? materialInfo.firstName : ''
+                                const md = materialInfo.middleName ? materialInfo.middleName : ''
+                                material.creator = `${ln} ${fn} ${md}`
+                                material.description = materialInfo.description
+                            }, error => {
+                                console.error(error)
+                            }
+                        )
 
-            ibstu.getMaterialsByUserId(keycloak.tokenParsed.user_id)
-                .then(materials => {
-                        const data = materials.map(material => {
-                            ibstu.getMaterial(material.id).then(materialInfo => {
-                                    const ln = materialInfo.lastName ? materialInfo.lastName : ''
-                                    const fn = materialInfo.firstName ? materialInfo.firstName : ''
-                                    const md = materialInfo.middleName ? materialInfo.middleName : ''
-                                    material.creator = `${ln} ${fn} ${md}`
-                                    material.description = materialInfo.description
-                                }, error => {
-                                    console.error(error)
-                                }
-                            )
-
-                            material.actions = this.getCustomActions(material.id, material.url)
-                            return material
-                        })
-                        setTimeout(() => this.setState({data}), 500)
-                    }, error => {
-                        console.error(error)
-                    }
-                )
-
-            this.setState({keycloak, authenticated})
-        })
+                        material.actions = this.getCustomActions(material.id, material.url)
+                        return material
+                    })
+                    setTimeout(() => this.setState({data}), 500)
+                }, error => {
+                    console.error(error)
+                }
+            )
 
     }
 
@@ -133,7 +123,7 @@ class MaterialsTable extends React.Component {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/ibstu/create-material'}>
+                <NavLink to={'/auth-ibstu/create-material'}>
                     <Button>
                         Загрузить новый
                     </Button>

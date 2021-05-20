@@ -101,7 +101,7 @@ class HeaderLinks extends React.Component {
                         </Hidden>
                     </Button>
                 </NavLink>
-                <NavLink to={'/ibstu/start-user'}>
+                <NavLink to={'/auth-ibstu/start-user'}>
                     <Button
                         color="rose"
                         simple

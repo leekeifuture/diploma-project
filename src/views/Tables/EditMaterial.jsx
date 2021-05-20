@@ -11,7 +11,6 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 // core components
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
-import Keycloak from 'keycloak-js'
 import React from 'react'
 import {ibstu} from '../../api/ibstu-api'
 import userProfileStyles
@@ -31,22 +30,15 @@ class EditMaterial extends React.Component {
     }
 
     componentDidMount() {
-        const keycloak = Keycloak('/keycloak.json')
-        keycloak.init({onLoad: 'login-required'}).then(authenticated => {
-            localStorage.setItem('token', keycloak.token)
-
-            ibstu.getMaterial(this.props.match.params.materialId)
-                .then(material => {
-                        this.setState({materialHeader: material.header})
-                        this.setState({materialDescription: material.description})
-                        this.setState({material})
-                    }, error => {
-                        console.error(error)
-                    }
-                )
-
-            this.setState({keycloak, authenticated})
-        })
+        ibstu.getMaterial(this.props.match.params.materialId)
+            .then(material => {
+                    this.setState({materialHeader: material.header})
+                    this.setState({materialDescription: material.description})
+                    this.setState({material})
+                }, error => {
+                    console.error(error)
+                }
+            )
     }
 
     buttonIsClicked() {
