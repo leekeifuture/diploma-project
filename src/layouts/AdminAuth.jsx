@@ -159,6 +159,8 @@ class Dashboard extends React.Component {
                 {/*/>*/}
                 <div className={mainPanel} ref="mainPanel">
                     <AdminNavbar
+                        authenticated={this.state.authenticated}
+                        keycloak={this.state.keycloak}
                         sidebarMinimize={this.sidebarMinimize.bind(this)}
                         miniActive={this.state.miniActive}
                         brandText={this.getActiveRoute(routes)}

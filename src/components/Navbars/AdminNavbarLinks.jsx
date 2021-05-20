@@ -1,6 +1,7 @@
 // @material-ui/core components
 import Hidden from '@material-ui/core/Hidden'
 import withStyles from '@material-ui/core/styles/withStyles'
+import {ExitToApp} from '@material-ui/icons'
 import Dashboard from '@material-ui/icons/Dashboard'
 import Person from '@material-ui/icons/Person'
 // @material-ui/icons
@@ -19,14 +20,46 @@ import {NavLink} from 'react-router-dom'
 // import { Manager, Target, Popper } from "react-popper";
 
 class HeaderLinks extends React.Component {
-    state = {
-        open: false
+    constructor() {
+        super()
+        this.state = {
+            open: false
+        }
+        this.getExitButton = this.getExitButton.bind(this)
     }
+
     handleClick = () => {
         this.setState({open: !this.state.open})
     }
     handleClose = () => {
         this.setState({open: false})
+    }
+
+    getExitButton = (classes) => {
+        if (this.props.authenticated) {
+            return (
+                <NavLink to={'/ibstu/menu'}>
+                    <Button
+                        onClick={() => this.props.keycloak.logout()}
+                        color="rose"
+                        simple
+                        aria-label="User menu"
+                        justIcon
+                        className={classes.buttonLink}
+                    >
+                        <ExitToApp
+                            className={classes.headerLinksSvg}
+                        />
+                        <Hidden mdUp implementation="css">
+            <span className={classes.linkText}>
+              {'Выход'}
+            </span>
+                        </Hidden>
+                    </Button>
+                </NavLink>
+            )
+        }
+        return <></>
     }
 
     render() {
@@ -119,6 +152,7 @@ class HeaderLinks extends React.Component {
                         </Hidden>
                     </Button>
                 </NavLink>
+                {this.getExitButton(classes)}
             </div>
         )
     }

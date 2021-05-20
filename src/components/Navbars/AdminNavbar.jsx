@@ -60,7 +60,11 @@ function AdminNavbar({...props}) {
                     </Button>
                 </div>
                 <Hidden smDown implementation="css">
-                    <AdminNavbarLinks rtlActive={rtlActive} />
+                    <AdminNavbarLinks
+                        keycloak={props.keycloak}
+                        authenticated={props.authenticated}
+                        rtlActive={rtlActive}
+                    />
                 </Hidden>
                 <Hidden mdUp implementation="css">
                     <Button
