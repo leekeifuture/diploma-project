@@ -14,6 +14,7 @@ import Clearfix from 'components/Clearfix/Clearfix.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 import defaultAvatar from '../../assets/img/default-avatar.png'
 
@@ -156,4 +157,4 @@ class TeacherContainer extends React.Component {
     }
 }
 
-export default withStyles(userProfileStyles)(TeacherContainer)
+export default withRouter(withStyles(userProfileStyles)(TeacherContainer))

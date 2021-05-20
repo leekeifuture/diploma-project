@@ -12,6 +12,7 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import {ibstu} from '../../api/ibstu-api'
 import userProfileStyles
     from '../../assets/jss/material-dashboard-pro-react/views/userProfileStyles'
@@ -141,4 +142,4 @@ class EditMaterial extends React.Component {
     }
 }
 
-export default EditMaterial
+export default withRouter(EditMaterial)

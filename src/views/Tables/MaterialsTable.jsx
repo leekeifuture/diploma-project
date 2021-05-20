@@ -38,7 +38,6 @@ class MaterialsTable extends React.Component {
     }
 
     getCustomActions(key, url) {
-        console.log('/static-files' + url)
         return (
             <div className="actions-right">
                 <a href={`${baseURL}/static-files${url}`}>

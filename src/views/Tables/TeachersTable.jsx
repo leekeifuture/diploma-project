@@ -1,8 +1,8 @@
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
 // @material-ui/icons
-import Assignment from '@material-ui/icons/Assignment'
 import CreateIcon from '@material-ui/icons/Create'
+import PermIdentity from '@material-ui/icons/PermIdentity'
 
 import {cardTitle} from 'assets/jss/material-dashboard-pro-react.jsx'
 import Card from 'components/Card/Card.jsx'
@@ -82,7 +82,7 @@ class TeachersTable extends React.Component {
                     <Card>
                         <CardHeader color="primary" icon>
                             <CardIcon color="primary">
-                                <Assignment />
+                                <PermIdentity />
                             </CardIcon>
                             <h4 className={classes.cardIconTitle}>
                                 Все преподаватели вашей кафедры

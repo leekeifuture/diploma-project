@@ -1,5 +1,6 @@
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
+import {Announcement} from '@material-ui/icons'
 // @material-ui/icons
 import Assignment from '@material-ui/icons/Assignment'
 import CreateIcon from '@material-ui/icons/Create'
@@ -85,7 +86,7 @@ class NewsTable extends React.Component {
                     <Card>
                         <CardHeader color="primary" icon>
                             <CardIcon color="primary">
-                                <Assignment />
+                                <Announcement />
                             </CardIcon>
                             <h4 className={classes.cardIconTitle}>
                                 Изменение новостей

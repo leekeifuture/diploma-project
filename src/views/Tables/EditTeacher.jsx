@@ -15,6 +15,7 @@ import Clearfix from 'components/Clearfix/Clearfix.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 import defaultAvatar from '../../assets/img/default-avatar.png'
 import Button from '../../components/CustomButtons/Button'
@@ -63,7 +64,6 @@ class TeacherContainer extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         const userId = this.props.match.params.userId
             ? this.props.match.params.userId
             : this.props.keycloak.tokenParsed.user_id
@@ -219,4 +219,4 @@ class TeacherContainer extends React.Component {
     }
 }
 
-export default withStyles(userProfileStyles)(TeacherContainer)
+export default withRouter(withRouter(withStyles(userProfileStyles)(TeacherContainer)))

@@ -1,7 +1,7 @@
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles'
+import {Announcement} from '@material-ui/icons'
 // @material-ui/icons
-import PermIdentity from '@material-ui/icons/PermIdentity'
 
 import userProfileStyles
     from 'assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx'
@@ -14,6 +14,7 @@ import Clearfix from 'components/Clearfix/Clearfix.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
+import {withRouter} from 'react-router-dom'
 import {baseURL, ibstu} from '../../api/ibstu-api'
 
 import newsImage from '../../assets/img/news.png'
@@ -89,7 +90,7 @@ class NewContainer extends React.Component {
                         <Card>
                             <CardHeader color="rose" icon>
                                 <CardIcon color="rose">
-                                    <PermIdentity />
+                                    <Announcement />
                                 </CardIcon>
                             </CardHeader>
                             <CardBody>
@@ -109,4 +110,4 @@ class NewContainer extends React.Component {
 
 }
 
-export default withStyles(userProfileStyles)(NewContainer)
+export default withRouter(withStyles(userProfileStyles)(NewContainer))
