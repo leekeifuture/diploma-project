@@ -63,41 +63,55 @@ class NewsTable extends React.Component {
         )
     }
 
+    getCustomActionsMs(key, url) {
+        return (
+            <></>
+        )
+    }
+
     componentDidMount() {
-        ibstu.getFaculties().then(faculties => {
-                this.setState({faculties})
-            }, error => {
-                console.error(error)
-            }
-        )
-
-        ibstu.getDepartments(this.state.facultyId).then(departments => {
-                this.setState({departments})
-            }, error => {
-                console.error(error)
-            }
-        )
-
-        ibstu.getNews(this.state.departmentId)
-            .then(news => {
-                    const data = news.content.map(newObj => {
-                        newObj.actions = this.getCustomActions(newObj.id)
-                        return newObj
-                    })
-
-                    this.setState({data})
-                    this.setState({news})
+        if (this.props.ms) {
+            const data = this.props.data.map(newObj => {
+                newObj.actions = this.getCustomActionsMs(newObj.id)
+                return newObj
+            })
+            this.setState({data})
+        } else {
+            ibstu.getFaculties().then(faculties => {
+                    this.setState({faculties})
                 }, error => {
                     console.error(error)
                 }
             )
+
+            ibstu.getDepartments(this.state.facultyId).then(departments => {
+                    this.setState({departments})
+                }, error => {
+                    console.error(error)
+                }
+            )
+
+            ibstu.getNews(this.state.departmentId)
+                .then(news => {
+                        const data = news.content.map(newObj => {
+                            newObj.actions = this.getCustomActions(newObj.id)
+                            return newObj
+                        })
+
+                        this.setState({data})
+                        this.setState({news})
+                    }, error => {
+                        console.error(error)
+                    }
+                )
+        }
     }
 
     getDepartmentsComponent(classes, departments, departmentId) {
         if (this.state.facultyId !== '') {
             return (
                 <GridItem xs={12} sm={12} md={12}
-                          lg={12}>
+                          lg={12} style={{marginBottom: '20px'}}>
                     <FormControl
                         fullWidth
                         className={classes.selectFormControl}
@@ -159,64 +173,89 @@ class NewsTable extends React.Component {
         }
     }
 
+    getHeaderInputs(classes) {
+        if (!this.props.ms) {
+            return (
+                <>
+                    <GridItem xs={12} sm={12} md={12}
+                              lg={12} style={{marginBottom: '20px'}}>
+                        <FormControl
+                            fullWidth
+                            className={classes.selectFormControl}
+                        >
+                            <InputLabel
+                                htmlFor="simple-select"
+                                className={classes.selectLabel}
+                            >
+                                Факультет
+                            </InputLabel>
+                            <Select
+                                MenuProps={{
+                                    className: classes.selectMenu
+                                }}
+                                classes={{
+                                    select: classes.select
+                                }}
+                                value={this.state.facultyId}
+                                onChange={
+                                    (event) => {
+                                        this.setState({facultyId: event.target.value})
+                                        this.setState({departmentId: ''})
+                                        ibstu.getDepartments(event.target.value).then(departments => {
+                                                this.setState({departments})
+                                            }, error => {
+                                                console.error(error)
+                                            }
+                                        )
+                                    }
+                                }
+                                inputProps={{
+                                    name: 'simpleSelect',
+                                    id: 'simple-select'
+                                }}
+                            >
+                                {this.state.faculties.map((faculty, index) => (
+                                    <MenuItem
+                                        key={index}
+                                        classes={{
+                                            root: classes.selectMenuItem,
+                                            selected: classes.selectMenuItemSelected
+                                        }}
+                                        value={faculty.id}
+                                    >
+                                        {faculty.name}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </GridItem>
+                    {this.getDepartmentsComponent(classes, this.state.departments, this.state.departmentId)}
+                </>
+            )
+        }
+    }
+
+    getHeader(classes) {
+        if (!this.props.ms) {
+            return (
+                <CardHeader color="primary" icon>
+                    <CardIcon color="primary">
+                        <Announcement />
+                    </CardIcon>
+                    <h4 className={classes.cardIconTitle}>
+                        Изменение новостей
+                    </h4>
+                </CardHeader>
+            )
+        }
+    }
+
     render() {
         const {classes} = this.props
         return (
             <GridContainer>
-                <GridItem xs={12} sm={12} md={12}
-                          lg={12} style={{marginBottom: '20px'}}>
-                    <FormControl
-                        fullWidth
-                        className={classes.selectFormControl}
-                    >
-                        <InputLabel
-                            htmlFor="simple-select"
-                            className={classes.selectLabel}
-                        >
-                            Факультет
-                        </InputLabel>
-                        <Select
-                            MenuProps={{
-                                className: classes.selectMenu
-                            }}
-                            classes={{
-                                select: classes.select
-                            }}
-                            value={this.state.facultyId}
-                            onChange={
-                                (event) => {
-                                    this.setState({facultyId: event.target.value})
-                                    this.setState({departmentId: ''})
-                                    ibstu.getDepartments(event.target.value).then(departments => {
-                                            this.setState({departments})
-                                        }, error => {
-                                            console.error(error)
-                                        }
-                                    )
-                                }
-                            }
-                            inputProps={{
-                                name: 'simpleSelect',
-                                id: 'simple-select'
-                            }}
-                        >
-                            {this.state.faculties.map((faculty, index) => (
-                                <MenuItem
-                                    key={index}
-                                    classes={{
-                                        root: classes.selectMenuItem,
-                                        selected: classes.selectMenuItemSelected
-                                    }}
-                                    value={faculty.id}
-                                >
-                                    {faculty.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </GridItem>
-                {this.getDepartmentsComponent(classes, this.state.departments, this.state.departmentId)}
-                <GridItem xs={12} style={{marginTop: '20px'}}>
+                {this.getHeaderInputs(classes)}
+                <GridItem xs={12}>
                     <NavLink to={'/auth-ibstu/create-news'}>
                         <Button>
                             Создать новость
@@ -225,17 +264,10 @@ class NewsTable extends React.Component {
                 </GridItem>
                 <GridItem xs={12}>
                     <Card>
-                        <CardHeader color="primary" icon>
-                            <CardIcon color="primary">
-                                <Announcement />
-                            </CardIcon>
-                            <h4 className={classes.cardIconTitle}>
-                                Изменение новостей
-                            </h4>
-                        </CardHeader>
+                        {this.getHeader(classes)}
                         <CardBody>
                             <ReactTable
-                                data={this.state.data}
+                                data={this.props.ms ? this.props.data : this.state.data}
                                 filterable
                                 columns={[
                                     {

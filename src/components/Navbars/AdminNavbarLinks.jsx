@@ -6,9 +6,6 @@ import Dashboard from '@material-ui/icons/Dashboard'
 import Person from '@material-ui/icons/Person'
 // @material-ui/icons
 import Search from '@material-ui/icons/Search'
-
-import adminNavbarLinksStyle
-    from 'assets/jss/material-dashboard-pro-react/components/adminNavbarLinksStyle.jsx'
 import classNames from 'classnames'
 import Button from 'components/CustomButtons/Button.jsx'
 // core components
@@ -16,6 +13,8 @@ import CustomInput from 'components/CustomInput/CustomInput.jsx'
 import PropTypes from 'prop-types'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
+import adminNavbarLinksStyle
+    from '../../assets/jss/material-dashboard-pro-react/components/adminNavbarLinksStyle'
 
 // import { Manager, Target, Popper } from "react-popper";
 
@@ -23,7 +22,8 @@ class HeaderLinks extends React.Component {
     constructor() {
         super()
         this.state = {
-            open: false
+            open: false,
+            search: ''
         }
         this.getExitButton = this.getExitButton.bind(this)
     }
@@ -62,7 +62,44 @@ class HeaderLinks extends React.Component {
         return <></>
     }
 
+    getSearchElement(classes, searchButton) {
+        if (!window.location.href.includes('multi-search')) {
+            return (
+                <>
+                    <CustomInput
+                        formControlProps={{
+                            className: classes.top + ' ' + classes.search
+                        }}
+                        inputProps={{
+                            onChange: e => this.setState({search: e.target.value}),
+                            placeholder: 'Поиск',
+                            inputProps: {
+                                'aria-label': 'Поиск',
+                                className: classes.searchInput
+                            }
+                        }}
+                    />
+                    <NavLink to={'/ibstu/multi-search'}>
+                        <Button
+                            onClick={() => localStorage.setItem('ms', this.state.search)}
+                            color="white"
+                            aria-label="edit"
+                            justIcon
+                            round
+                            className={searchButton}
+                        >
+                            <Search
+                                className={classes.headerLinksSvg + ' ' + classes.searchIcon}
+                            />
+                        </Button>
+                    </NavLink>
+                </>
+            )
+        }
+    }
+
     render() {
+
         const {classes, rtlActive} = this.props
         const {open} = this.state
         const searchButton =
@@ -86,30 +123,7 @@ class HeaderLinks extends React.Component {
         })
         return (
             <div className={wrapper}>
-                <CustomInput
-                    rtlActive={rtlActive}
-                    formControlProps={{
-                        className: classes.top + ' ' + classes.search
-                    }}
-                    inputProps={{
-                        placeholder: rtlActive ? 'بحث' : 'Search',
-                        inputProps: {
-                            'aria-label': rtlActive ? 'بحث' : 'Search',
-                            className: classes.searchInput
-                        }
-                    }}
-                />
-                <Button
-                    color="white"
-                    aria-label="edit"
-                    justIcon
-                    round
-                    className={searchButton}
-                >
-                    <Search
-                        className={classes.headerLinksSvg + ' ' + classes.searchIcon}
-                    />
-                </Button>
+                {this.getSearchElement(classes, searchButton)}
                 <NavLink to={'/ibstu/menu'}>
                     <Button
                         color="rose"

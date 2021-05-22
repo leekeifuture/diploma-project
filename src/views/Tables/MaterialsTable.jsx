@@ -92,30 +92,81 @@ class MaterialsTable extends React.Component {
         )
     }
 
+    getCustomActionsMs(key, url) {
+        return (
+            <div className="actions-right">
+                <a href={`${baseURL}/static-files${url}`}>
+                    <Button
+                        justIcon
+                        round
+                        simple
+                        color="success"
+                        className="download"
+                    >
+                        <GetAppIcon />
+                    </Button>
+                </a>
+            </div>
+        )
+    }
+
     componentDidMount() {
-        ibstu.getMaterialsByUserId(this.props.keycloak.tokenParsed.user_id)
-            .then(materials => {
-                    const data = materials.map(material => {
-                        ibstu.getMaterial(material.id).then(materialInfo => {
-                                const ln = materialInfo.lastName ? materialInfo.lastName : ''
-                                const fn = materialInfo.firstName ? materialInfo.firstName : ''
-                                const md = materialInfo.middleName ? materialInfo.middleName : ''
-                                material.creator = `${ln} ${fn} ${md}`
-                                material.description = materialInfo.description
-                            }, error => {
-                                console.error(error)
-                            }
-                        )
+        if (this.props.ms) {
+            const data = this.props.data.map(material => {
+                ibstu.getMaterial(material.id).then(materialInfo => {
+                        const ln = materialInfo.lastName ? materialInfo.lastName : ''
+                        const fn = materialInfo.firstName ? materialInfo.firstName : ''
+                        const md = materialInfo.middleName ? materialInfo.middleName : ''
+                        material.creator = `${ln} ${fn} ${md}`
+                        material.description = materialInfo.description
+                    }, error => {
+                        console.error(error)
+                    }
+                )
 
-                        material.actions = this.getCustomActions(material.id, material.url)
-                        return material
-                    })
-                    setTimeout(() => this.setState({data}), 500)
-                }, error => {
-                    console.error(error)
-                }
+                material.actions = this.getCustomActionsMs(material.id, material.url)
+                return material
+            })
+            setTimeout(() => this.setState({data}), 500)
+        } else {
+            ibstu.getMaterialsByUserId(this.props.keycloak.tokenParsed.user_id)
+                .then(materials => {
+                        const data = materials.map(material => {
+                            ibstu.getMaterial(material.id).then(materialInfo => {
+                                    const ln = materialInfo.lastName ? materialInfo.lastName : ''
+                                    const fn = materialInfo.firstName ? materialInfo.firstName : ''
+                                    const md = materialInfo.middleName ? materialInfo.middleName : ''
+                                    material.creator = `${ln} ${fn} ${md}`
+                                    material.description = materialInfo.description
+                                }, error => {
+                                    console.error(error)
+                                }
+                            )
+
+                            material.actions = this.getCustomActions(material.id, material.url)
+                            return material
+                        })
+                        setTimeout(() => this.setState({data}), 500)
+                    }, error => {
+                        console.error(error)
+                    }
+                )
+        }
+    }
+
+    getHeader(classes) {
+        if (!this.props.ms) {
+            return (
+                <CardHeader color="primary" icon>
+                    <CardIcon color="primary">
+                        <Assignment />
+                    </CardIcon>
+                    <h4 className={classes.cardIconTitle}>
+                        Все ваши материалы
+                    </h4>
+                </CardHeader>
             )
-
+        }
     }
 
     render() {
@@ -129,17 +180,10 @@ class MaterialsTable extends React.Component {
                 </NavLink>
                 <GridItem xs={12}>
                     <Card>
-                        <CardHeader color="primary" icon>
-                            <CardIcon color="primary">
-                                <Assignment />
-                            </CardIcon>
-                            <h4 className={classes.cardIconTitle}>
-                                Все ваши материалы
-                            </h4>
-                        </CardHeader>
+                        {this.getHeader(classes)}
                         <CardBody>
                             <ReactTable
-                                data={this.state.data}
+                                data={this.props.ms ? this.props.data : this.state.data}
                                 filterable
                                 columns={[
                                     {

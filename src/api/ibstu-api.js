@@ -109,5 +109,10 @@ export const ibstu = {
     removeMaterial(materialId) {
         return axiosInstance.delete(`/files/materials/${materialId}`, config)
             .then(response => response.data)
+    },
+    searchByKeyWord(keyWord) {
+        return axiosInstance.get('/search', {
+            params: {keyWord}
+        }).then(response => response.data)
     }
 }

@@ -56,21 +56,65 @@ class TeachersTable extends React.Component {
     componentDidMount() {
         const departmentId = localStorage.getItem('departmentId')
 
-        ibstu.getTeachers(departmentId)
-            .then(teachers => {
-                    const data = teachers.map(teacher => {
-                        teacher.actions = this.getCustomActions(teacher.userId)
-                        return teacher
-                    })
-                    setTimeout(() => this.setState({data}), 500)
-                }, error => {
-                    console.error(error)
-                }
+        if (this.props.ms) {
+            setTimeout(() => this.setState({data: this.props.data}), 500)
+        } else {
+            ibstu.getTeachers(departmentId)
+                .then(teachers => {
+                        const data = teachers.map(teacher => {
+                            teacher.actions = this.getCustomActions(teacher.userId)
+                            return teacher
+                        })
+                        setTimeout(() => this.setState({data}), 500)
+                    }, error => {
+                        console.error(error)
+                    }
+                )
+        }
+    }
+
+    getHeader(classes) {
+        if (!this.props.ms) {
+            return (
+                <CardHeader color="primary" icon>
+                    <CardIcon color="primary">
+                        <PermIdentity />
+                    </CardIcon>
+                    <h4 className={classes.cardIconTitle}>
+                        Все преподаватели вашей кафедры
+                    </h4>
+                </CardHeader>
             )
+        }
     }
 
     render() {
         const {classes} = this.props
+        const columns = [
+            {
+                Header: 'Фамилия',
+                accessor: 'lastName'
+            },
+            {
+                Header: 'Имя',
+                accessor: 'firstName'
+            },
+            {
+                Header: 'Отчество',
+                accessor: 'middleName'
+            },
+            {
+                Header: 'Должность',
+                accessor: 'position'
+            },
+            {
+                Header: 'Действия',
+                accessor: 'actions',
+                sortable: false,
+                filterable: false
+            }
+        ]
+
         return (
             <GridContainer>
                 <NavLink to={'/auth-ibstu/register-page'}>
@@ -80,42 +124,12 @@ class TeachersTable extends React.Component {
                 </NavLink>
                 <GridItem xs={12}>
                     <Card>
-                        <CardHeader color="primary" icon>
-                            <CardIcon color="primary">
-                                <PermIdentity />
-                            </CardIcon>
-                            <h4 className={classes.cardIconTitle}>
-                                Все преподаватели вашей кафедры
-                            </h4>
-                        </CardHeader>
+                        {this.getHeader(classes)}
                         <CardBody>
                             <ReactTable
-                                data={this.state.data}
+                                data={this.props.ms ? this.props.data : this.state.data}
                                 filterable
-                                columns={[
-                                    {
-                                        Header: 'Фамилия',
-                                        accessor: 'lastName'
-                                    },
-                                    {
-                                        Header: 'Имя',
-                                        accessor: 'firstName'
-                                    },
-                                    {
-                                        Header: 'Отчество',
-                                        accessor: 'middleName'
-                                    },
-                                    {
-                                        Header: 'Должность',
-                                        accessor: 'position'
-                                    },
-                                    {
-                                        Header: 'Действия',
-                                        accessor: 'actions',
-                                        sortable: false,
-                                        filterable: false
-                                    }
-                                ]}
+                                columns={columns}
                                 // defaultPageSize={10}
                                 // showPaginationTop
                                 showPaginationBottom={false}

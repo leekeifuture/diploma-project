@@ -8,6 +8,7 @@ import NewsContainer from './main-views/News/NewsContainer'
 import StartContainer from './main-views/StartContainer'
 import StartUser from './main-views/StartUser'
 import TeachersContainer from './main-views/Teachers/TeachersContainer'
+import Panels from './views/Components/Panels'
 import RegisterPage from './views/Pages/RegisterPage'
 import TeacherContainer from './views/Pages/TeacherContainer'
 import CreateMaterial from './views/Tables/CreateMaterial'
@@ -67,6 +68,12 @@ const routes = [
         path: '/material/:materialId?',
         name: 'iBSTU UI',
         component: MaterialContainer,
+        layout: '/ibstu'
+    },
+    {
+        path: '/multi-search',
+        name: 'iBSTU UI',
+        component: Panels,
         layout: '/ibstu'
     },
     {

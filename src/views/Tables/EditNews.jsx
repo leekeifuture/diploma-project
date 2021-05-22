@@ -31,7 +31,6 @@ class EditNews extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.match.params)
         ibstu.getNew(this.props.match.params.newsId)
             .then(news => {
                     this.setState({newsHeader: news.header})
