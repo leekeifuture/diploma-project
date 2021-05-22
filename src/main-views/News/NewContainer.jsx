@@ -2,7 +2,6 @@
 import withStyles from '@material-ui/core/styles/withStyles'
 import {Announcement} from '@material-ui/icons'
 // @material-ui/icons
-
 import userProfileStyles
     from 'assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx'
 import Card from 'components/Card/Card.jsx'

@@ -1,8 +1,11 @@
 // @material-ui/core components
+import FormControl from '@material-ui/core/FormControl'
+import InputLabel from '@material-ui/core/InputLabel'
+import MenuItem from '@material-ui/core/MenuItem'
+import Select from '@material-ui/core/Select'
 import withStyles from '@material-ui/core/styles/withStyles'
 import {Announcement} from '@material-ui/icons'
 // @material-ui/icons
-import Assignment from '@material-ui/icons/Assignment'
 import CreateIcon from '@material-ui/icons/Create'
 
 import {cardTitle} from 'assets/jss/material-dashboard-pro-react.jsx'
@@ -34,8 +37,11 @@ class NewsTable extends React.Component {
         this.state = {
             news: null,
             newsContent: [],
+            facultyId: localStorage.getItem('facultyId'),
             departmentId: localStorage.getItem('departmentId'),
-            data: []
+            data: [],
+            faculties: [],
+            departments: []
         }
     }
 
@@ -58,6 +64,20 @@ class NewsTable extends React.Component {
     }
 
     componentDidMount() {
+        ibstu.getFaculties().then(faculties => {
+                this.setState({faculties})
+            }, error => {
+                console.error(error)
+            }
+        )
+
+        ibstu.getDepartments(this.state.facultyId).then(departments => {
+                this.setState({departments})
+            }, error => {
+                console.error(error)
+            }
+        )
+
         ibstu.getNews(this.state.departmentId)
             .then(news => {
                     const data = news.content.map(newObj => {
@@ -73,15 +93,136 @@ class NewsTable extends React.Component {
             )
     }
 
+    getDepartmentsComponent(classes, departments, departmentId) {
+        if (this.state.facultyId !== '') {
+            return (
+                <GridItem xs={12} sm={12} md={12}
+                          lg={12}>
+                    <FormControl
+                        fullWidth
+                        className={classes.selectFormControl}
+                    >
+                        <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                        >
+                            Кафедра
+                        </InputLabel>
+                        <Select
+                            MenuProps={{
+                                className: classes.selectMenu
+                            }}
+                            classes={{
+                                select: classes.select
+                            }}
+                            value={departmentId}
+                            onChange={
+                                (event) => {
+                                    ibstu.getNews(event.target.value)
+                                        .then(news => {
+                                                const data = news.content.map(newObj => {
+                                                    newObj.actions = this.getCustomActions(newObj.id)
+                                                    return newObj
+                                                })
+
+                                                this.setState({data})
+                                                this.setState({news})
+                                            }, error => {
+                                                console.error(error)
+                                            }
+                                        )
+
+                                    this.setState({departmentId: event.target.value})
+                                }
+                            }
+                            inputProps={{
+                                name: 'simpleSelect',
+                                id: 'simple-select'
+                            }}
+                        >
+                            {departments.map((department, index) => (
+                                <MenuItem
+                                    key={index}
+                                    classes={{
+                                        root: classes.selectMenuItem,
+                                        selected: classes.selectMenuItemSelected
+                                    }}
+                                    value={department.id}
+                                >
+                                    {department.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </GridItem>
+            )
+        }
+    }
+
     render() {
         const {classes} = this.props
         return (
             <GridContainer>
-                <NavLink to={'/auth-ibstu/create-news'}>
-                    <Button>
-                        Создать новость
-                    </Button>
-                </NavLink>
+                <GridItem xs={12} sm={12} md={12}
+                          lg={12} style={{marginBottom: '20px'}}>
+                    <FormControl
+                        fullWidth
+                        className={classes.selectFormControl}
+                    >
+                        <InputLabel
+                            htmlFor="simple-select"
+                            className={classes.selectLabel}
+                        >
+                            Факультет
+                        </InputLabel>
+                        <Select
+                            MenuProps={{
+                                className: classes.selectMenu
+                            }}
+                            classes={{
+                                select: classes.select
+                            }}
+                            value={this.state.facultyId}
+                            onChange={
+                                (event) => {
+                                    this.setState({facultyId: event.target.value})
+                                    this.setState({departmentId: ''})
+                                    ibstu.getDepartments(event.target.value).then(departments => {
+                                            this.setState({departments})
+                                        }, error => {
+                                            console.error(error)
+                                        }
+                                    )
+                                }
+                            }
+                            inputProps={{
+                                name: 'simpleSelect',
+                                id: 'simple-select'
+                            }}
+                        >
+                            {this.state.faculties.map((faculty, index) => (
+                                <MenuItem
+                                    key={index}
+                                    classes={{
+                                        root: classes.selectMenuItem,
+                                        selected: classes.selectMenuItemSelected
+                                    }}
+                                    value={faculty.id}
+                                >
+                                    {faculty.name}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+                </GridItem>
+                {this.getDepartmentsComponent(classes, this.state.departments, this.state.departmentId)}
+                <GridItem xs={12} style={{marginTop: '20px'}}>
+                    <NavLink to={'/auth-ibstu/create-news'}>
+                        <Button>
+                            Создать новость
+                        </Button>
+                    </NavLink>
+                </GridItem>
                 <GridItem xs={12}>
                     <Card>
                         <CardHeader color="primary" icon>
