@@ -64,8 +64,8 @@ class TeacherContainer extends React.Component {
                                onClick={e => e.preventDefault()}>
                                 <img src={profilePicture} alt="..."
                                      style={{
-                                         maxWidth: '200px',
-                                         maxHeight: '200px'
+                                         maxWidth: '100%',
+                                         maxHeight: '100%'
                                      }} />
                             </a>
                             <CardBody profile>
