@@ -88,6 +88,18 @@ class TeachersTable extends React.Component {
         }
     }
 
+    getButton() {
+        if (!this.props.ms) {
+            return (
+                <NavLink to={'/auth-ibstu/register-page'}>
+                    <Button>
+                        Зарегистрировать нового
+                    </Button>
+                </NavLink>
+            )
+        }
+    }
+
     render() {
         const {classes} = this.props
         const columns = [
@@ -117,11 +129,7 @@ class TeachersTable extends React.Component {
 
         return (
             <GridContainer>
-                <NavLink to={'/auth-ibstu/register-page'}>
-                    <Button>
-                        Зарегистрировать нового
-                    </Button>
-                </NavLink>
+                {this.getButton()}
                 <GridItem xs={12}>
                     <Card>
                         {this.getHeader(classes)}

@@ -250,17 +250,25 @@ class NewsTable extends React.Component {
         }
     }
 
+    getButton() {
+        if (!this.props.ms) {
+            return (
+                <NavLink to={'/auth-ibstu/create-news'}>
+                    <Button>
+                        Создать новость
+                    </Button>
+                </NavLink>
+            )
+        }
+    }
+
     render() {
         const {classes} = this.props
         return (
             <GridContainer>
                 {this.getHeaderInputs(classes)}
                 <GridItem xs={12}>
-                    <NavLink to={'/auth-ibstu/create-news'}>
-                        <Button>
-                            Создать новость
-                        </Button>
-                    </NavLink>
+                    {this.getButton()}
                 </GridItem>
                 <GridItem xs={12}>
                     <Card>

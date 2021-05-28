@@ -169,15 +169,23 @@ class MaterialsTable extends React.Component {
         }
     }
 
-    render() {
-        const {classes} = this.props
-        return (
-            <GridContainer>
+    getButton() {
+        if (!this.props.ms) {
+            return (
                 <NavLink to={'/auth-ibstu/create-material'}>
                     <Button>
                         Загрузить новый
                     </Button>
                 </NavLink>
+            )
+        }
+    }
+
+    render() {
+        const {classes} = this.props
+        return (
+            <GridContainer>
+                {this.getButton()}
                 <GridItem xs={12}>
                     <Card>
                         {this.getHeader(classes)}
