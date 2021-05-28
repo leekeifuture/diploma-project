@@ -17,7 +17,7 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
 import ReactTable from 'react-table'
 import {ibstu} from '../../api/ibstu-api'
@@ -280,11 +280,21 @@ class NewsTable extends React.Component {
                                 columns={[
                                     {
                                         Header: 'Заголовок',
-                                        accessor: 'header'
+                                        accessor: 'header',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/new/${row._original.id}`}}>{row.header}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Дата создания',
-                                        accessor: 'createdAt'
+                                        accessor: 'createdAt',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/new/${row._original.id}`}}>{row.createdAt}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Действия',

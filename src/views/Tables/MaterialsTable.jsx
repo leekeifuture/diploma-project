@@ -15,7 +15,7 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
 import ReactTable from 'react-table'
 import {baseURL, ibstu} from '../../api/ibstu-api'
@@ -196,19 +196,39 @@ class MaterialsTable extends React.Component {
                                 columns={[
                                     {
                                         Header: 'Заголовок',
-                                        accessor: 'header'
+                                        accessor: 'header',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.header}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Тип',
-                                        accessor: 'mimeType'
+                                        accessor: 'mimeType',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.mimeType}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Описание',
-                                        accessor: 'description'
+                                        accessor: 'description',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.description}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Создатель',
-                                        accessor: 'creator'
+                                        accessor: 'creator',
+                                        Cell: ({row}) => (
+                                            <Link
+                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.creator}
+                                            </Link>
+                                        )
                                     },
                                     {
                                         Header: 'Действия',

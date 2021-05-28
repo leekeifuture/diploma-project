@@ -13,7 +13,7 @@ import CardIcon from 'components/Card/CardIcon.jsx'
 import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 // react component for creating dynamic tables
 import ReactTable from 'react-table'
 import {ibstu} from '../../api/ibstu-api'
@@ -105,19 +105,39 @@ class TeachersTable extends React.Component {
         const columns = [
             {
                 Header: 'Фамилия',
-                accessor: 'lastName'
+                accessor: 'lastName',
+                Cell: ({row}) => (
+                    <Link
+                        to={{pathname: `/ibstu/teacher/${row._original.userId}`}}>{row.lastName}
+                    </Link>
+                )
             },
             {
                 Header: 'Имя',
-                accessor: 'firstName'
+                accessor: 'firstName',
+                Cell: ({row}) => (
+                    <Link
+                        to={{pathname: `/ibstu/teacher/${row._original.userId}`}}>{row.firstName}
+                    </Link>
+                )
             },
             {
                 Header: 'Отчество',
-                accessor: 'middleName'
+                accessor: 'middleName',
+                Cell: ({row}) => (
+                    <Link
+                        to={{pathname: `/ibstu/teacher/${row._original.userId}`}}>{row.middleName}
+                    </Link>
+                )
             },
             {
                 Header: 'Должность',
-                accessor: 'position'
+                accessor: 'position',
+                Cell: ({row}) => (
+                    <Link
+                        to={{pathname: `/ibstu/teacher/${row._original.userId}`}}>{row.position}
+                    </Link>
+                )
             },
             {
                 Header: 'Действия',
