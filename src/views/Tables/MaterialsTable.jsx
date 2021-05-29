@@ -213,20 +213,12 @@ class MaterialsTable extends React.Component {
                                         )
                                     },
                                     {
-                                        Header: 'Описание',
-                                        accessor: 'description',
-                                        Cell: ({row}) => (
-                                            <Link
-                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.description}
-                                            </Link>
-                                        )
-                                    },
-                                    {
                                         Header: 'Создатель',
                                         accessor: 'creator',
                                         Cell: ({row}) => (
                                             <Link
-                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>{row.creator}
+                                                to={{pathname: `/ibstu/material/${row._original.id}`}}>
+                                                {this.getCreator(row)}
                                             </Link>
                                         )
                                     },
@@ -247,6 +239,13 @@ class MaterialsTable extends React.Component {
                 </GridItem>
             </GridContainer>
         )
+    }
+
+    getCreator(row) {
+        const ln = row._original.lastName ? row._original.lastName : ''
+        const fn = row._original.firstName ? row._original.firstName : ''
+        const md = row._original.middleName ? row._original.middleName : ''
+        return `${ln} ${fn} ${md}`
     }
 }
 
