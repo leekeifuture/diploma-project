@@ -145,8 +145,8 @@ class RegisterPage extends React.Component {
 
     onButtonClick() {
         ibstu.registerUser(
-            this.state.surname,
             this.state.name,
+            this.state.surname,
             this.state.middleName,
             this.state.email,
             this.state.departmentId,
@@ -171,7 +171,6 @@ class RegisterPage extends React.Component {
         let buttonBlock = false
         if (this.state.surname === '' ||
             this.state.name === '' ||
-            this.state.middleName === '' ||
             this.state.email === '' ||
             this.state.departmentId === '' ||
             this.state.simpleSelect === '') {
@@ -228,25 +227,6 @@ class RegisterPage extends React.Component {
                                                         </InputAdornment>
                                                     ),
                                                     placeholder: 'Имя...'
-                                                }}
-                                            />
-                                            <CustomInput
-                                                formControlProps={{
-                                                    fullWidth: true,
-                                                    className: classes.customFormControlClasses
-                                                }}
-                                                inputProps={{
-                                                    onChange: this.onMiddleNameChange,
-                                                    startAdornment: (
-                                                        <InputAdornment
-                                                            position="start"
-                                                            className={classes.inputAdornment}
-                                                        >
-                                                            <Face
-                                                                className={classes.inputAdornmentIcon} />
-                                                        </InputAdornment>
-                                                    ),
-                                                    placeholder: 'Отчество...'
                                                 }}
                                             />
                                             <CustomInput
