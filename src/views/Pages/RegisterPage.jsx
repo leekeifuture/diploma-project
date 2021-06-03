@@ -236,25 +236,6 @@ class RegisterPage extends React.Component {
                                                     className: classes.customFormControlClasses
                                                 }}
                                                 inputProps={{
-                                                    onChange: this.onMiddleNameChange,
-                                                    startAdornment: (
-                                                        <InputAdornment
-                                                            position="start"
-                                                            className={classes.inputAdornment}
-                                                        >
-                                                            <Face
-                                                                className={classes.inputAdornmentIcon} />
-                                                        </InputAdornment>
-                                                    ),
-                                                    placeholder: 'Отчество...'
-                                                }}
-                                            />
-                                            <CustomInput
-                                                formControlProps={{
-                                                    fullWidth: true,
-                                                    className: classes.customFormControlClasses
-                                                }}
-                                                inputProps={{
                                                     onChange: this.onEmailChange,
                                                     startAdornment: (
                                                         <InputAdornment
