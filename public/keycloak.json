@@ -1,6 +1,6 @@
 {
   "realm": "ibstu",
-  "auth-server-url": "http://ec2-18-196-34-210.eu-central-1.compute.amazonaws.com:8080/auth/",
+  "auth-server-url": "http://ec2-3-66-191-14.eu-central-1.compute.amazonaws.com:8080/auth/",
   "ssl-required": "none",
   "resource": "ibstu-service",
   "public-client": true,

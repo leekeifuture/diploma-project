@@ -171,7 +171,6 @@ class RegisterPage extends React.Component {
         let buttonBlock = false
         if (this.state.surname === '' ||
             this.state.name === '' ||
-            this.state.middleName === '' ||
             this.state.email === '' ||
             this.state.departmentId === '' ||
             this.state.simpleSelect === '') {

@@ -6,7 +6,6 @@ import PermIdentity from '@material-ui/icons/PermIdentity'
 import userProfileStyles
     from 'assets/jss/material-dashboard-pro-react/views/userProfileStyles.jsx'
 import Card from 'components/Card/Card.jsx'
-import CardAvatar from 'components/Card/CardAvatar.jsx'
 import CardBody from 'components/Card/CardBody.jsx'
 import CardHeader from 'components/Card/CardHeader.jsx'
 import CardIcon from 'components/Card/CardIcon.jsx'
@@ -16,10 +15,11 @@ import GridContainer from 'components/Grid/GridContainer.jsx'
 import GridItem from 'components/Grid/GridItem.jsx'
 import React from 'react'
 import {withRouter} from 'react-router-dom'
-import {baseURL, ibstu} from '../../api/ibstu-api'
+import {ibstu} from '../../api/ibstu-api'
 import defaultAvatar from '../../assets/img/default-avatar.png'
 import Button from '../../components/CustomButtons/Button'
 import CustomInput from '../../components/CustomInput/CustomInput'
+import ImageUpload from '../../components/CustomUpload/ImageUpload'
 
 const fields = {
     firstName: 'Имя',
@@ -44,6 +44,7 @@ class TeacherContainer extends React.Component {
         super(props)
         this.state = {
             teacher: null,
+            file: null,
             firstName: '',
             lastName: '',
             middleName: '',
@@ -87,8 +88,18 @@ class TeacherContainer extends React.Component {
             return <></>
         }
         const profilePicture = teacher.imageUrl
-            ? `${baseURL}/static-files/${teacher.id}/avatar.png`
+            ? `/${teacher.id}/avatar.png`
             : defaultAvatar
+
+        const ln = teacher.profile.lastName
+            ? teacher.profile.lastName
+            : ''
+        const fn = teacher.profile.firstName
+            ? teacher.profile.firstName
+            : ''
+        const md = teacher.profile.middleName
+            ? teacher.profile.middleName
+            : ''
 
         const {classes} = this.props
         return (
@@ -96,24 +107,17 @@ class TeacherContainer extends React.Component {
                 <GridContainer>
                     <GridItem xs={12} sm={12} md={4}>
                         <Card profile>
-                            <CardAvatar profile>
-                                <a href=""
-                                   onClick={e => e.preventDefault()}>
-                                    <img src={profilePicture} alt="..."
-                                         style={{
-                                             maxWidth: '100%',
-                                             maxHeight: '100%'
-                                         }} />
-                                </a>
-                            </CardAvatar>
+                            <GridItem xs={12} sm={12} md={12}>
+                                <ImageUpload t={this}
+                                             imageUrl={profilePicture}
+                                             photo />
+                            </GridItem>
                             <CardBody profile>
                                 <h6 className={classes.cardCategory}>
                                     {teacher.department.positionName}
                                 </h6>
                                 <h4 className={classes.cardTitle}>
-                                    {teacher.profile.lastName + ' ' +
-                                    teacher.profile.firstName + ' ' +
-                                    teacher.profile.middleName}
+                                    {`${ln} ${fn} ${md}`}
                                 </h4>
                                 <p className={classes.description}>
                                     {teacher.department.departmentName}
@@ -153,10 +157,22 @@ class TeacherContainer extends React.Component {
         const params = {...this.state}
         const userId = params.teacher.id
         delete params.teacher
+        delete params.file
 
         ibstu.updateUserProfile(params, userId)
             .then(data => {
-                    alert('Изменено')
+                    console.log(this.state.file)
+                    if (this.state.file !== null) {
+                        ibstu.addAvatarToUser(this.state.file)
+                            .then(data => {
+                                this.setState({file: null})
+                                alert('Изменено')
+                            }, error => {
+                                alert(error.message)
+                            })
+                    } else {
+                        alert('Изменено')
+                    }
                 }, error => {
                     alert(error.message)
                 }

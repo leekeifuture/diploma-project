@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 
-export const baseURL = 'http://ec2-18-196-196-166.eu-central-1.compute.amazonaws.com'
+export const baseURL = 'http://ec2-3-127-23-57.eu-central-1.compute.amazonaws.com'
 
 const axiosInstance = axios.create({baseURL})
 
@@ -114,5 +114,11 @@ export const ibstu = {
         return axiosInstance.get('/search', {
             params: {keyWord}
         }).then(response => response.data)
+    },
+    addAvatarToUser(file) {
+        const data = new FormData()
+        data.append('file', file, file.name)
+        return axiosInstance.post('/files/avatars', data, config)
+            .then(response => response.data)
     }
 }
